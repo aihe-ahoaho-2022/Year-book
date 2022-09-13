@@ -1,0 +1,32 @@
+.container { text-align: center; }
+
+.heading {
+  margin: 32px; font-size: 2.5rem;
+  @media only screen and (max-width: 1199px) { font-size: 2rem; }
+  @media only screen and (max-width: 767px) { font-size: 1.5rem; }
+}
+
+.text { margin: 32px; font-size: 1.5rem; }
+
+.image { 
+  max-width: 70vw; max-height: 50vh; border-radius: 4px; 
+  transition-duration: 200ms;
+}
+
+.image:hover {
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 8px 0px;
+}
+
+.button {
+  margin: 16px; padding: 16px 24px 16px 24px; cursor: pointer;
+  background-color: #b0df83;  border: 0; border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 4px 0px;
+  color: #444444; font-size: 1.5rem; font-weight: bold;
+  transition-duration: 200ms;
+}
+
+.button:hover {
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 8px 0px;
+}
