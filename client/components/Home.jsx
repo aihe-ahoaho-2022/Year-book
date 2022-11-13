@@ -11,11 +11,16 @@ export default function Home() {
 
   useEffect(() => dispatch(fetchHomeContent()), [])
 
+  const adjectives = ['Fancy', 'Fun', 'Brave', 'Bubbly']
+  const randomIndex = Math.floor(Math.random() * adjectives.length)
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}> Welcome to Lettuce Meat!</h1>
+      <h1 className={styles.heading}> Welcome to Badger Match!</h1>
       <div className={styles.text}>
-        <p>Yummy {homeContent.name}!</p>
+        <p>
+          {adjectives[randomIndex]} {homeContent.name}!
+        </p>
       </div>
       <div>
         <img
@@ -25,7 +30,7 @@ export default function Home() {
         />
       </div>
       <Link to='/play'>
-        <button className={styles.button}>Meat your match!</button>
+        <button className={styles.button}>Meet your match!</button>
       </Link>
     </div>
   )

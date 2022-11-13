@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <Link to='/'>
-        <div className={styles.title}>LETTUCE MEAT</div>
+        <div className={styles.title}>Badger Match</div>
       </Link>
       <div className={styles.links}>
         <Link to='/play'>Play</Link>

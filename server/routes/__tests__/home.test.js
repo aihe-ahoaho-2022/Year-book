@@ -1,40 +1,40 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getFoods } = require('../../db/home')
+const { getAnimals } = require('../../db/home')
 jest.mock('../../db/home')
 
-const getFoodsMockData = [
+const getAnimalsMockData = [
   {
     id: 1,
-    uploader_id: '1',
-    name: 'Pizza',
-    description: 'Delicious margarita pizza',
-    image_url: '/images/pizza.jpg',
+    auth0_id: '1',
+    name: 'Bag Cat',
+    description: 'Likes bags',
+    image_url: '/images/bag-cat.jpg',
   },
   {
     id: 2,
-    uploader_id: '1',
-    name: 'Toast',
-    description: 'Perfectly toasted eggy bread',
-    image_url: '/images/pizza.jpg',
+    auth0_id: '1',
+    name: 'Mug Pup',
+    description: 'Lives in mugs',
+    image_url: '/images/mug-pup.jpg',
   },
 ]
 
 describe('GET /api/v1/home/', () => {
-  it('should return status 200 and a food when database is successful.', () => {
+  it('should return status 200 and a animal when database is successful.', () => {
     expect.assertions(2)
-    getFoods.mockReturnValue(Promise.resolve(getFoodsMockData))
+    getAnimals.mockReturnValue(Promise.resolve(getAnimalsMockData))
     return request(server)
       .get('/api/v1/home/')
       .then((res) => {
         expect(res.status).toBe(200)
-        expect(getFoodsMockData).toContainEqual(res.body)
+        expect(getAnimalsMockData).toContainEqual(res.body)
       })
   })
   it('should return status 500 and an error message when database fails.', () => {
     expect.assertions(2)
-    getFoods.mockImplementation(() =>
+    getAnimals.mockImplementation(() =>
       Promise.reject(new Error('Something went wrong'))
     )
     return request(server)

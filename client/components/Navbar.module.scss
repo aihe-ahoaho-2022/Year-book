@@ -1,6 +1,8 @@
+@use '../styles/theme';
+
 .navbar {
   display: flex; justify-content: space-between; align-items: center;
-  gap: 8px; padding: 24px; background-color: #b0df83; color: #444444;
+  gap: 8px; padding: 24px; background-color: theme.$bright; color: theme.$black;
   font-size: 1.2rem; font-weight: bolder; white-space: nowrap;  
 }
 

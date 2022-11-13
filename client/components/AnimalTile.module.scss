@@ -1,0 +1,42 @@
+@use '../styles/theme';
+
+:root{
+  --body-font: 2vw;
+  --card-height: 24vw;
+  --card-width: 18vw;
+}
+
+.tile {
+  width: calc(var(--card-width)); height: calc(var(--card-height));
+  display: flex; align-items: center; flex-direction: column; position: relative;
+  margin: 1vw 5vw 1vw 5vw; cursor: pointer; background-color: theme.$white;
+}
+
+.tile:hover, .tile:focus{
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: theme.$shadow; opacity: 0.8;
+}
+
+.img {
+  width: calc(var(--card-width)); height: calc(var(--card-height));
+  border-radius: .4vw; border-width: .2vw; 
+  border-style: solid; border-color: theme.$black;
+  object-fit: cover;
+}
+
+.textBox {
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  position: relative; background-color: theme.$white; 
+  width: calc(var(--card-width) - 1.5vw); top: -6vw; 
+  border-radius: .4vw; border-width: .2vw; border-style: solid; border-color: theme.$light;
+}
+
+.name {
+  margin: 0.5vw; width: auto; text-align: center;
+  font-family: theme.$font-header; font-size: calc(.8 * var(--body-font));
+}
+
+.description {
+  margin-top: -0.5vw; margin-bottom: 0.5vw;
+  text-align: center; font-size: calc(.6 * var(--body-font));
+}

@@ -26,7 +26,7 @@ const fakeStore = {
 }
 
 describe('<Home />', () => {
-  it('displays image and food name from redux state.', () => {
+  it('displays image and animal name from redux state.', () => {
     expect.assertions(2)
     render(
       <Provider store={fakeStore}>
@@ -35,10 +35,10 @@ describe('<Home />', () => {
         </BrowserRouter>
       </Provider>
     )
-    const foodName = screen.getByText(homeContentMockData.name, {
+    const animalName = screen.getByText(homeContentMockData.name, {
       exact: false,
     })
-    expect(foodName).toBeTruthy()
+    expect(animalName).toBeTruthy()
     const image = screen.getByRole('img')
     expect(image.src).toMatch(homeContentMockData.imageUrl)
   })

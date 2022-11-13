@@ -1,8 +1,10 @@
 exports.up = function (knex) {
   return knex.schema.createTable('results', (table) => {
-    table.string('auth0_id').references('users.auth0_id')
-    table.integer('food_id').references('foods.id')
+    table.increments('id')
+    table.string('auth0_id')
+    table.integer('animal_id').references('animals.id')
     table.date('created')
+    table.string('disposition')
   })
 }
 

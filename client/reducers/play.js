@@ -2,17 +2,17 @@
 const initialState = [
   {
     id: 1,
-    uploader_id: '1',
-    name: 'Pizza',
-    description: 'Delicious margarita pizza',
-    image_url: '/images/pizza.jpg',
+    uploaderId: '1',
+    name: 'Bag Cat',
+    description: 'Likes bags',
+    image_url: '/images/bag-cat.jpg',
   },
   {
     id: 2,
-    uploader_id: '1',
-    name: 'Toast',
-    description: 'Perfectly toasted eggy bread',
-    image_url: '/images/toast.jpg',
+    uploaderId: '1',
+    name: 'Mug Pup',
+    description: 'Lives in mugs',
+    image_url: '/images/mug-pup.jpg',
   },
 ]
 

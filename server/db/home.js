@@ -1,13 +1,13 @@
 const connection = require('./connection')
 
-function getFoods(db = connection) {
-  return db('foods').select(
+function getAnimals(db = connection) {
+  return db('animals').select(
     'id',
-    'uploader_id as uploaderId',
+    'auth0_id as uploaderId',
     'name',
     'description',
     'image_url as imageUrl'
   )
 }
 
-module.exports = { getFoods }
+module.exports = { getAnimals }
