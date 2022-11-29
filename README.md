@@ -38,19 +38,9 @@ npm run test:coverage
 
 This project uses a sass loader and scss modules for styling
 
-[See here](https://sass-lang.com/guide#:Variables:~:text=use%C2%A0rule.-,Modules,-Compatibility%3A)
+check out the MUI doc for our styling 
 
-<details open>
-<summary>Tips for styling</summary>
-<br>
-
-You'll notice each prebuilt component has it's own `.module.scss` file in the components folder. These modules are imported into each component to provide it's styling and we can use the `className={style.your_class_here}` format to apply the relevant styling to each element.
-
-In the client `Styles` folder is a prebuilt `_theme.scss` partial that can be imported into your modules with `@use '../theme'` (needs to be at the very top!) This allows you to use variables from the partial e.g: `theme.$bright` so you can easily match the style guide!
-
-![style guide](server/public/images/readme/style-guide.png "Style guide")
-
-</details>
+[MUI!](https://mui.com/)
 <br>
 
 
