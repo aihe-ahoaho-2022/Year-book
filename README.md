@@ -1,10 +1,10 @@
-# Badger Match
+# Year-book!
 
-## What is Badger Match?
-A companion finding application. We'll show you different candidates to help you decide which animal is your ideal match.
+## What is Year-book?
+A facebook-like app that lets the user view and chat to old friends from bootcamp
 
 ## Where to look for the planning?
-[Check out the Miro board!](https://miro.com/app/board/uXjVPTKaD_c=/)
+[Check out the Miro board!](https://miro.com/app/board/uXjVP-_6Y3M=/)
 
 ## After cloning what should I do?
 ```
@@ -53,13 +53,15 @@ In the client `Styles` folder is a prebuilt `_theme.scss` partial that can be im
 </details>
 <br>
 
-#### AnimalTile.jsx
 
-A prebuilt component to display an animal's info (to be used in the Play, Final and Winner components)
+#### Home.jsx
 
-<details open>
-<summary>Tips for AnimalTile</summary>
-<br>
+This is the homepage of year-book this shows the user year-books
+
+#### Year-book.jsx
+
+A component that displays images and names of the cohort 
+
 
 AnimalTile is set up to take an animal prop (with id, imageUrl, name and description) and display the info in a card format.
 
@@ -76,4 +78,4 @@ function clickHandler(id){
 
 </details>
 
-![badge-r](server/public/images/badgers/badge-r.png "Our mascot")
+![badge-r](https://media.istockphoto.com/id/1176579693/vector/year-book-colorful-typography-banner.jpg?s=612x612&w=0&k=20&c=vK9fQYr5iu5-KBgqa4e3jdDwyVH7cAi5_5zhzOEAvs8= "our logo")
