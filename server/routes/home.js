@@ -8,15 +8,6 @@ const {
 
 const router = express.Router()
 
-// GET /api/v1/home/
-// router.get('/', (req, res) => {
-//   getAnimals()
-//     .then((animals) =>
-//       res.json(animals[Math.floor(Math.random() * animals.length)])
-//     )
-//     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
-// })
-
 // GET /api/v1/books
 router.get('/books', (req, res) => {
   getBooks()
