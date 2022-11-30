@@ -10,9 +10,9 @@ import NotFound from './NotFound'
 import BookDetails from './BookDetails'
 import BookEdit from './BookEdit'
 
-import Profile from './Profile'
 import ProfileEdit from './ProfileEdit'
 import ProfileDetails from './ProfileDetails'
+
 
 
 
@@ -25,11 +25,11 @@ export default function App() {
         <Route path='/' element={<Home />} />
 
 
-        <Route path='/BookDetails' element={<BookDetails />} />
-        <Route path='/BookEdit' element={<BookEdit />} />
-        <Route path='/Profile' element={<Profile />} />
-        <Route path='/ProfileEdit' element={<ProfileEdit />} />
-        <Route path='/ProfileDetails' element={<ProfileDetails />} />
+
+        <Route path='/:bookid' element={<BookDetails />} />
+        <Route path='/:bookid/edit' element={<BookEdit />} />
+        <Route path='/:bookid/:profileid/edit' element={<ProfileEdit />} />
+        <Route path='/:bookid/:profileid' element={<ProfileDetails />} />
 
         <Route path='/*' element={<NotFound />} />
 
