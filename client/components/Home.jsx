@@ -8,7 +8,6 @@ import Book from './Book'
 
 export default function Home() {
   const dispatch = useDispatch()
-  const homeContent = useSelector((state) => state.home)
 
   // const homeContent = useSelector((state) => state.home)
 
@@ -23,13 +22,6 @@ export default function Home() {
           {/* TODO: Map over the books for the user */}
           <Book />
         </ifAuthenticated>
-      </div>
-      <div>
-        <img
-          className={styles.image}
-          src={homeContent.imageUrl}
-          alt={homeContent.description}
-        />
       </div>
     </div>
   )
