@@ -3,33 +3,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styles from './Home.module.scss'
 
-import { fetchHomeContent } from '../actions/home'
+// import { fetchHomeContent } from '../actions/home'
 
 export default function Home() {
-  const dispatch = useDispatch()
-  const homeContent = useSelector((state) => state.home)
+  // const dispatch = useDispatch()
 
-  useEffect(() => dispatch(fetchHomeContent()), [])
+  // const homeContent = useSelector((state) => state.home)
 
-  const adjectives = ['Fancy', 'Fun', 'Brave', 'Bubbly']
-  const randomIndex = Math.floor(Math.random() * adjectives.length)
+  // useEffect(() => dispatch(fetchHomeContent()), [])
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}> Welcome to YearBook!</h1>
-      <div className={styles.text}>
-        <p>
-          {adjectives[randomIndex]} {homeContent.name}!
-        </p>
-      </div>
-      <div>
-        <img
-          className={styles.image}
-          src={homeContent.imageUrl}
-          alt={homeContent.description}
-        />
-      </div>
-      <Link to='/play'>
+      <h1 className={styles.heading}> Welcome to YeahBook!</h1>
+      <div className={styles.text}>Text here</div>
+
+      <Link to='/1'>
         <button className={styles.button}>Select your cohort</button>
       </Link>
     </div>
