@@ -35,4 +35,28 @@ function getCommentsByBookId(bookId, db = connection) {
     .where('id', bookId)
 }
 
-module.exports = { getProfilesByBookId, getBooks, getCommentsByBookId }
+function getProfileById(profileId, db = connection) {
+  return db('profiles')
+    .select(
+      'id',
+      'book_id as bookId',
+      'name',
+      'image',
+      'auth0_id as ownerId',
+      'quote',
+      'blurb',
+      'linkedin_url as linkedinUrl',
+      'twitter_url as twitterUrl',
+      'instagram_url as instagramUrl',
+      'facebook_url as facebookUrl',
+      'github_url as githubUrl'
+    )
+    .where('id', profileId)
+}
+
+module.exports = {
+  getProfilesByBookId,
+  getBooks,
+  getCommentsByBookId,
+  getProfileById,
+}

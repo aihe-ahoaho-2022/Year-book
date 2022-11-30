@@ -4,6 +4,7 @@ const {
   getCommentsByBookId,
   getBooks,
   getProfilesByBookId,
+  getProfileById,
 } = require('../db/db')
 
 const router = express.Router()
@@ -34,14 +35,12 @@ router.get('/books/:bookId/profiles', (req, res) => {
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 
-// GET /api/v1/books/:bookId/profiles
-router.get('/books/:bookId/profiles/:profileId', (req, res) => {
-  const bookId = req.params.bookId
+// GET /api/v1/profiles/:profileId
+router.get('/profiles/:profileId', (req, res) => {
   const profileId = req.params.profileId
-  getProfilesByBookId(bookId)
-    .then((profiles) => {
-      const profile = profiles.find((profile) => profile.id == profileId)
-      res.json(profile)
+  getProfileById(profileId)
+    .then((profile) => {
+      res.json(profile[0])
     })
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
