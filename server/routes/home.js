@@ -9,15 +9,6 @@ const {
 
 const router = express.Router()
 
-// GET /api/v1/home/
-// router.get('/', (req, res) => {
-//   getAnimals()
-//     .then((animals) =>
-//       res.json(animals[Math.floor(Math.random() * animals.length)])
-//     )
-//     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
-// })
-
 // GET /api/v1/books
 router.get('/books', (req, res) => {
   getBooks()
@@ -30,8 +21,8 @@ router.get('/books/:bookId', (req, res) => {
   const bookId = req.params.bookId
   getBooks()
     .then((books) => {
-      const book = books.filter((book) => book.id == bookId)
-      res.json(book[0])
+      const book = books.find((book) => book.id == bookId)
+      res.json(book)
     })
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
@@ -44,16 +35,14 @@ router.get('/books/:bookId/profiles', (req, res) => {
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 
-//not working
+// GET /api/v1/books/:bookId/profiles
 router.get('/books/:bookId/profiles/:profileId', (req, res) => {
   const bookId = req.params.bookId
   const profileId = req.params.profileId
   getProfilesByBookId(bookId)
     .then((profiles) => {
-      const profile = profiles.filter((profile) => {
-        profile.id == profileId
-      })
-      res.json(profile[0])
+      const profile = profiles.find((profile) => profile.id == profileId)
+      res.json(profile)
     })
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
