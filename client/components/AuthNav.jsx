@@ -7,12 +7,12 @@ function AuthNav() {
 
   const handleLogOff = (e) => {
     e.preventDefault()
-    logout('log off')
+    logout()
   }
 
   const handleLogin = (e) => {
     e.preventDefault()
-    loginWithRedirect('sign in')
+    loginWithRedirect()
   }
 
   return (
