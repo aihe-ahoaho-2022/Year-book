@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <Auth0Provider
       domain='https://ahoaho-2022-yearbook.au.auth0.com'
       clientId='ejjnrnB211FvXerZ844pprjYV20QGqy4'
-      // redirectUri={window.location.origin}
+      redirectUri={window.location.origin}
       audience='https://yearbook/api'
     >
       <Provider store={store}>
