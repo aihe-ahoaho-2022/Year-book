@@ -1,4 +1,5 @@
 exports.seed = async (knex) => {
-  await knex('results').del()
-  await knex('animals').del()
+  await knex('books').del()
+  await knex('comments').del()
+  await knex('profiles').del()
 }
