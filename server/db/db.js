@@ -35,4 +35,15 @@ function getCommentsByBookId(bookId, db = connection) {
     .where('id', bookId)
 }
 
-module.exports = { getProfilesByBookId, getBooks, getCommentsByBookId }
+//// IMAGE UPLOAD DB TRIAL
+
+function imageUpload(image, db = connection) {
+  return db('profiles').insert(image)
+}
+
+module.exports = {
+  getProfilesByBookId,
+  getBooks,
+  getCommentsByBookId,
+  imageUpload,
+}
