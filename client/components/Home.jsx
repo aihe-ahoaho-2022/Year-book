@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}> Welcome to Badger Match!</h1>
+      <h1 className={styles.heading}> Welcome to YearBook!</h1>
       <div className={styles.text}>
         <p>
           {adjectives[randomIndex]} {homeContent.name}!
@@ -30,7 +30,7 @@ export default function Home() {
         />
       </div>
       <Link to='/play'>
-        <button className={styles.button}>Meet your match!</button>
+        <button className={styles.button}>Select your cohort</button>
       </Link>
     </div>
   )

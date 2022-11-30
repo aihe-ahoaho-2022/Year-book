@@ -3,12 +3,19 @@ import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './Navbar'
 import Home from './Home'
-import Play from './Play'
-import Final from './Final'
-import Winner from './Winner'
-import Results from './Results'
-import Create from './Create'
+
 import NotFound from './NotFound'
+
+
+import BookDetails from './BookDetails'
+import BookEdit from './BookEdit'
+
+import ProfileEdit from './ProfileEdit'
+import ProfileDetails from './ProfileDetails'
+
+
+
+
 
 export default function App() {
   return (
@@ -16,12 +23,18 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/play' element={<Play />} />
-        <Route path='/play/final/:id' element={<Final />} />
-        <Route path='/play/winner' element={<Winner />} />
-        <Route path='/results' element={<Results />} />
-        <Route path='/create' element={<Create />} />
+
+
+
+        <Route path='/:bookid' element={<BookDetails />} />
+        <Route path='/:bookid/edit' element={<BookEdit />} />
+        <Route path='/:bookid/:profileid/edit' element={<ProfileEdit />} />
+        <Route path='/:bookid/:profileid' element={<ProfileDetails />} />
+
         <Route path='/*' element={<NotFound />} />
+
+
+
       </Routes>
     </div>
   )
