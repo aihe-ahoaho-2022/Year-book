@@ -53,10 +53,16 @@ function getProfileById(profileId, db = connection) {
     )
     .where('id', profileId)
 }
+//// IMAGE UPLOAD DB TRIAL
+
+function imageUpload(image, db = connection) {
+  return db('profiles').insert(image)
+}
 
 module.exports = {
   getProfilesByBookId,
   getBooks,
   getCommentsByBookId,
   getProfileById,
+  imageUpload,
 }

@@ -49,6 +49,7 @@
     "express-jwt-authz": "^2.4.1",
     "jwks-rsa": "^2.0.4",
     "knex": "^1.0.7",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.5.1",
     "sqlite3": "^5.1.2",
     "superagent": "^6.1.0"
