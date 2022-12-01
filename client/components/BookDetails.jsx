@@ -6,7 +6,7 @@ import { fetchProfiles, setProfiles } from '../actions/profile'
 
 export default function BookDetails() {
   const params = useParams()
-  const bookId = Number(params.bookId)
+  const bookId = Number(params.bookid)
   const dispatch = useDispatch()
   // const navigate = useNavigate()
   const profiles = useSelector((state) => state.profiles)
