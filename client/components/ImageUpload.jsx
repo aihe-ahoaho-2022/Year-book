@@ -49,7 +49,7 @@ export default function ImageUpload() {
         <form
           method='POST'
           onSubmit={handleImageUpload}
-          // action='/api/v1/profile/imageupload'
+          action='/api/v1/profile/imageupload'
           encType='multipart/form-data'
         >
           <input
