@@ -2,9 +2,10 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-// GET /api/v1/home
+
+// GET /:bookid/:profileid/edit
 export function getHomeContent() {
-  return request.get(rootUrl + '/books/:bookId/profiles/:profileId').then((res) => {
+  return request.get(rootUrl + '/:bookid/:profileid/edit').then((res) => {
     return res.body
   })
 }
