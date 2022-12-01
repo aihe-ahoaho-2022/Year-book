@@ -10,16 +10,33 @@ export default function BookDetails() {
   const dispatch = useDispatch()
   // const navigate = useNavigate()
   const profiles = useSelector((state) => state.profiles)
-  console.log(profiles)
 
+  // array of objects
+  console.log(profiles)
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
   }, [])
 
+  const displayProfiles = profiles.map((profile, index) => (
+    <div key={profile.id + index}>
+      <h1>Name:{profile.name}</h1>
+      <img src={profile.image} alt={`${profile.name}`}></img>
+      <hr />
+    </div>
+  ))
+
   return (
     <>
-      <h1>Yearbook Title</h1>
-      <Profile profile={profiles} />
+      <div className='Title'>
+        <h1>Yearbook Title</h1>
+      </div>
+      <div className='profiles_containers'>
+        {displayProfiles}
+        {/* <Profile profile={profiles} /> */}
+      </div>
+      <div className='comments_containers'>
+        <input>posts</input>
+      </div>
     </>
   )
 }
