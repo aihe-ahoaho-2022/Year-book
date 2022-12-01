@@ -1,8 +1,12 @@
 const express = require('express')
 const path = require('path')
 
-const { getProfilesByBookId, getProfileById } = require('../db/db')
-const { imageUpload } = require('../db/db')
+const {
+  getProfilesByBookId,
+  getProfileById,
+  imageUpload,
+  putProfileById,
+} = require('../db/db')
 
 const router = express.Router()
 
@@ -19,13 +23,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-// GET /api/v1/profiles/:profileId/edit
-router.get('/:profileId/edit', (req, res) => {
+// GET /api/v1/profiles/:profileid/edit
+router.get('/:profileid/edit', (req, res) => {
   res.render('upload')
 })
 
-// POST /api/v1/profiles/:profileId/edit
-router.post('/:profileId/edit', upload.single('image'), (req, res) => {
+// POST /api/v1/profiles/:profileid/imageupload
+router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   imageUpload(req.body.image)
     .then(() => {
       res.send('image uploaded')
@@ -38,22 +42,36 @@ router.post('/:profileId/edit', upload.single('image'), (req, res) => {
     })
 })
 
-// GET /api/v1/profiles/book/:bookId
-router.get('/book/:bookId', (req, res) => {
-  const bookId = req.params.bookId
+// GET /api/v1/profiles/book/:bookid
+router.get('/book/:bookid', (req, res) => {
+  const bookId = req.params.bookid
   getProfilesByBookId(bookId)
     .then((profiles) => res.json(profiles))
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 
-// GET /api/v1/profiles/:profileId
-router.get('/:profileId', (req, res) => {
-  const profileId = req.params.profileId
+// GET /api/v1/profiles/:profileid
+router.get('/:profileid', (req, res) => {
+  const profileId = req.params.profileid
   getProfileById(profileId)
     .then((profile) => {
       res.json(profile[0])
     })
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
+})
+
+// PUT /api/v1/profiles/:profileid
+router.patch('/:profileid/edit', (req, res) => {
+  const profileId = req.params.profileid
+  const profile = req.body
+  putProfileById(profileId, profile)
+    .then((pro) => {
+      res.json(pro[0])
+    })
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
 })
 
 module.exports = router

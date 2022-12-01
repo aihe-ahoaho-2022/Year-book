@@ -12,7 +12,7 @@ export function getProfileContent(profileid) {
 // PATCH /profile/:profileid
 export function putProfileContent(profile) {
   return request
-    .patch(rootUrl + '/profiles/' + profile.id)
+    .patch(rootUrl + '/profiles/' + profile.id + '/edit')
     .send(profile)
     .then((res) => {
       return res.body

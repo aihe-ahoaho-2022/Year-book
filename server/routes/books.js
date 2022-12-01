@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 
-// GET /api/v1/books/:bookId
-router.get('/:bookId', (req, res) => {
-  const bookId = req.params.bookId
+// GET /api/v1/books/:bookid
+router.get('/:bookid', (req, res) => {
+  const bookId = req.params.bookid
   getBooks()
     .then((books) => {
       const book = books.find((book) => book.id == bookId)
