@@ -6,8 +6,6 @@ import Book from './Book'
 import { setBooks } from '../actions'
 import { getBooks } from '../apis/home'
 
-// import { fetchHomeContent } from '../actions/home'
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
