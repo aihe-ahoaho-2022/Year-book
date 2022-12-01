@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 // import { createProfile } from ''
 import { uploadFile } from '../apis/profileImage'
 
 export default function ImageUpload() {
   const [image, setImage] = useState(null)
   // const [profileId, setProfileId] = useState(Date.now())
+  const { profileid } = useParams()
   // const [image, setImage] = useState()
   // const dispatch = useDispatch()
 
@@ -49,7 +51,8 @@ export default function ImageUpload() {
         <form
           method='POST'
           onSubmit={handleImageUpload}
-          action='/api/v1/profile/imageupload'
+          // onSubmit={handleSubmit}
+          action={'/api/v1/profiles/' + profileid + '/imageupload'}
           encType='multipart/form-data'
         >
           <input

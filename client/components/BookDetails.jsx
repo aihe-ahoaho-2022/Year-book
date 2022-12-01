@@ -7,7 +7,7 @@ export default function BookDetails() {
   return (
     <>
       <h1>Yearbook Title</h1>
-      <Profile profile={profile} />
+      {/* <Profile profile={profile} /> */}
     </>
   )
 }

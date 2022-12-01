@@ -19,9 +19,12 @@ export default function App() {
 
         <Route path='/:bookid' element={<BookDetails />} />
         <Route path='/:bookid/edit' element={<BookEdit />} />
-        <Route path='/:bookid/:profileid/edit' element={<ProfileEdit />} />
-        <Route path='/:bookid/:profileid' element={<ProfileDetails />} />
-        <Route path='/imageupload' element={<ImageUpload />} />
+        <Route path='/profiles/:profileid' element={<ProfileDetails />} />
+        <Route path='/profiles/:profileid/edit' element={<ProfileEdit />} />
+        <Route
+          path='/profiles/:profileid/imageupload'
+          element={<ImageUpload />}
+        />
         <Route path='/*' element={<NotFound />} />
       </Routes>
     </div>
