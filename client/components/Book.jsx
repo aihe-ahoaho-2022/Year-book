@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 // import styles from './index.scss'
 import styles from './Book.module.scss'
 
-export default function Book(prop) {
+export default function Book() {
 
   // const { id, image, commonName } = book
   // [image, setimage]=useState(null)
-  [bookName, setBookName] = useState(null)
+  // [bookName, setBookName] = useState(null)
 
-  useEffect(() => {
-    setBookName()
-  }, [])
+  // useEffect(() => {
+  //   setBookName()
+  // }, [])
 
   // const imageUrl = `/images/${image}`
 
@@ -23,7 +23,7 @@ export default function Book(prop) {
       {/* TODO: hard coded for now */}
       {/* <h1>{bookName}</h1> */}
       <h1>Ahoaho 2022</h1>
-      <img src={prop.bookName} alt="" />
+      {/* <img src={prop.bookName} alt="" /> */}
       <img src="#" style={styles} alt="#" />
 
       {/* <div>
