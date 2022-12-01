@@ -24,17 +24,18 @@ export default function ProfileDetails() {
         />
         <section className={styles.textbox}>
           <h1 className={styles.heading}>Frank</h1>
-          <h2>Quote: Gimme a mussel treat</h2>
-          <h2>
+          <h2 className={styles.quote}>"Gimme a mussel treat"</h2>
+          <hr className={styles.hr} />
+          <h2 className={styles.blurb}>
             Frank is a very good boy. He has sore legs so needs to be carried
             but pretty sure he doesn't mind that.
           </h2>
           <ul className={styles.list}>
-            <li>linkedin:</li>
-            <li>twitter:</li>
-            <li>instagram:</li>
-            <li>facebook:</li>
-            <li>
+            <li className={styles.li}>linkedin:</li>
+            <li className={styles.li}>twitter:</li>
+            <li className={styles.li}>instagram:</li>
+            <li className={styles.li}>facebook:</li>
+            <li className={styles.li}>
               github: <a href='https://github.com/ben-bwilly-williams'>Frank</a>
             </li>
           </ul>
