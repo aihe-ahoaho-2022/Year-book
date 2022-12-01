@@ -8,15 +8,27 @@ export default function FruitEditor() {
   // Ready up React state
   const { profileid } = useParams()
 
-  const [profile, setProfile] = useState({ name: "", quote: "", blurb: "" })
+  const [profile, setProfile] = useState({
+    name: "",
+    quote: "",
+    blurb: "",
+    linkedinUrl: "",
+    facebookUrl: "",
+    twitterUrl: "",
+    instagramUrl: "",
+    githubUrl: "",
+  })
 
   useEffect(async () => {
     const profileData = await getProfileContent(profileid)
+    console.log(profileData)
     setProfile(profileData)
   }, [])
 
   const handleChange = (e) => {
+    console.log(e.target.name)
     setProfile({ ...profile, [e.target.name]: e.target.value })
+
   }
 
   const handleSubmit = async (e) => {
@@ -35,6 +47,7 @@ export default function FruitEditor() {
             <li>
               Name:
               <input
+                name='name'
                 value={profile.name}
                 onChange={handleChange}
               ></input>
@@ -42,6 +55,7 @@ export default function FruitEditor() {
             <li>
               Quote:
               <input
+                name='quote'
                 value={profile.quote}
                 onChange={handleChange}
               ></input>
@@ -49,6 +63,7 @@ export default function FruitEditor() {
             <li>
               Blurb:
               <input
+                name='blurb'
                 value={profile.blurb}
                 onChange={handleChange}
               ></input>
@@ -56,28 +71,40 @@ export default function FruitEditor() {
             <li>
               linkedin:
               <input
-                value={profile.linkedin_url}
+                name='linkedinUrl'
+                value={profile.linkedinUrl}
                 onChange={handleChange}
               ></input>
             </li>
             <li>
               facebook:
               <input
-                value={profile.facebook_url}
+                name='facebookUrl'
+                value={profile.facebookUrl}
                 onChange={handleChange}
               ></input>
             </li>
             <li>
               twitter:
               <input
-                value={profile.twitter_url}
+                name='twitterUrl'
+                value={profile.twitterUrl}
                 onChange={handleChange}
               ></input>
             </li>
             <li>
               instagram:
               <input
-                value={profile.instagram_url}
+                name='instagramUrl'
+                value={profile.instagramUrl}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li>
+              github:
+              <input
+                name='githubUrl'
+                value={profile.githubUrl}
                 onChange={handleChange}
               ></input>
             </li>
