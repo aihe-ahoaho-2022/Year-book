@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     console.log(file)
-    cb(null, Date.now() + path.extname(file.originalname))
+    cb(null, Date.now() + '-' + file.originalname)
   },
 })
 
@@ -33,6 +33,7 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   imageUpload(req.body.image)
     .then(() => {
       res.send('image uploaded')
+      res.send({ href: `/images/${req.file.filename}` })
     })
     .catch((err) => {
       console.error(err.message)

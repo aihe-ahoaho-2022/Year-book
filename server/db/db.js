@@ -74,8 +74,8 @@ function putProfileById(profileId, profile, db = connection) {
 }
 
 //// IMAGE UPLOAD DB TRIAL
-function imageUpload(image, db = connection) {
-  return db('profiles').insert(image)
+function imageUpload(profile, db = connection) {
+  return db('profiles').insert({ image: profile.image })
 }
 
 module.exports = {
