@@ -60,7 +60,7 @@ router.get('/:profileid', (req, res) => {
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 
-// PUT /api/v1/profiles/:profileid
+// PUT /api/v1/profiles/:profileid/edit
 router.patch('/:profileid/edit', (req, res) => {
   const profileId = req.params.profileid
   const profile = req.body

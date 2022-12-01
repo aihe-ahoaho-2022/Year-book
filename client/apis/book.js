@@ -9,17 +9,16 @@ export function getBooks() {
   })
 }
 
-// GET /api/v1/books/:bookId
+// GET /api/v1/books/:bookid
 export function getBookById(id) {
   return request.get(rootUrl + '/books/' + { id }).then((res) => {
     return res.body
   })
 }
 
-//GET /api/v1/books/:bookId/comments
-
+//GET /api/v1/comments/:bookid
 export function getCommentsByBookId(id) {
-  return request.get(rootUrl + '/books/' + { id } + '/comments').then((res) => {
+  return request.get(rootUrl + '/comments/' + { id }).then((res) => {
     return res.body
   })
 }
