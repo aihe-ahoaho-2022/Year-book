@@ -1,3 +1,5 @@
+import { getCommentsByBookId } from '../apis/book'
+
 export function setComments(comments) {
   return {
     type: 'SET_COMMENTS',
