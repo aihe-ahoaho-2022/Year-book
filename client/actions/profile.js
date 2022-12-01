@@ -1,4 +1,4 @@
-import { getProfileById, getProfilesByBookId } from '../apis/book'
+import { getProfileById, getProfilesByBookId } from '../apis/profile'
 
 export function setProfiles(profiles) {
   return {
