@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
-import home from './home'
-import play from './play'
-import final from './final'
+import books from './books'
+import profiles from './profiles'
+import comments from './comments'
 
 export default combineReducers({
-  home: home,
-  play: play,
-  final: final,
+  books: books,
+  profiles: profiles,
+  comments: comments,
 })
