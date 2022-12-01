@@ -53,8 +53,19 @@ function getProfileById(profileId, db = connection) {
     )
     .where('id', profileId)
 }
-//// IMAGE UPLOAD DB TRIAL
 
+function putProfileById(profileId, profile, db = connection) {
+  return db('profiles')
+    .update({
+      id: profile.id,
+      book_id: profile.bookId,
+      name: profile.name,
+      image: profile.image,
+    })
+    .where('id', profileId)
+}
+
+//// IMAGE UPLOAD DB TRIAL
 function imageUpload(image, db = connection) {
   return db('profiles').insert(image)
 }
@@ -65,4 +76,5 @@ module.exports = {
   getCommentsByBookId,
   getProfileById,
   imageUpload,
+  putProfileById,
 }

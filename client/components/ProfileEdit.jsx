@@ -1,15 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default function FruitEditor(props) {
+import { getProfileContent, putProfileContent } from '../apis/profileEdit'
+
+import { useParams } from 'react-router-dom'
+
+export default function FruitEditor() {
   // Ready up React state
-  const [quote, setQuote] = useState({ name: "", description: "" })
-  const [name, setName ] = useState({ name: "", description: "" })
+  const { profileid } = useParams()
 
-  
-  const handleSubmit = e => {
+  const [profile, setProfile] = useState({ name: "", quote: "", blurb: "" })
+
+  useEffect(async () => {
+
+    const profileData = await getProfileContent(profileid)
+
+    setProfile(profileData)
+
+  }, [])
+
+
+  const handleChange = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
-    console.log(quote, name);
+
+    await putProfileContent(profile)
+    console.log(profile);
   };
+
 
   return (
     <>
@@ -20,22 +41,50 @@ export default function FruitEditor(props) {
             <li>
               Name:
               <input
-                value={quote.name}
-                onChange={e => setQuote({
-                  ...quote,
-                  name: e.target.value
-                })}
+                value={profile.name}
+                onChange={handleChange}
               ></input>
             </li>
             <li>
-              Description:
+              Quote:
               <input
-                value={  const [quote, setQuote] = useState({ name: "", description: "" })
-                .description}
-                onChange={e => setQuote({
-                  ...quote,
-                  description: e.target.value
-                })}
+                value={profile.quote}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li>
+              Blurb:
+              <input
+                value={profile.blurb}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li>
+              linkedin:
+              <input
+                value={profile.linkedinUrl}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li>
+              facebook:
+              <input
+                value={profile.facebookUrl}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li>
+              twitter:
+              <input
+                value={profile.twitterUrl}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li>
+              instagram:
+              <input
+                value={profile.instagramUrl}
+                onChange={handleChange}
               ></input>
             </li>
           </ul>
