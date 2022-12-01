@@ -4,6 +4,9 @@ import { getProfileContent, putProfileContent } from '../apis/profileEdit'
 
 import { useParams } from 'react-router-dom'
 
+import { Button } from '@mantine/core'
+
+
 export default function FruitEditor() {
   // Ready up React state
   const { profileid } = useParams()
@@ -107,7 +110,12 @@ export default function FruitEditor() {
               ></input>
             </li>
           </ul>
-          <button type='submit'>Save</button>
+          <Button
+            variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}
+            size="lg"
+           type="submit" >Save
+           </Button>
+         
         </form>
       </div>
     </>

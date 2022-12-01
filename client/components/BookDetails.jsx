@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import Profile from './Profile'
+// import { useDispatch } from 'react-redux'
+// import { useNavigate, useParams } from 'react-router-dom'
+// import Profile from './Profile'
 
 export default function BookDetails() {
   return (
