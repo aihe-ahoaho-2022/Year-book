@@ -9,24 +9,24 @@
 }
 
 
-// .image { 
-//   max-width: 70vw; max-height: 50vh; border-radius: 4px; 
-//   transition-duration: 200ms;
-// }
+.image { 
+  max-width: 70vw; max-height: 50vh; border-radius: 4px; 
+  transition-duration: 200ms;
+}
 
-// .image:hover {
-//   transform: translateY(-3px); transition-duration: 200ms;
-//   box-shadow: theme.$shadow;
-// }
+.image:hover {
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: theme.$shadow;
+}
 
-// .button {
-//   background-color: theme.$bright;  border: 0; border-radius: 8px;
-//   box-shadow: theme.$shadow;
-//   color: theme.$black; font-size: 1.5rem; font-weight: bold;
-//   transition-duration: 200ms;
-// }
+.button {
+  background-color: theme.$bright;  border: 0; border-radius: 8px;
+  box-shadow: theme.$shadow;
+  color: theme.$black; font-size: 1.5rem; font-weight: bold;
+  transition-duration: 200ms;
+}
 
-// .button:hover {
-//   transform: translateY(-3px); transition-duration: 200ms;
-//   box-shadow: theme.$shadow;
-// }
+.button:hover {
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: theme.$shadow;
+}

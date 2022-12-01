@@ -49,7 +49,7 @@ export default function Home() {
 
         <div>
           <Button
-            variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}
+            variant="gradient" gradient={{ from: 'blue', to: 'green' }}
             size="lg"
             className={styles.button}>
 
