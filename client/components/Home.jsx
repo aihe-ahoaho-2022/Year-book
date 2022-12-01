@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 // import { Link } from 'react-router-dom'
 import styles from './Home.module.scss'
 import Book from './Book'
 import { setBooks } from '../actions'
-import { getBooks } from '../apis/home'
+import { getBooks } from '../apis/book'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
-  const singlebook = useSelector((state) => state.books)
+  // const singlebook = useSelector((state) => state.books)
 
   useEffect(() => {
     getBooks()
