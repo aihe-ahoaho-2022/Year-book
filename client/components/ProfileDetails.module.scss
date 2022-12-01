@@ -1,0 +1,63 @@
+@use '../styles/theme';
+
+.container { 
+  margin: auto;
+  display: flex;
+  max-width: 800px;
+  margin-top: 110px;
+  @media only screen and (max-width: 1024px) { max-width: 75vw; flex-direction: column;  } 
+}
+
+.textbox {
+  padding-left: 40px;
+  color: theme.$black;
+  overflow: scroll;
+    @media only screen and (max-width: 1024px) { padding-left: 0 } 
+
+}
+
+.heading {
+  font-size: 4rem;
+  margin-top: 35px;
+  margin-bottom: 50px;
+  color: theme.$medium;
+}
+
+.image { 
+  height: 58vh;
+  width: auto;
+  border-radius: 8px; 
+  transition-duration: 200ms;
+  object-fit: cover;
+  @media only screen and (max-width: 1024px) { width: 100%; height: auto } 
+}
+
+.image:hover {
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: theme.$shadow;
+}
+
+.list {
+  padding-left: 0;
+  list-style-type: none;
+  font-size: 1.1em;
+
+}
+
+.hr {
+  margin-bottom: 30px;
+  border: none;
+  height: 1.1px;
+  background-color: theme.$black;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.6em;
+
+}
+
+.blurb {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+}
