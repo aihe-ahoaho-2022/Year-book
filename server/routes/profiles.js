@@ -45,13 +45,9 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
 
 // GET /api/v1/profiles/book/:bookid
 router.get('/book/:bookid', (req, res) => {
-  const bookId = Number(req.params.bookid)
-  console.log(bookId)
+  const bookId = req.params.bookid
   getProfilesByBookId(bookId)
-    .then((profiles) => {
-      console.log(profiles)
-      res.json(profiles)
-    })
+    .then((profiles) => res.json(profiles))
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 

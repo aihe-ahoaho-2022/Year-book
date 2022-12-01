@@ -20,7 +20,6 @@ export function fetchProfiles(id) {
     return getProfilesByBookId(id)
       .then((profiles) => {
         dispatch(setProfiles(profiles))
-        console.log(profiles)
       })
       .catch((err) => console.error(err.message))
   }
