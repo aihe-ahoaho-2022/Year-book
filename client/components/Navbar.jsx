@@ -11,8 +11,6 @@ export default function Navbar() {
       </Link>
       <div className={styles.links}>
         <AuthNav />
-
-        <div className={styles.auth}> Login | Log out</div>
       </div>
     </nav>
   )

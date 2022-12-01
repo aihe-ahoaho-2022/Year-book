@@ -41,6 +41,11 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mantine/core": "^5.8.4",
+    "@mantine/hooks": "^5.8.4",
+    "@mui/material": "^5.10.16",
     "@testing-library/user-event": "^14.4.3",
     "@vscode/sqlite3": "^5.0.7",
     "dotenv": "^10.0.0",
