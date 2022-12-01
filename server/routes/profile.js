@@ -27,6 +27,7 @@ router.get('/imageupload', (req, res) => {
 router.post('/imageupload', upload.single('image'), (req, res) => {
   imageUpload(req.body)
     .then(() => {
+      console.log(req.body)
       // return getProfilesByBookId()
       res.send('image uploaded')
     })
