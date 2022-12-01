@@ -1,11 +1,11 @@
 {
-  "name": "badgermatch",
+  "name": "yeahbook",
   "version": "1.0.0",
   "main": "server/index.js",
   "license": "MIT",
   "keywords": [
-    "badger",
-    "match"
+    "ahoaho yearbook",
+    "dev academy"
   ],
   "scripts": {
     "start": "node server",
@@ -97,8 +97,5 @@
     "semi": false,
     "singleQuote": true,
     "jsxSingleQuote": true
-  },
-  "engines": {
-    "node": "16.x"
   }
 }
