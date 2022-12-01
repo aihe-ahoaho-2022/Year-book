@@ -7,6 +7,10 @@ import Book from './Book'
 import { setBooks } from '../actions'
 import { getBooks } from '../apis/book'
 
+import { Button } from '@mantine/core'
+
+// import { fetchHomeContent } from '../actions/home'
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
@@ -29,18 +33,30 @@ export default function Home() {
     return <div>Loading...</div>
   } else {
     return (
-      <div className={styles.container}>
-        <h1 className={styles.heading}> Welcome to YearBook!</h1>
-        <div className={styles.text}>
-          <p>
-            <img src='#' alt='#' />
-          </p>
-          {/* <ifAuthenticated> */}
-          {/* TODO: Map over the books for the user */}
-          <Book />
-          {/* </ifAuthenticated> */}
+      <>
+        <div className={styles.container}>
+          <h1 className={styles.heading}> Welcome to YearBook!</h1>
+          <div className={styles.text}>
+            <p>
+              <img src='#' alt='#' />
+            </p>
+            {/* <ifAuthenticated> */}
+            {/* TODO: Map over the books for the user */}
+            <Book />
+            {/* </ifAuthenticated> */}
+          </div>
         </div>
-      </div>
+
+        <div>
+          <Button
+            variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}
+            size="lg"
+            className={styles.button}>
+
+            edit
+          </Button>
+        </div>
+      </>
     )
   }
 }
