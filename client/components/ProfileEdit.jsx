@@ -11,22 +11,16 @@ export default function FruitEditor() {
   const [profile, setProfile] = useState({ name: "", quote: "", blurb: "" })
 
   useEffect(async () => {
-
     const profileData = await getProfileContent(profileid)
-
     setProfile(profileData)
-
   }, [])
-
 
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-
     await putProfileContent(profile)
     console.log(profile);
   };
