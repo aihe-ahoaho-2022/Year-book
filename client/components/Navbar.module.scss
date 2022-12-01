@@ -1,12 +1,12 @@
 @use '../styles/theme';
 
 .navbar {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 8px; padding: 24px; background-color: theme.$bright; color: theme.$black;
-  font-size: 1.2rem; font-weight: bolder; white-space: nowrap;  
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 8px; padding: 26px 40px 30px 50px; background-color: theme.$black; color: theme.$white;
+  font-size: 1.1rem; font-weight: bolder; white-space: nowrap;  
 }
 
-.title { font-size: 2rem; }
+.title { font-size: 2rem; color: theme.$medium  }
 
 .links {
   display: flex; justify-content: space-around; gap: 48px;

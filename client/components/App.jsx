@@ -3,12 +3,9 @@ import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './Navbar'
 import Home from './Home'
-
 import NotFound from './NotFound'
-
 import BookDetails from './BookDetails'
 import BookEdit from './BookEdit'
-
 import ProfileEdit from './ProfileEdit'
 import ProfileDetails from './ProfileDetails'
 import ImageUpload from './ImageUpload'
