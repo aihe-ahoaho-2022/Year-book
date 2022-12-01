@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import { createProfile } from ''
+import { uploadFile } from '../apis/profileImage'
 
 export default function ImageUpload() {
+  const [image, setImage] = useState(null)
+  // const [profileId, setProfileId] = useState(Date.now())
   // const [image, setImage] = useState()
   // const dispatch = useDispatch()
 
@@ -12,6 +15,32 @@ export default function ImageUpload() {
   //   }
   // dispatch(createProfile(newImage))
   // }
+  const [profileImage, setProfileImage] = useState({
+    image: '',
+  })
+  // useEffect(() => {
+  //   const date = Date.now()
+  //   setProfileId(date)
+  // }, [])
+
+  const handleImageUpload = (e) => {
+    setImage(e.target.files[0])
+  }
+
+  const handleFileUpload = () => {
+    uploadFile(image)
+      .then((returnedImage) => {
+        setProfileImage((currentData) => {
+          return {
+            ...currentData,
+            image: returnedImage.href,
+          }
+        })
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
 
   return (
     <>
@@ -19,7 +48,7 @@ export default function ImageUpload() {
         <h1>Upload image</h1>
         <form
           method='POST'
-          // onSubmit={handleSubmit}
+          onSubmit={handleImageUpload}
           action='/api/v1/profile/imageupload'
           encType='multipart/form-data'
         >
@@ -28,7 +57,9 @@ export default function ImageUpload() {
             // value={image}
             name='image'
           />
-          <button type='submit'>Submit</button>
+          <button type='submit' onClick={handleFileUpload}>
+            Submit
+          </button>
         </form>
       </div>
     </>
