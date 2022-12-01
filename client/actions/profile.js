@@ -15,6 +15,7 @@ export function updateProfiles(profiles) {
 }
 //thunks for profiles
 export function fetchProfiles(id) {
+  // console.log('fetching')
   return (dispatch) => {
     return getProfilesByBookId(id)
       .then((profiles) => {

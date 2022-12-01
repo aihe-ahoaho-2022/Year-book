@@ -1,7 +1,10 @@
 const connection = require('./connection')
 
 function getProfilesByBookId(bookId, db = connection) {
+  console.log('get profiles by book id')
+  console.log(typeof bookId)
   return db('profiles')
+    .where('book_id', bookId)
     .select(
       'id',
       'book_id as bookId',
@@ -16,7 +19,6 @@ function getProfilesByBookId(bookId, db = connection) {
       'facebook_url as facebookUrl',
       'github_url as githubUrl'
     )
-    .where('bookId', bookId)
 }
 
 function getBooks(db = connection) {
