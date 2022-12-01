@@ -35,6 +35,24 @@ function getCommentsByBookId(bookId, db = connection) {
     .where('id', bookId)
 }
 
+function getProfileById(profileId, db = connection) {
+  return db('profiles')
+    .select(
+      'id',
+      'book_id as bookId',
+      'name',
+      'image',
+      'auth0_id as ownerId',
+      'quote',
+      'blurb',
+      'linkedin_url as linkedinUrl',
+      'twitter_url as twitterUrl',
+      'instagram_url as instagramUrl',
+      'facebook_url as facebookUrl',
+      'github_url as githubUrl'
+    )
+    .where('id', profileId)
+}
 //// IMAGE UPLOAD DB TRIAL
 
 function imageUpload(image, db = connection) {
@@ -45,5 +63,6 @@ module.exports = {
   getProfilesByBookId,
   getBooks,
   getCommentsByBookId,
+  getProfileById,
   imageUpload,
 }
