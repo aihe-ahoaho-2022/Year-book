@@ -23,8 +23,6 @@ export default function Home() {
       .catch((e) => console.log(e))
   }, [])
 
-  // const homeContent = useSelector((state) => state.home)
-
   if (isLoading) {
     return <div>Loading...</div>
   } else {

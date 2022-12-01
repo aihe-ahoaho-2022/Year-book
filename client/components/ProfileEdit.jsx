@@ -9,14 +9,14 @@ export default function FruitEditor() {
   const { profileid } = useParams()
 
   const [profile, setProfile] = useState({
-    name: "",
-    quote: "",
-    blurb: "",
-    linkedinUrl: "",
-    facebookUrl: "",
-    twitterUrl: "",
-    instagramUrl: "",
-    githubUrl: "",
+    name: '',
+    quote: '',
+    blurb: '',
+    linkedinUrl: '',
+    facebookUrl: '',
+    twitterUrl: '',
+    instagramUrl: '',
+    githubUrl: '',
   })
 
   useEffect(async () => {
@@ -28,15 +28,13 @@ export default function FruitEditor() {
   const handleChange = (e) => {
     console.log(e.target.name)
     setProfile({ ...profile, [e.target.name]: e.target.value })
-
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     await putProfileContent(profile)
-    console.log(profile);
-  };
-
+    console.log(profile)
+  }
 
   return (
     <>
@@ -109,10 +107,9 @@ export default function FruitEditor() {
               ></input>
             </li>
           </ul>
-          <button type="submit" >Save</button>
+          <button type='submit'>Save</button>
         </form>
       </div>
     </>
   )
-
 }
