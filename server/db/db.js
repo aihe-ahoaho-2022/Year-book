@@ -61,6 +61,12 @@ function putProfileById(profileId, profile, db = connection) {
       book_id: profile.bookId,
       name: profile.name,
       image: profile.image,
+      ownerId: profile.ownerId,
+      quote: profile.quote,
+      blurb: profile.blurb,
+      linkedinUrl: profile.linkedinUrl,
+      facebookUrl: profile.facebookUrl,
+      githubUrl: profile.githubUrl,
     })
     .where('id', profileId)
 }

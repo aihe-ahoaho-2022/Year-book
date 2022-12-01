@@ -62,28 +62,28 @@ export default function FruitEditor() {
             <li>
               linkedin:
               <input
-                value={profile.linkedinUrl}
+                value={profile.linkedin_url}
                 onChange={handleChange}
               ></input>
             </li>
             <li>
               facebook:
               <input
-                value={profile.facebookUrl}
+                value={profile.facebook_url}
                 onChange={handleChange}
               ></input>
             </li>
             <li>
               twitter:
               <input
-                value={profile.twitterUrl}
+                value={profile.twitter_url}
                 onChange={handleChange}
               ></input>
             </li>
             <li>
               instagram:
               <input
-                value={profile.instagramUrl}
+                value={profile.instagram_url}
                 onChange={handleChange}
               ></input>
             </li>
