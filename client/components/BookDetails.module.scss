@@ -1,0 +1,70 @@
+@use '../styles/theme';
+
+.container { 
+  margin: auto;
+  display: flex;
+  max-width: 800px;
+  margin-top: 110px;
+  @media only screen and (max-width: 1024px) { max-width: 75vw; flex-direction: column;  } 
+}
+.image{
+  width: calc(var(--card-width)); height: calc(var(--card-height));
+  border-radius: .15vw; border-width: .2vw; 
+  border-style: solid; border-color: theme.$black;
+  object-fit: cover;
+}
+
+
+.textbox {
+  padding-left: 40px;
+  color: theme.$black;
+  overflow: scroll;
+    @media only screen and (max-width: 1024px) { padding-left: 0 } 
+
+}
+
+.heading {
+  font-size: 4rem;
+  margin-top: 35px;
+  margin-bottom: 50px;
+  color: theme.$medium;
+}
+
+.image { 
+  height: 58vh;
+  width: auto;
+  border-radius: 8px; 
+  transition-duration: 200ms;
+  object-fit: cover;
+  @media only screen and (max-width: 1024px) { width: 100%; height: auto } 
+}
+
+.image:hover {
+  transform: translateY(-3px); transition-duration: 200ms;
+  box-shadow: theme.$shadow;
+}
+
+.list {
+  padding-left: 0;
+  list-style-type: none;
+  font-size: 1.1em;
+
+}
+
+.hr {
+  margin-bottom: 30px;
+  border: none;
+  height: 1.1px;
+  background-color: theme.$black;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.6em;
+
+}
+
+.blurb {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+}

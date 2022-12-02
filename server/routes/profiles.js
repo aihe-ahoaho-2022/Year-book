@@ -31,10 +31,18 @@ router.get('/:profileid/edit', (req, res) => {
 
 // POST /api/v1/profiles/:profileid/imageupload
 router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
-  imageUpload(req.body.image)
+  let imageUrl = null
+  if (!req.file) {
+    imageUrl = '/images/bag-cat.jpg'
+  } else {
+    imageUrl = '/images/' + req.file.filename
+  }
+
+  const profileId = req.params.profileid
+  imageUpload(profileId, imageUrl)
     .then(() => {
+      console.log(req.body)
       res.send('image uploaded')
-      res.send({ href: `/images/${req.file.filename}` })
     })
     .catch((err) => {
       console.error(err.message)

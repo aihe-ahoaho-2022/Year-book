@@ -1,13 +1,12 @@
-/* eslint-disable space-before-function-paren */
+// /* eslint-disable space-before-function-paren */
 import request from 'superagent'
 
-const profile = '/api/v1/profile'
-
 // Upload an image file
-export function uploadFile(file) {
-  console.log(file)
+export function uploadFile(profileId, fileName) {
+  console.log('filename is ' + fileName)
+  console.log('profilename is ' + profileId)
   return request
-    .post(profile)
-    .attach('profile-image', file)
+    .post('/api/v1/profiles/' + profileId + '/imageupload')
+    .send({ image: fileName })
     .then((res) => res.body)
 }

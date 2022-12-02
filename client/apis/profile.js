@@ -12,7 +12,6 @@ const rootUrl = '/api/v1'
 // GET /api/v1/profiles/:profileid
 export function getProfileById(id) {
   return request.get(rootUrl + '/profiles/' + id).then((res) => {
-    console.log(res.body)
     return res.body
   })
 }
