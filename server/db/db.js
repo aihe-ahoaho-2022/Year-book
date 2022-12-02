@@ -79,7 +79,22 @@ function imageUpload(image, db = connection) {
 }
 
 function addProfile(profile, db = connection) {
-  return db('profiles').insert(profile)
+  return db('profiles')
+    .select({
+      id: profile.id,
+      book_id: profile.bookId,
+      name: profile.name,
+      image: profile.image,
+      auth0_id: profile.ownerId,
+      quote: profile.quote,
+      blurb: profile.blurb,
+      linkedin_url: profile.linkedinUrl,
+      twitter_url: profile.twitterUrl,
+      instagram_url: profile.instagramUrl,
+      facebook_url: profile.facebookUrl,
+      github_url: profile.githubUrl,
+    })
+    .insert(profile)
 }
 
 module.exports = {

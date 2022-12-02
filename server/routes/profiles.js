@@ -78,7 +78,9 @@ router.patch('/:profileid/edit', (req, res) => {
 
 router.post('/profiles/add'),
   (req, res) => {
+    console.log('hit route')
     const profile = req.body
+    console.log(profile)
     addProfile(profile)
       .then((profileResult) => {
         res.json(profileResult)
