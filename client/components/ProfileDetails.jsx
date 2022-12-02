@@ -1,46 +1,70 @@
-import React from 'react'
-// import { useSelector } from 'react-redux'
-// import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
+// import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
+import { getProfileById } from '../apis/profile'
 import styles from './ProfileDetails.module.scss'
 
 export default function ProfileDetails() {
-  // const { id } = useParams()
-  // const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const params = useParams()
+  const id = params.profileid
+  console.log(id)
+  const [profile, setProfile] = useState('')
 
-  // const profiles = useSelector((state) => state.profiles)
-
-  // const currentProfile = profiles.find((profile) => profile.id == id)
+  useEffect(() => {
+    getProfileById(id)
+      .then((res) => {
+        setProfile(res)
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
+  }, [])
 
   return (
     <>
+      {/* <Link to='/:bookid'>
+        <div className={styles.fullscreen}> */}
       <div className={styles.container}>
-        {/* <img src={`/images/${currentProfile.image}`} alt='Profile' /> */}
-        <img
-          className={styles.image}
-          src='/images/1669849500283.jpg'
-          alt='filler pic'
-        />
+        <div>
+          <img
+            className={styles.image}
+            src={profile.image}
+            // src={`/images/${profile.image}`}
+            alt='User profile'
+          />
+          {/* <IfAuthenticated> */}
+          <Link to={`/profiles/${id}/edit`}>
+            <button className={styles.button}>Edit profile</button>
+          </Link>
+          {/* </IfAuthenticated> */}
+        </div>
         <section className={styles.textbox}>
-          <h1 className={styles.heading}>Frank</h1>
-          <h2 className={styles.quote}>"Gimme a mussel treat"</h2>
+          <h1 className={styles.heading}>{profile.name}</h1>
+          <h2 className={styles.quote}>{`"${profile.quote}"`}</h2>
           <hr className={styles.hr} />
-          <h2 className={styles.blurb}>
-            Frank is a very good boy. He has sore legs so needs to be carried
-            but pretty sure he doesn't mind that.
-          </h2>
+          <h2 className={styles.blurb}>{profile.blurb}</h2>
           <ul className={styles.list}>
-            <li className={styles.li}>linkedin:</li>
-            <li className={styles.li}>twitter:</li>
-            <li className={styles.li}>instagram:</li>
-            <li className={styles.li}>facebook:</li>
-            <li className={styles.li}>
-              github: <a href='https://github.com/ben-bwilly-williams'>Frank</a>
-            </li>
+            <a href={profile.linkedin_url}>
+              <li className={styles.li}>LinkedIn</li>
+            </a>
+            <a href={profile.twitter_url}>
+              <li className={styles.li}>Twitter</li>
+            </a>
+            <a href={profile.instagram_url}>
+              <li className={styles.li}>Instagram</li>
+            </a>
+            <a href={profile.facebook_url}>
+              <li className={styles.li}>Facebook</li>
+            </a>
+            <a href={profile.github_url}>
+              <li className={styles.li}>GitHub</li>
+            </a>
           </ul>
         </section>
       </div>
+      {/* </div>
+      </Link> */}
     </>
   )
 }
