@@ -73,9 +73,9 @@ function putProfileById(profileId, profile, db = connection) {
     .where('id', profileId)
 }
 
-//// IMAGE UPLOAD DB TRIAL
-function imageUpload(profile, db = connection) {
-  return db('profiles').insert({ image: profile.image })
+// IMAGE UPLOAD
+function imageUpload(profileId, imageName, db = connection) {
+  return db('profiles').update('image', imageName).where('id', profileId)
 }
 
 module.exports = {
