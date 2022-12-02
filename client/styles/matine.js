@@ -3,7 +3,7 @@ export default {
   primaryColor: 'purple',
   colors: {
     // Add your color
-    purple:['#6610f2'],
+    purple: ['#6610f2'],
     deepBlue: ['#E9EDFC', '#C1CCF6', '#99ABF0' /* ... */],
     // or replace default theme color
     blue: ['#E9EDFC', '#C1CCF6', '#99ABF0' /* ... */],
