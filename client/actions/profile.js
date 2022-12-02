@@ -13,3 +13,14 @@ export function updateProfiles(profiles) {
     payload: profiles,
   }
 }
+//thunks for profiles
+export function fetchProfiles(id) {
+  // console.log('fetching')
+  return (dispatch) => {
+    return getProfilesByBookId(id)
+      .then((profiles) => {
+        dispatch(setProfiles(profiles))
+      })
+      .catch((err) => console.error(err.message))
+  }
+}
