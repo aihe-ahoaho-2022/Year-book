@@ -1,5 +1,3 @@
-import { getProfileById, getProfilesByBookId } from '../apis/profile'
-
 export function setProfiles(profiles) {
   return {
     type: 'SET_PROFILES',
