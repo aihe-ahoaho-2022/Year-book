@@ -14,7 +14,7 @@ export function updateComments(comments) {
   }
 }
 
-//thunks for profiles
+//thunks for Comments
 export function fetchComments(id) {
   // console.log('fetching')
   return (dispatch) => {

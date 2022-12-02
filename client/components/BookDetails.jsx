@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 // import Profile from './Profile'
+import styles from './BookDetails.module.scss'
 import { fetchProfiles, setProfiles } from '../actions/profile'
 
 export default function BookDetails(data) {
@@ -22,7 +23,11 @@ export default function BookDetails(data) {
   const displayProfiles = profiles?.map((profile, index) => (
     <div key={profile.id + index}>
       <p>profiles here</p>
-      <img src={profile.image} alt={`${profile.name}`}></img>
+      <img
+        className={styles.image}
+        src={profile.image}
+        alt={`${profile.name}`}
+      ></img>
       <h1>Name:{profile.name}</h1>
     </div>
   ))
@@ -31,7 +36,7 @@ export default function BookDetails(data) {
   return (
     <>
       <div className='Title'>
-        <h1 className={style.heading}>Yearbook Title</h1>
+        <h1 className={styles.heading}>Yearbook Title</h1>
       </div>
       <div className='profiles_containers'>
         {displayProfiles}
