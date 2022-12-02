@@ -60,5 +60,20 @@ exports.seed = async function (knex) {
       facebook_url: '',
       github_url: 'https://github.com/jatin-puri-coder',
     },
+    {
+      id: 5,
+      book_id: 1,
+      name: 'Testing dog',
+      image:
+        'https://www.pianz.org.nz/wp-content/uploads/2016/03/pekin-duck.jpg',
+      auth0_id: 'authtestid1',
+      quote: 'Everything is good',
+      blurb: 'banana.',
+      linkedin_url: '',
+      twitter_url: '',
+      instagram_url: '',
+      facebook_url: '',
+      github_url: 'https://github.com/gerardpaapu',
+    },
   ])
 }

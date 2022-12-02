@@ -32,7 +32,7 @@ function getBooks(db = connection) {
 function getCommentsByBookId(bookId, db = connection) {
   return db('comments')
     .select('id', 'book_id as bookId', 'comment', 'auth0_id as ownerId')
-    .where('book_id', bookId)
+    .where('id', bookId)
 }
 
 function getProfileById(profileId, db = connection) {
@@ -74,8 +74,8 @@ function putProfileById(profileId, profile, db = connection) {
 }
 
 //// IMAGE UPLOAD DB TRIAL
-function imageUpload(profile, db = connection) {
-  return db('profiles').insert({ image: profile.image })
+function imageUpload(image, db = connection) {
+  return db('profiles').insert(image)
 }
 
 module.exports = {
