@@ -26,19 +26,14 @@ export default function ProfileDetails() {
       {/* <Link to='/:bookid'>
         <div className={styles.fullscreen}> */}
       <div className={styles.container}>
-        <div>
-          <img
-            className={styles.image}
-            src={profile.image}
-            // src={`/images/${profile.image}`}
-            alt='User profile'
-          />
-          {/* <IfAuthenticated> */}
-          <Link to={`/profiles/${id}/edit`}>
-            <button className={styles.button}>Edit profile</button>
-          </Link>
-          {/* </IfAuthenticated> */}
-        </div>
+        {/* <div className={styles.imagewrap}> */}
+        <img
+          className={styles.image}
+          src={profile.image}
+          // src={`/images/${profile.image}`}
+          alt='User profile'
+        />
+        {/* </div> */}
         <section className={styles.textbox}>
           <h1 className={styles.heading}>{profile.name}</h1>
           <h2 className={styles.quote}>{`"${profile.quote}"`}</h2>
@@ -63,8 +58,13 @@ export default function ProfileDetails() {
           </ul>
         </section>
       </div>
-      {/* </div>
-      </Link> */}
+      <div className={styles.buttonwrap}>
+        {/* <IfAuthenticated> */}
+        <Link to={`/profiles/${id}/edit`}>
+          <button className={styles.button}>Edit profile</button>
+        </Link>
+        {/* </IfAuthenticated> */}
+      </div>
     </>
   )
 }
