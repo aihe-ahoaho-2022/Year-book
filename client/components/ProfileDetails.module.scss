@@ -66,7 +66,7 @@
   margin-top: 45px;
   width: 100px;
   height: 35px;
-  font-size: 0.9em;
+  font-size: 0.95em;
   border: 0;
   border-radius: 4px;
   background-color: theme.$bright;
@@ -75,5 +75,5 @@
 
 .button:hover {
   transform: translateY(2px); transition-duration: 100ms;
-  box-shadow: theme.$light;
+  background-color: theme.$medium;
 }

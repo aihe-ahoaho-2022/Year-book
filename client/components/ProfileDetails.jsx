@@ -34,7 +34,7 @@ export default function ProfileDetails() {
             alt='User profile'
           />
           {/* <IfAuthenticated> */}
-          <Link to='/:bookid/edit'>
+          <Link to={`/profiles/${id}/edit`}>
             <button className={styles.button}>Edit profile</button>
           </Link>
           {/* </IfAuthenticated> */}
