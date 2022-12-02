@@ -78,6 +78,10 @@ function imageUpload(image, db = connection) {
   return db('profiles').insert(image)
 }
 
+function addProfile(profile, db = connection) {
+  return db('profiles').insert(profile)
+}
+
 module.exports = {
   getProfilesByBookId,
   getBooks,
@@ -85,4 +89,5 @@ module.exports = {
   getProfileById,
   imageUpload,
   putProfileById,
+  addProfile,
 }

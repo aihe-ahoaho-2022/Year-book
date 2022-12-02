@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 
 const {
+  addProfile,
   getProfilesByBookId,
   getProfileById,
   imageUpload,
@@ -74,5 +75,18 @@ router.patch('/:profileid/edit', (req, res) => {
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
+
+router.post('/profiles/add'),
+  (req, res) => {
+    const profile = req.body
+    addProfile(profile)
+      .then((profileResult) => {
+        res.json(profileResult)
+      })
+      .catch((e) => {
+        console.error(e.message)
+        res.status(500).json({ message: 'Something went wrong' })
+      })
+  }
 
 module.exports = router
