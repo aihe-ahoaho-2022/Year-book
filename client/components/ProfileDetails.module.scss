@@ -1,5 +1,10 @@
 @use '../styles/theme';
 
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
 .container { 
   margin: auto;
   display: flex;
@@ -11,7 +16,7 @@
 .textbox {
   padding-left: 40px;
   color: theme.$black;
-  overflow: scroll;
+  // overflow: scroll;
     @media only screen and (max-width: 1024px) { padding-left: 0 } 
 
 }
@@ -24,18 +29,18 @@
 }
 
 .image { 
-  height: 58vh;
-  width: auto;
+  height: 54vh;
+  width: 20vw;
   border-radius: 8px; 
   transition-duration: 200ms;
   object-fit: cover;
   @media only screen and (max-width: 1024px) { width: 100%; height: auto } 
 }
 
-.image:hover {
-  transform: translateY(-3px); transition-duration: 200ms;
-  box-shadow: theme.$shadow;
-}
+// .image:hover {
+//   transform: translateY(-3px); transition-duration: 200ms;
+//   box-shadow: theme.$black;
+// }
 
 .list {
   padding-left: 0;
