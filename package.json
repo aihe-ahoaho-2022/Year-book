@@ -44,6 +44,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mantine/core": "^5.9.0",
+    "@mantine/form": "^5.9.0",
     "@mantine/hooks": "^5.9.0",
     "@mui/material": "^5.10.16",
     "@testing-library/user-event": "^14.4.3",
