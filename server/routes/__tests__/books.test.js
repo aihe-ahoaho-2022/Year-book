@@ -30,14 +30,13 @@ describe('get /api/v1/books/1', () => {
       })
   })
 
-  it('should return status 500 and an error message when database fails.', () => {
+  it('should return status 500 and an error message when database fails.', async () => {
     expect.assertions(2)
-    getBookById.mockImplementation(() => Promise.reject('Something went wrong'))
+    await getBookById.mockImplementation(() => Promise.reject('Something went wrong'))
     return request(server)
       .get('/api/v1/books/1')
       .then((res) => {
         expect(res.status).toBe(500)
-        // expect(console.error).toHaveBeenCalledWith('Something went wrong')
         expect(res.text).toContain('Something went wrong')
       })
 })
