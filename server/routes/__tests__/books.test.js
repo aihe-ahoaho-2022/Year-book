@@ -19,13 +19,26 @@ const getBookByIdData = {
 }
 describe('get /api/v1/books/1', () => {
   it('should return status 200 and a joint table when successful', () => {
-    expect.assertions(2)
+    expect.assertions(3)
     getBookById.mockReturnValue(Promise.resolve(getBookByIdData))
     return request(server)
       .get('/api/v1/books/1')
       .then((res) => {
         expect(res.status).toBe(200)
         expect(res.body).toEqual(getBookByIdData)
+        expect(getBookByIdData.id).toBe(1)
       })
   })
+
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    getBookById.mockImplementation(() => Promise.reject('Something went wrong'))
+    return request(server)
+      .get('/api/v1/books/1')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        // expect(console.error).toHaveBeenCalledWith('Something went wrong')
+        expect(res.text).toContain('Something went wrong')
+      })
+})
 })
