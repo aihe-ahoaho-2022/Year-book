@@ -24,14 +24,16 @@
 
 .heading {
   font-size: 3.6rem;
-  margin-top: 10px;
-  margin-bottom: 25px;
+  line-height: 1em;
+  margin-top: 25px;
+  margin-bottom: 45px;
   color: theme.$medium;
 }
 
 .image { 
   height: 54vh;
   width: 22vw;
+  margin-bottom: 40px;
   border-radius: 8px; 
   transition-duration: 200ms;
   object-fit: cover;
@@ -59,16 +61,17 @@
 .quote {
   font-style: italic;
   font-size: 1.6em;
-
+  line-height: 1.4em;
 }
 
 .blurb {
   font-size: 1.3em;
   margin-bottom: 30px;
+  line-height: 1.4em;
 }
 
 .buttonwrap { 
-  margin: 60px auto;
+  margin: 20px auto;
   max-width: 750px;
   @media only screen and (max-width: 1024px) { width: 90%; height: auto; text-align: center; margin: 30px auto; } 
 }
