@@ -32,14 +32,14 @@ export default function BookDetails(data) {
   const displayProfiles = profiles?.map((profile) => (
     <ul key={profile.id}>
       <Link to={`/profiles/${profile.id}`}>
-        <div>
-          <p>profiles here</p>
+        <div className={styles.profiles}>
           <img
             className={styles.image}
             src={profile.image}
             alt={`${profile.name}`}
           ></img>
           <h1>Name:{profile.name}</h1>
+          <span className={styles.quoteHover}>Quote:{profile.quote}</span>
         </div>
       </Link>
     </ul>

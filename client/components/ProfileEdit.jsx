@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { getProfileContent, putProfileContent } from '../apis/profileEdit'
-
+import { submitProfile } from '../actions/profile'
 import { useParams } from 'react-router-dom'
 
 import { TextInput, Button } from '@mantine/core'
 
 export default function FruitEditor(props) {
   // Ready up React state
+  const dispatch = useDispatch()
+
   if (props.add) {
+    // const profileCreated = (profileData) => dispatch(submitProfile(profileData))
     console.log('add')
   }
   const { profileid } = useParams()
@@ -41,8 +45,9 @@ export default function FruitEditor(props) {
     e.preventDefault()
     if (!props.add) {
       await putProfileContent(profile)
+    } else if (props.add) {
+      await dispatch(submitProfile(profile))
     }
-    
     console.log(profile)
   }
 

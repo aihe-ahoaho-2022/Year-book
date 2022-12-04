@@ -1,40 +1,44 @@
 @use '../styles/theme';
 
-.container { 
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.container, .buttonwrap { 
   margin: auto;
   display: flex;
-  max-width: 800px;
-  margin-top: 110px;
-  @media only screen and (max-width: 1024px) { max-width: 75vw; flex-direction: column;  } 
+  max-width: 750px;
+  margin-top: 90px;
+  margin-bottom: -20px;
+  @media only screen and (max-width: 1024px) { max-width: 80vw; flex-direction: column;  } 
 }
 
 .textbox {
   padding-left: 40px;
   color: theme.$black;
-  overflow: scroll;
     @media only screen and (max-width: 1024px) { padding-left: 0 } 
 
 }
 
 .heading {
-  font-size: 4rem;
-  margin-top: 35px;
-  margin-bottom: 50px;
+  font-size: 3.6rem;
+  margin-top: 10px;
+  margin-bottom: 25px;
   color: theme.$medium;
 }
 
 .image { 
-  height: 58vh;
-  width: auto;
+  height: 54vh;
+  width: 22vw;
   border-radius: 8px; 
   transition-duration: 200ms;
   object-fit: cover;
   @media only screen and (max-width: 1024px) { width: 100%; height: auto } 
 }
 
-.image:hover {
-  transform: translateY(-3px); transition-duration: 200ms;
-  box-shadow: theme.$shadow;
+.imagewrap {
+  padding: 0;
 }
 
 .list {
@@ -60,4 +64,21 @@
 .blurb {
   font-size: 1.3em;
   margin-bottom: 30px;
+}
+
+.button {
+  // margin-top: px;
+  width: 100px;
+  height: 35px;
+  font-size: 0.95em;
+  border: 0;
+  border-radius: 4px;
+  background-color: theme.$bright;
+  color: white;
+  margin-bottom: 80px;
+}
+
+.button:hover {
+  transform: translateY(2px); transition-duration: 100ms;
+  background-color: theme.$medium;
 }
