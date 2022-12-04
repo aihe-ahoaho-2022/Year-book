@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 // import Profile from './Profile'
 import styles from './BookDetails.module.scss'
-import { fetchProfiles, setProfiles, } from '../actions/profile'
-import {fetchComments,setComments,submitComments} from "../actions/comment"
+import { fetchProfiles, } from '../actions/profile'
+import {fetchComments, submitComments} from "../actions/comment"
 
 export default function BookDetails() {
   const params = useParams()
