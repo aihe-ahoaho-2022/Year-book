@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 // import Profile from './Profile'
 import styles from './BookDetails.module.scss'
-import { fetchProfiles, setProfiles } from '../actions/profile'
+import { fetchProfiles } from '../actions/profile'
 
-export default function BookDetails(data) {
+export default function BookDetails() {
   const params = useParams()
-  const navigate = useNavigate()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
   // const [isLoading, setIsLoading] = useState(true)
