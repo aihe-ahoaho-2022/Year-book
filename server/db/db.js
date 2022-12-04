@@ -42,6 +42,15 @@ function getCommentsByBookId(bookId, db = connection) {
     .where('id', bookId)
 }
 
+function postComment(newComment, db = connection) {
+  return db('comments').select().insert({
+    id: newComment.id,
+    book_id: newComment.bookId,
+    comment: newComment.comment,
+    auth0_id: newComment.auth0Id,
+  })
+}
+
 function getProfileById(profileId, db = connection) {
   return db('profiles')
     .select(
@@ -126,4 +135,5 @@ module.exports = {
   imageUpload,
   putProfileById,
   addProfile,
+  postComment,
 }
