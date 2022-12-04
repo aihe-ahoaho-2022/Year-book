@@ -1,4 +1,4 @@
-import { getCommentsByBookId } from '../apis/comments'
+import { getCommentsByBookId, postComment } from '../apis/comments'
 
 export function setComments(comments) {
   return {
@@ -19,8 +19,8 @@ export function fetchComments(id) {
   // console.log('fetching')
   return (dispatch) => {
     return getCommentsByBookId(id)
-      .then((profiles) => {
-        dispatch(setComments(profiles))
+      .then((commentData) => {
+        dispatch(setComments(commentData))
       })
       .catch((err) => console.error(err.message))
   }

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 // import Profile from './Profile'
 import styles from './BookDetails.module.scss'
-import { fetchProfiles, setProfiles } from '../actions/profile'
+import { fetchProfiles, setProfiles, } from '../actions/profile'
+import {fetchComments} from "../actions/comment"
 
 export default function BookDetails(data) {
   const params = useParams()
@@ -13,12 +14,17 @@ export default function BookDetails(data) {
   // const [isLoading, setIsLoading] = useState(true)
   // // const navigate = useNavigate()
   const profiles = useSelector((state) => state.profiles)
-  console.log(profiles)
+  const comments = useSelector((state) => state.comments)
+  console.log(comments)
 
   // array of objects
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
+  }, [])
+
+  useEffect(() => {
+    dispatch(fetchComments(bookId))
   }, [])
 
   // function addAnimalToRedux(animal) {
@@ -44,7 +50,16 @@ export default function BookDetails(data) {
       </Link>
     </ul>
   ))
-  console.log(displayProfiles)
+
+  const displayComments = comments?.map((comments) => (
+    <ul key={comments.id}>
+      <div>
+        <p>{comments.comment}</p>
+    </div>
+    </ul>
+  ))
+
+  
 
   return (
     <>
@@ -57,7 +72,9 @@ export default function BookDetails(data) {
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
 
-      <div className='comments_containers'>{/* <input>posts</input> */}</div>
+      <div className='comments_containers'>{displayComments}</div>
+      
+     
     </>
   )
 }
