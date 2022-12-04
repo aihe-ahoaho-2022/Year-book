@@ -7,7 +7,7 @@ import store from './store'
 
 import theme from './styles/matine'
 
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider } from '@mantine/core'
 
 import App from './components/App'
 
@@ -19,16 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
       redirectUri={window.location.origin}
       audience='https://yearbook/api'
     >
-        <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-      theme={theme}
-    >
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Provider>
       </MantineProvider>
     </Auth0Provider>,
     document.getElementById('app')
