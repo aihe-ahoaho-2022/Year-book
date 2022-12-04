@@ -24,7 +24,7 @@ export default function ProfileDetails() {
     e.preventDefault()
     removeProfile(Number(profileid))
       .then(() => {
-        navigate('/')
+        navigate(`/${profile.bookId}`)
       })
       .catch((err) => {
         console.error(err.message)
