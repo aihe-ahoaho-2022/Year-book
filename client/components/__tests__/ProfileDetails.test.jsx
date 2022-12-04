@@ -1,21 +1,12 @@
 import '@testing-library/jest-dom'
-import React from 'react'
-// import { useSelector } from 'react-redux'
-import { render, screen, waitFor } from '@testing-library/react'
 
+import { render, screen } from '@testing-library/react'
+import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { getProfileById } from '../../apis/profile'
 
 import ProfileDetails from '../ProfileDetails'
-import mockData from '../testMockData/mockData'
 
 jest.mock('react-redux')
-// jest.mock('../../apis/profile')
-
-// useSelector.mockReturnValue(mockData)
-
-// const fakeDispatch = jest.fn()
-// useDispatch.mockReturnValue(fakeDispatch)
 
 describe('<ProfileDetails />', () => {
   beforeEach(() => {
@@ -74,20 +65,10 @@ describe('Button displays content', () => {
   })
 })
 
-describe('getProfileById', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-  it('retrieves profile by id from API', () => {
-    getProfileById.mockReturnValue(Promise.resolve(mockData))
-    render(
-      <Router>
-        <ProfileDetails />
-      </Router>
-    )
-    return waitFor(() => getProfileById.mock.calls.length).then(() => {
-      let profile = screen.getByText(/Testo McTestface/i)
-      expect(profile).toBeInTheDocument()
-    })
-  })
-})
+//////******
+
+// TO DO
+
+// edit button event
+// delete button event (when there's a delete button)
+// api call
