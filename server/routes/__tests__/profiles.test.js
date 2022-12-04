@@ -33,7 +33,6 @@ describe('get /api/v1/profiles/1', () => {
       .get('/api/v1/profiles/1')
       .then((res) => {
         expect(res.status).toBe(200)
-        // expect(res.body).toEqual(getProfileByIdData)
         expect(getProfileByIdData.id).toBe(1)
       })
   })

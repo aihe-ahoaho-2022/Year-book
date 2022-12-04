@@ -1,4 +1,4 @@
-import { getProfileById, getProfilesByBookId } from '../apis/profile'
+import { getProfilesByBookId } from '../apis/profile'
 import { postProfile } from '../apis/profileEdit'
 
 export function setProfiles(profiles) {
