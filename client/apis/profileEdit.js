@@ -18,3 +18,14 @@ export function putProfileContent(profile) {
       return res.body
     })
 }
+
+// POST /api/v1/profiles/add
+
+export function postProfile(profileData) {
+  return request
+    .post(rootUrl + '/profiles/add/')
+    .send(profileData)
+    .then((res) => {
+      return res.body
+    })
+}

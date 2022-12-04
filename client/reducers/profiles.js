@@ -8,6 +8,8 @@ const profiles = (state = initialState, action) => {
       return payload
     case 'UPDATE_PROFILES':
       return payload
+    case 'ADD_PROFILES':
+      return [...state, payload]
     default:
       return state
   }

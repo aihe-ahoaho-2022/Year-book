@@ -2,6 +2,13 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
+// // GET /api/v1/profiles
+// export function getProfiles() {
+//   return request.get(rootUrl + '/profiles').then((res) => {
+//     return res.body
+//   })
+// }
+
 // GET /api/v1/profiles/:profileid
 export function getProfileById(id) {
   return request.get(rootUrl + '/profiles/' + id).then((res) => {
@@ -15,4 +22,15 @@ export function getProfilesByBookId(id) {
   return request.get(rootUrl + '/profiles/book/' + id).then((res) => {
     return res.body
   })
+}
+
+// POST /api/v1/profiles/add
+
+export function postProfile(profileData) {
+  return request
+    .post(rootUrl + '/profiles/add/')
+    .send(profileData)
+    .then((res) => {
+      return res.body
+    })
 }

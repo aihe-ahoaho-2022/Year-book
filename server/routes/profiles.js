@@ -1,7 +1,9 @@
 const express = require('express')
 const path = require('path')
+// const checkJwt = require('../auth0')
 
 const {
+  addProfile,
   getProfilesByBookId,
   getProfileById,
   imageUpload,
@@ -76,6 +78,20 @@ router.patch('/:profileid/edit', (req, res) => {
   putProfileById(profileId, profile)
     .then((pro) => {
       res.json(pro[0])
+    })
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+router.post('/add', (req, res) => {
+  console.log('hit route')
+  const profile = req.body
+  console.log(profile)
+  addProfile(profile)
+    .then((profileResult) => {
+      res.json(profileResult)
     })
     .catch((e) => {
       console.error(e.message)
