@@ -100,7 +100,7 @@ router.post('/add', (req, res) => {
     })
 })
 
-// PUT /api/v1/profiles/:id
+// PUT /api/v1/profiles/delete/:id
 router.delete('/delete/:id', (req, res) => {
   deleteProfile(req.params.id)
     .then((result) => res.json(result))
