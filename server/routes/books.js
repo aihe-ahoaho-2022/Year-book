@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { getBooks } = require('../db/db')
+const { getBooks, getBookById } = require('../db/db')
 
 const router = express.Router()
 
@@ -14,9 +14,8 @@ router.get('/', (req, res) => {
 // GET /api/v1/books/:bookid
 router.get('/:bookid', (req, res) => {
   const bookId = req.params.bookid
-  getBooks()
-    .then((books) => {
-      const book = books.find((book) => book.id == bookId)
+  getBookById(bookId)
+    .then((book) => {
       res.json(book)
     })
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
