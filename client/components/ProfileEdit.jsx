@@ -6,10 +6,13 @@ import { submitProfile } from '../actions/profile'
 import { useParams } from 'react-router-dom'
 
 import { TextInput, Button } from '@mantine/core'
+import { ParameterStatusMessage } from 'pg-protocol/dist/messages'
 
 export default function FruitEditor(props) {
   // Ready up React state
+  const params = useParams()
   const dispatch = useDispatch()
+  const bookId = Number(params.bookid)
 
   if (props.add) {
     // const profileCreated = (profileData) => dispatch(submitProfile(profileData))
@@ -46,16 +49,19 @@ export default function FruitEditor(props) {
     if (!props.add) {
       await putProfileContent(profile)
     } else if (props.add) {
+      profile.bookId = bookId
       await dispatch(submitProfile(profile))
     }
     console.log(profile)
   }
 
+  // { ...profile, bookId: bookId }
+
   return (
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          props.add ?<p>Create Editor:</p>
+          <p>{props.add ? 'Add New Profile' : 'Update Profile'}</p>
           <ul>
             <TextInput
               label='Name'
