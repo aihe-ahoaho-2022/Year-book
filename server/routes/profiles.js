@@ -9,6 +9,7 @@ const {
   imageUpload,
   putProfileById,
   deleteProfile,
+  
 } = require('../db/db')
 
 const router = express.Router()
@@ -109,5 +110,7 @@ router.delete('/delete/:id', (req, res) => {
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
+
+
 
 module.exports = router
