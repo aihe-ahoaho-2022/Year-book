@@ -6,17 +6,14 @@ import styles from './BookDetails.module.scss'
 import { fetchProfiles, setProfiles, } from '../actions/profile'
 import {fetchComments,setComments,submitComments} from "../actions/comment"
 
-export default function BookDetails(data) {
+export default function BookDetails() {
   const params = useParams()
-  const navigate = useNavigate()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
   const [comment, setComment] = useState({comment:'', bookId:bookId
 })
-
-  // array of objects
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
@@ -25,10 +22,6 @@ export default function BookDetails(data) {
   useEffect(() => {
     dispatch(fetchComments(bookId))
   }, [])
-
-  // function handleClick (event){
-
-  // }
 
   const displayProfiles = profiles?.map((profile) => (
     <ul key={profile.id}>
@@ -49,7 +42,7 @@ export default function BookDetails(data) {
   const displayComments = comments?.map((comments) => (
     <ul key={comments.id}>
       <div>
-          <li>{comments.comment}</li>
+          <li>{comments.ownerId} : {comments.comment}</li>
     </div>
     </ul>
   ))
@@ -76,7 +69,6 @@ export default function BookDetails(data) {
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
      
-      {/* <div className='comments_containers'>{displayComments}</div> */}
       <div> 
         <ul>
          {displayComments}
