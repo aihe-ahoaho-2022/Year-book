@@ -85,6 +85,38 @@ function imageUpload(profileId, imageName, db = connection) {
   return db('profiles').update('image', imageName).where('id', profileId)
 }
 
+function addProfile(profile, db = connection) {
+  return db('profiles')
+    .select(
+      'id',
+      'book_id as bookId',
+      'name',
+      'image',
+      'auth0_id as ownerId',
+      'quote',
+      'blurb',
+      'linkedin_url as linkedinUrl',
+      'twitter_url as twitterUrl',
+      'instagram_url as instagramUrl',
+      'facebook_url as facebookUrl',
+      'github_url as githubUrl'
+    )
+    .insert({
+      id: profile.id,
+      book_id: profile.bookId,
+      name: profile.name,
+      image: profile.image,
+      auth0_id: profile.ownerId,
+      quote: profile.quote,
+      blurb: profile.blurb,
+      linkedin_url: profile.linkedinUrl,
+      twitter_url: profile.twitterUrl,
+      instagram_url: profile.instagramUrl,
+      facebook_url: profile.facebookUrl,
+      github_url: profile.githubUrl,
+    })
+}
+
 module.exports = {
   getProfilesByBookId,
   getBooks,
@@ -93,4 +125,5 @@ module.exports = {
   getProfileById,
   imageUpload,
   putProfileById,
+  addProfile,
 }

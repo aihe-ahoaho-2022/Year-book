@@ -33,7 +33,6 @@ export default function BookDetails(data) {
     <ul key={profile.id}>
       <Link to={`/profiles/${profile.id}`}>
         <div className={styles.profiles}>
-
           <img
             className={styles.image}
             src={profile.image}
@@ -53,8 +52,8 @@ export default function BookDetails(data) {
         <h1 className={styles.heading}>Yearbook Title</h1>
       </div>
 
-      <div className='studentCards'>{displayProfiles}</div>
-      <Link to={`/profiles/1/edit`}>
+      <div className={styles.container_profiles}>{displayProfiles}</div>
+      <Link to={`/${bookId}/add`}>
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
 

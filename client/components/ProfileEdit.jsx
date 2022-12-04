@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { getProfileContent, putProfileContent } from '../apis/profileEdit'
-
+import { submitProfile } from '../actions/profile'
 import { useParams } from 'react-router-dom'
 
 import { TextInput, Button } from '@mantine/core'
+import { ParameterStatusMessage } from 'pg-protocol/dist/messages'
 
-export default function FruitEditor() {
+export default function FruitEditor(props) {
   // Ready up React state
+  const params = useParams()
+  const dispatch = useDispatch()
+  const bookId = Number(params.bookid)
+
+  if (props.add) {
+    // const profileCreated = (profileData) => dispatch(submitProfile(profileData))
+    console.log('add')
+  }
   const { profileid } = useParams()
 
   const [profile, setProfile] = useState({
@@ -22,9 +32,11 @@ export default function FruitEditor() {
   })
 
   useEffect(async () => {
-    const profileData = await getProfileContent(profileid)
-    console.log(profileData)
-    setProfile(profileData)
+    if (!props.add) {
+      const profileData = await getProfileContent(profileid)
+      console.log(profileData)
+      setProfile(profileData)
+    }
   }, [])
 
   const handleChange = (e) => {
@@ -34,15 +46,22 @@ export default function FruitEditor() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await putProfileContent(profile)
+    if (!props.add) {
+      await putProfileContent(profile)
+    } else if (props.add) {
+      profile.bookId = bookId
+      await dispatch(submitProfile(profile))
+    }
     console.log(profile)
   }
+
+  // { ...profile, bookId: bookId }
 
   return (
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <p>Create Editor:</p>
+          <p>{props.add ? 'Add New Profile' : 'Update Profile'}</p>
           <ul>
             <TextInput
               label='Name'

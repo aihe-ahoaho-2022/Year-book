@@ -3,6 +3,7 @@ const path = require('path')
 // const checkJwt = require('../auth0')
 
 const {
+  addProfile,
   getProfilesByBookId,
   getProfileById,
   imageUpload,
@@ -84,27 +85,18 @@ router.patch('/:profileid/edit', (req, res) => {
     })
 })
 
-/////// AUTH PROTECTED VERSION BUT ERRORING
-
-// router.patch('/:profileid/edit', checkJwt, (req, res) => {
-//   const profileId = req.params.profileid
-//   const profile = req.body
-//   const auth0Id = req.auth?.sub
-//   putProfileById(profileId, profile, auth0Id)
-//     // Not 100% sure what's passing in to putProfileById
-//     .then((pro) => {
-//       res.json(pro[0])
-//     })
-//     .catch((err) => {
-//       console.error(err)
-//       if (err.message === 'Unauthorized') {
-//         res
-//           .status(403)
-//           .send('Unauthorized: Only the owner may edit this profile')
-//       } else {
-//         res.status(500).send('Something went wrong')
-//       }
-//     })
-// })
+router.post('/add', (req, res) => {
+  console.log('hit route')
+  const profile = req.body
+  console.log(profile)
+  addProfile(profile)
+    .then((profileResult) => {
+      res.json(profileResult)
+    })
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
 
 module.exports = router
