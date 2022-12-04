@@ -34,22 +34,6 @@ describe('<ProfileDetails />', () => {
   })
 })
 
-describe('Button style', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-  it('checks style is being applied to edit button', () => {
-    render(
-      <Router>
-        <ProfileDetails />
-      </Router>
-    )
-    const button = screen.getByRole('button')
-    const corners = button.style.borderRadius
-    expect(button).toHaveStyle({ borderRadius: corners })
-  })
-})
-
 describe('Button displays content', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -60,8 +44,8 @@ describe('Button displays content', () => {
         <ProfileDetails />
       </Router>
     )
-    const button = screen.getByRole('button')
-    expect(button).toHaveTextContent(/edit/i)
+    const button = screen.getAllByRole('button')
+    expect(button[0]).toHaveTextContent(/edit/i)
   })
 })
 
