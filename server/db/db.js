@@ -117,6 +117,10 @@ function addProfile(profile, db = connection) {
     })
 }
 
+function deleteProfile(id, db = connection) {
+  return db('profiles').where({ id }).del()
+}
+
 module.exports = {
   getProfilesByBookId,
   getBooks,
@@ -126,4 +130,5 @@ module.exports = {
   imageUpload,
   putProfileById,
   addProfile,
+  deleteProfile,
 }
