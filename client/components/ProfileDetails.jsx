@@ -6,13 +6,11 @@ import { getProfileById } from '../apis/profile'
 import styles from './ProfileDetails.module.scss'
 
 export default function ProfileDetails() {
-  const params = useParams()
-  const id = params.profileid
-  console.log(id)
+  const { profileid } = useParams()
   const [profile, setProfile] = useState('')
 
   useEffect(() => {
-    getProfileById(id)
+    getProfileById(profileid)
       .then((res) => {
         setProfile(res)
       })
@@ -60,7 +58,7 @@ export default function ProfileDetails() {
       </div>
       <div className={styles.buttonwrap}>
         {/* <IfAuthenticated> */}
-        <Link to={`/profiles/${id}/edit`}>
+        <Link to={`/profiles/${profileid}/edit`}>
           <button className={styles.button}>Edit profile</button>
         </Link>
         {/* </IfAuthenticated> */}
