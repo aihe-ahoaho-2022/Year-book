@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 // import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
-import { getProfileById } from '../apis/profile'
+import { getProfileById, removeProfile } from '../apis/profile'
 import styles from './ProfileDetails.module.scss'
 
 export default function ProfileDetails() {
   const { profileid } = useParams()
   const [profile, setProfile] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     getProfileById(profileid)
@@ -19,19 +20,26 @@ export default function ProfileDetails() {
       })
   }, [])
 
+  function handleDelete(e) {
+    e.preventDefault()
+    removeProfile(Number(profileid))
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
+  }
+
   return (
     <>
-      {/* <Link to='/:bookid'>
-        <div className={styles.fullscreen}> */}
       <div className={styles.container}>
-        {/* <div className={styles.imagewrap}> */}
         <img
           className={styles.image}
           src={profile.image}
           // src={`/images/${profile.image}`}
           alt='User profile'
         />
-        {/* </div> */}
         <section className={styles.textbox}>
           <h1 className={styles.heading}>{profile.name}</h1>
           <h2 className={styles.quote}>{`"${profile.quote}"`}</h2>
@@ -59,8 +67,13 @@ export default function ProfileDetails() {
       <div className={styles.buttonwrap}>
         {/* <IfAuthenticated> */}
         <Link to={`/profiles/${profileid}/edit`}>
-          <button className={styles.button}>Edit profile</button>
+          <button className={styles.button}>Edit</button>
         </Link>
+        {/* </IfAuthenticated> */}
+        {/* <IfAuthenticated> */}
+        <button onClick={(e) => handleDelete(e)} className={styles.button}>
+          Remove
+        </button>
         {/* </IfAuthenticated> */}
       </div>
     </>

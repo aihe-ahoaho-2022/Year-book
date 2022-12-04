@@ -27,3 +27,7 @@ export function postProfile(profileData) {
       return res.body
     })
 }
+
+export function removeProfile(id) {
+  return request.del(`${rootUrl}/profiles/delete/${id}`)
+}
