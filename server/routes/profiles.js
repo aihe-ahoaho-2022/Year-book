@@ -76,19 +76,18 @@ router.patch('/:profileid/edit', (req, res) => {
     })
 })
 
-router.post('/profiles/add'),
-  (req, res) => {
-    console.log('hit route')
-    const profile = req.body
-    console.log(profile)
-    addProfile(profile)
-      .then((profileResult) => {
-        res.json(profileResult)
-      })
-      .catch((e) => {
-        console.error(e.message)
-        res.status(500).json({ message: 'Something went wrong' })
-      })
-  }
+router.post('/add', (req, res) => {
+  console.log('hit route')
+  const profile = req.body
+  console.log(profile)
+  addProfile(profile)
+    .then((profileResult) => {
+      res.json(profileResult)
+    })
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
 
 module.exports = router
