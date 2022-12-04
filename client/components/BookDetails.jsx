@@ -33,6 +33,7 @@ export default function BookDetails(data) {
     <ul key={profile.id}>
       <Link to={`/profiles/${profile.id}`}>
         <div className={styles.profiles}>
+
           <img
             className={styles.image}
             src={profile.image}
