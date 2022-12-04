@@ -32,7 +32,7 @@ export default function BookDetails(data) {
   const displayProfiles = profiles?.map((profile) => (
     <ul key={profile.id}>
       <Link to={`/profiles/${profile.id}`}>
-        <div>
+        <div className={styles.profiles}>
           <p>profiles here</p>
           <img
             className={styles.image}
@@ -40,6 +40,7 @@ export default function BookDetails(data) {
             alt={`${profile.name}`}
           ></img>
           <h1>Name:{profile.name}</h1>
+          <span className={styles.quoteHover}>Quote:{profile.quote}</span>
         </div>
       </Link>
     </ul>
@@ -52,7 +53,7 @@ export default function BookDetails(data) {
         <h1 className={styles.heading}>Yearbook Title</h1>
       </div>
 
-      <div className={styles.container_profiles}>{displayProfiles}</div>
+      <div className='studentCards'>{displayProfiles}</div>
       <Link to={`/profiles/1/edit`}>
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
