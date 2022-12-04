@@ -13,7 +13,7 @@ export default function BookDetails(data) {
   const dispatch = useDispatch()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
-  const [comment, setComment] = useState({comment:'',bookId:bookId
+  const [comment, setComment] = useState({comment:'', bookId:bookId
 })
 
   // array of objects
@@ -49,13 +49,12 @@ export default function BookDetails(data) {
   const displayComments = comments?.map((comments) => (
     <ul key={comments.id}>
       <div>
-        <p>{comments.comment}</p>
+          <li>{comments.comment}</li>
     </div>
     </ul>
   ))
 
   function handleChange(event) {
-   console.log( event.target)
     setComment( {...comment,[event.target.name] : event.target.value } )
   }
 
@@ -63,7 +62,7 @@ export default function BookDetails(data) {
     event.preventDefault()
     dispatch(submitComments(comment))
     dispatch(fetchComments(bookId))
-    console.log(comment)
+    setComment({ comment: '', bookId: bookId })
   }
 
   return (
@@ -76,9 +75,12 @@ export default function BookDetails(data) {
       <Link to={`/${bookId}/add`}>
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
-      <p>{displayComments}</p>
+     
       {/* <div className='comments_containers'>{displayComments}</div> */}
-      <div>
+      <div> 
+        <ul>
+         {displayComments}
+         </ul>
         <form onSubmit={handleSubmit}>
           <ul>
             <input
