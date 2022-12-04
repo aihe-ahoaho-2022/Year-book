@@ -8,6 +8,7 @@ const {
   getProfileById,
   imageUpload,
   putProfileById,
+  deleteProfile,
   
 } = require('../db/db')
 
@@ -94,6 +95,16 @@ router.post('/add', (req, res) => {
     .then((profileResult) => {
       res.json(profileResult)
     })
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+// PUT /api/v1/profiles/:id
+router.delete('/delete/:id', (req, res) => {
+  deleteProfile(req.params.id)
+    .then((result) => res.json(result))
     .catch((e) => {
       console.error(e.message)
       res.status(500).json({ message: 'Something went wrong' })

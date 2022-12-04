@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 // import Profile from './Profile'
 import styles from './BookDetails.module.scss'
 import { fetchProfiles, setProfiles, } from '../actions/profile'

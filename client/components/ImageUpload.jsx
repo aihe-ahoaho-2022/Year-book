@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { uploadFile } from '../apis/profileImage'
 
 export default function ImageUpload() {
   const [image, setImage] = useState(null)
   const { profileid } = useParams()
-  const [profileImage, setProfileImage] = useState({
+  const [setProfileImage] = useState({
     image: '',
   })
 
