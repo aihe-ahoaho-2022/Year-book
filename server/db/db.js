@@ -29,6 +29,13 @@ function getBooks(db = connection) {
   )
 }
 
+function getBookById(id, db = connection) {
+  return db('books')
+    .where('id', id)
+    .select('id', 'name', 'image', 'theme', 'auth0_id as ownerId')
+    .first()
+}
+
 function getCommentsByBookId(bookId, db = connection) {
   return db('comments')
     .select('id', 'book_id as bookId', 'comment', 'auth0_id as ownerId')
@@ -81,6 +88,7 @@ function imageUpload(profileId, imageName, db = connection) {
 module.exports = {
   getProfilesByBookId,
   getBooks,
+  getBookById,
   getCommentsByBookId,
   getProfileById,
   imageUpload,
