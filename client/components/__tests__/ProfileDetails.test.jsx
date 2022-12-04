@@ -1,15 +1,16 @@
 import '@testing-library/jest-dom'
-
-import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 // import { useSelector } from 'react-redux'
+import { render, screen, waitFor } from '@testing-library/react'
 
 import { BrowserRouter as Router } from 'react-router-dom'
+import { getProfileById } from '../../apis/profile'
 
 import ProfileDetails from '../ProfileDetails'
-// import mockData from '../testMockData/mockData'
+import mockData from '../testMockData/mockData'
 
 jest.mock('react-redux')
+// jest.mock('../../apis/profile')
 
 // useSelector.mockReturnValue(mockData)
 
@@ -70,5 +71,23 @@ describe('Button displays content', () => {
     )
     const button = screen.getByRole('button')
     expect(button).toHaveTextContent(/edit/i)
+  })
+})
+
+describe('getProfileById', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+  it('retrieves profile by id from API', () => {
+    getProfileById.mockReturnValue(Promise.resolve(mockData))
+    render(
+      <Router>
+        <ProfileDetails />
+      </Router>
+    )
+    return waitFor(() => getProfileById.mock.calls.length).then(() => {
+      let profile = screen.getByText(/Testo McTestface/i)
+      expect(profile).toBeInTheDocument()
+    })
   })
 })

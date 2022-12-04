@@ -5,7 +5,7 @@ const mockData = [
     name: `Jimmy O'Test`,
     image: 'https://www.pianz.org.nz/wp-content/uploads/2016/03/pekin-duck.jpg',
     auth0_id: 'authtestid1',
-    quote: 'I love being a test person.',
+    quote: 'I am a test person.',
     blurb: 'Test me.',
     linkedin_url: '',
     twitter_url: '',
