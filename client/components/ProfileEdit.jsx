@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom'
 
 import { TextInput, Button } from '@mantine/core'
 
-
 export default function FruitEditor() {
   // Ready up React state
   const { profileid } = useParams()
@@ -53,7 +52,6 @@ export default function FruitEditor() {
             ></TextInput>
             <TextInput
               label='Quote'
-
               name='quote'
               value={profile.quote}
               onChange={handleChange}
@@ -66,7 +64,6 @@ export default function FruitEditor() {
             ></TextInput>
             <TextInput
               label='Linkedin'
-
               name='linkedinUrl'
               value={profile.linkedinUrl}
               onChange={handleChange}
@@ -77,7 +74,6 @@ export default function FruitEditor() {
               value={profile.facebookUrl}
               onChange={handleChange}
             ></TextInput>
-
 
             <TextInput
               label='Twitter'
@@ -99,14 +95,15 @@ export default function FruitEditor() {
               value={profile.githubUrl}
               onChange={handleChange}
             ></TextInput>
-
           </ul>
           <Button
-            variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}
-            size="lg"
-            type="submit" >Save
+            variant='gradient'
+            gradient={{ from: 'indigo', to: 'cyan' }}
+            size='lg'
+            type='submit'
+          >
+            Save
           </Button>
-
         </form>
       </div>
     </>
