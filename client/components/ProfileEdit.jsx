@@ -6,9 +6,11 @@ import { useParams } from 'react-router-dom'
 
 import { TextInput, Button } from '@mantine/core'
 
-
-export default function FruitEditor() {
+export default function FruitEditor(props) {
   // Ready up React state
+  if (props.add) {
+    console.log('add')
+  }
   const { profileid } = useParams()
 
   const [profile, setProfile] = useState({
@@ -23,9 +25,11 @@ export default function FruitEditor() {
   })
 
   useEffect(async () => {
-    const profileData = await getProfileContent(profileid)
-    console.log(profileData)
-    setProfile(profileData)
+    if (!props.add) {
+      const profileData = await getProfileContent(profileid)
+      console.log(profileData)
+      setProfile(profileData)
+    }
   }, [])
 
   const handleChange = (e) => {
@@ -35,7 +39,10 @@ export default function FruitEditor() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await putProfileContent(profile)
+    if (!props.add) {
+      await putProfileContent(profile)
+    }
+    
     console.log(profile)
   }
 
@@ -43,7 +50,7 @@ export default function FruitEditor() {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <p>Create Editor:</p>
+          props.add ?<p>Create Editor:</p>
           <ul>
             <TextInput
               label='Name'
@@ -53,7 +60,6 @@ export default function FruitEditor() {
             ></TextInput>
             <TextInput
               label='Quote'
-
               name='quote'
               value={profile.quote}
               onChange={handleChange}
@@ -66,7 +72,6 @@ export default function FruitEditor() {
             ></TextInput>
             <TextInput
               label='Linkedin'
-
               name='linkedinUrl'
               value={profile.linkedinUrl}
               onChange={handleChange}
@@ -77,7 +82,6 @@ export default function FruitEditor() {
               value={profile.facebookUrl}
               onChange={handleChange}
             ></TextInput>
-
 
             <TextInput
               label='Twitter'
@@ -99,14 +103,15 @@ export default function FruitEditor() {
               value={profile.githubUrl}
               onChange={handleChange}
             ></TextInput>
-
           </ul>
           <Button
-            variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}
-            size="lg"
-            type="submit" >Save
+            variant='gradient'
+            gradient={{ from: 'indigo', to: 'cyan' }}
+            size='lg'
+            type='submit'
+          >
+            Save
           </Button>
-
         </form>
       </div>
     </>

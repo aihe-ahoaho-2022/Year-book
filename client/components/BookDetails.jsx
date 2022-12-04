@@ -53,7 +53,7 @@ export default function BookDetails(data) {
       </div>
 
       <div className={styles.container_profiles}>{displayProfiles}</div>
-      <Link to={`/profiles/1/edit`}>
+      <Link to={`/${bookId}/add`}>
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
 

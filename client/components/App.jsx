@@ -36,6 +36,7 @@ export default function App() {
 
           <Route path='/:bookid' element={<BookDetails />} />
           <Route path='/:bookid/edit' element={<BookEdit />} />
+          <Route path='/:bookid/add' element={<ProfileEdit add={true} />} />
           <Route path='/profiles/:profileid' element={<ProfileDetails />} />
           <Route path='/profiles/:profileid/edit' element={<ProfileEdit />} />
           <Route
