@@ -10,6 +10,10 @@ export default function Book(props) {
     navigate('/' + props.bookData.id)
   }
 
+  function handleEditClick() {
+    navigate('/' + props.bookData.id + '/edit')
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.containerRow}>
@@ -19,6 +23,9 @@ export default function Book(props) {
           gradient={{ from: 'blue', to: 'green' }}
           size='lg'
           className={styles.button}
+          onClick={() => {
+            handleEditClick()
+          }}
         >
           edit
         </Button>

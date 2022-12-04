@@ -1,23 +1,21 @@
 @use '../styles/theme';
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Special+Elite&display=swap');
 
-f
+
 
 .container {
   display:flex;
   text-align: center; 
-  flex-wrap:wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-
+  align-items: center;
 }
 
 .containerRow {
-  align-items: center;
+  justify-content: center;
   display:flex;
   text-align: center; 
   flex-direction: row;
-  width: 1200px;
   flex-wrap:wrap;
 }
 
@@ -39,10 +37,12 @@ f
 }
 
 
-
 .image { 
-  max-width: 70vw; max-height: 50vh; border-radius: 4px; 
-  transition-duration: 200ms;
+  max-width: 90vw;
+  max-height: 50vh; 
+  border-radius: 15px;
+  width:800px;
+  // transition-duration: 200ms;
 }
 
 // .image:hover {
