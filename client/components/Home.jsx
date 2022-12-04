@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import { Link } from 'react-router-dom'
 import styles from './Home.module.scss'
 import Book from './Book'
@@ -9,12 +8,14 @@ import { getBooks } from '../apis/book'
 
 import { Button } from '@mantine/core'
 
+import { IfAuthenticated } from './Authenticated'
+
 // import { fetchHomeContent } from '../actions/home'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
-  // const singlebook = useSelector((state) => state.books)
+  const books = useSelector((state) => state.books)
 
   useEffect(() => {
     getBooks()
@@ -33,26 +34,22 @@ export default function Home() {
     return (
       <>
         <div className={styles.container}>
-          <h1 className={styles.heading}> Welcome to YearBook!</h1>
-          <div className={styles.text}>
-            <p>
-              <img src='#' alt='#' />
-            </p>
-            {/* <ifAuthenticated> */}
-            {/* TODO: Map over the books for the user */}
-            <Book />
-            {/* </ifAuthenticated> */}
+          <p className={styles.headingSmall}>Welcome to</p>
+          <h1 className={styles.heading}> YeahBook</h1>
+          <div>
+            <img
+              className={styles.image}
+              src='https://thumbs.dreamstime.com/b/diverse-modern-community-people-crowd-elderly-young-man-woman-standing-together-vector-illustration-cartoon-characters-waving-221115543.jpg'
+              alt='groupimage'
+            />
           </div>
-        </div>
-
-        <div>
-          <Button
-            variant="gradient" gradient={{ from: 'blue', to: 'green' }}
-            size="lg"
-            className={styles.button}>
-
-            edit
-          </Button>
+          <IfAuthenticated>
+            <div className={styles.containerRow}>
+              {books.map((book, index) => {
+                return <Book bookData={book} key={index} />
+              })}
+            </div>
+          </IfAuthenticated>
         </div>
       </>
     )

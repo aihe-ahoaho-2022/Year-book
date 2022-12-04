@@ -1,35 +1,46 @@
 import React from 'react'
-
-// import styles from './index.scss'
 import styles from './Book.module.scss'
+import { Button } from '@mantine/core'
+import { useNavigate } from 'react-router-dom'
 
-export default function Book() {
+export default function Book(props) {
+  const navigate = useNavigate()
 
-  // const { id, image, commonName } = book
-  // [image, setimage]=useState(null)
-  // [bookName, setBookName] = useState(null)
-
-  // useEffect(() => {
-  //   setBookName()
-  // }, [])
-
-  // const imageUrl = `/images/${image}`
+  function handleClick() {
+    navigate('/' + props.bookData.id)
+  }
 
   return (
-    <>
-
-      <h1>Book :D</h1>
-
-      {/* TODO: hard coded for now */}
-      {/* <h1>{bookName}</h1> */}
-      <h1>Ahoaho 2022</h1>
-      {/* <img src={prop.bookName} alt="" /> */}
-      <img src="#" style={styles} alt="#" />
-
-      {/* <div>
-        <img src={image} alt="" />
-      </div> */}
-
-    </>
+    <div className={styles.container}>
+      <div className={styles.containerRow}>
+        <h1 className={styles.heading}>{props.bookData.name}</h1>
+        <Button
+          variant='gradient'
+          gradient={{ from: 'blue', to: 'green' }}
+          size='lg'
+          className={styles.button}
+        >
+          edit
+        </Button>
+      </div>
+      <div
+        role='button'
+        onClick={() => {
+          handleClick()
+        }}
+        onKeyDown={() => {
+          handleClick()
+        }}
+        tabIndex={0}
+        style={{ cursor: 'pointer' }}
+      >
+        <img
+          className={styles.image}
+          src={props.bookData.image}
+          style={styles}
+          alt={props.bookData.image}
+        />
+      </div>
+    </div>
   )
 }
