@@ -4,18 +4,17 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 // import Profile from './Profile'
 import styles from './BookDetails.module.scss'
 import { fetchProfiles, setProfiles, } from '../actions/profile'
-import {fetchComments} from "../actions/comment"
+import {fetchComments,setComments,submitComments} from "../actions/comment"
 
 export default function BookDetails(data) {
   const params = useParams()
   const navigate = useNavigate()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
-  // const [isLoading, setIsLoading] = useState(true)
-  // // const navigate = useNavigate()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
-  console.log(comments)
+  const [comment, setComment] = useState({comment:'',bookId:bookId
+})
 
   // array of objects
 
@@ -27,10 +26,6 @@ export default function BookDetails(data) {
     dispatch(fetchComments(bookId))
   }, [])
 
-  // function addAnimalToRedux(animal) {
-  //   dispatch(updateAnimals(animal))
-  //   navigate(`/final/${profile.id}`)
-  // }
   // function handleClick (event){
 
   // }
@@ -59,7 +54,17 @@ export default function BookDetails(data) {
     </ul>
   ))
 
-  
+  function handleChange(event) {
+   console.log( event.target)
+    setComment( {...comment,[event.target.name] : event.target.value } )
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    dispatch(submitComments(comment))
+    dispatch(fetchComments(bookId))
+    console.log(comment)
+  }
 
   return (
     <>
@@ -71,10 +76,21 @@ export default function BookDetails(data) {
       <Link to={`/${bookId}/add`}>
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
-
-      <div className='comments_containers'>{displayComments}</div>
-      
-     
+      <p>{displayComments}</p>
+      {/* <div className='comments_containers'>{displayComments}</div> */}
+      <div>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            <input
+              label='comment'
+              name='comment'
+              value={comment.comment}
+              onChange={handleChange}
+            ></input>
+            <button>Save</button>
+          </ul>
+        </form>
+      </div>
     </>
   )
 }
