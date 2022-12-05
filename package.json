@@ -43,6 +43,7 @@
     "@auth0/auth0-react": "^1.8.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@headlessui/react": "^1.7.4",
     "@mantine/core": "^5.9.0",
     "@mantine/form": "^5.9.0",
     "@mantine/hooks": "^5.9.0",

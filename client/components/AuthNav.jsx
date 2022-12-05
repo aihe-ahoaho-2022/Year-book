@@ -4,7 +4,6 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 import { Button } from '@mantine/core'
 
-
 function AuthNav() {
   const { user, logout, loginWithRedirect } = useAuth0()
 
@@ -27,11 +26,14 @@ function AuthNav() {
       </IfNotAuthenticated>
 
       <IfAuthenticated>
-        <div className='user-name'>User: {user?.nickname}</div>
+        <div className='user-name'>Hello {user?.nickname}</div>
         <Button
-          variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}
-          size="lg"
-          onClick={handleLogOff} className=''>
+          variant='gradient'
+          gradient={{ from: 'indigo', to: 'cyan' }}
+          size='lg'
+          onClick={handleLogOff}
+          className=''
+        >
           Log off
         </Button>
       </IfAuthenticated>
