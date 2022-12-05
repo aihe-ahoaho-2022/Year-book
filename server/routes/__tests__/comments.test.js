@@ -25,8 +25,6 @@ describe('get /api/v1/home/1', () => {
       .get('/api/v1/home/1')
       .then((res) => {
         expect(res.status).toBe(200)
-        // expect(res.body).toEqual(getCommentsByBookIdData)
-        // expect(getCommentsByBookIdData.id).toBe(1)
       })
   })
 })
