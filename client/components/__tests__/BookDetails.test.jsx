@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -25,4 +25,5 @@ describe('<BookDetails />', () => {
     const imgs = screen.getAllByRole('img')
     expect(imgs).toHaveLength(3)
   })
+
 })
