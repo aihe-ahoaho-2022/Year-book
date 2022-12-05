@@ -14,7 +14,6 @@ export default function FruitEditor(props) {
   const bookId = Number(params.bookid)
 
   if (props.add) {
-    // const profileCreated = (profileData) => dispatch(submitProfile(profileData))
     console.log('add')
   }
   const { profileid } = useParams()

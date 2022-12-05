@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-// import Profile from './Profile'
 import styles from './BookDetails.module.scss'
-import { fetchProfiles, } from '../actions/profile'
-import {fetchComments, submitComments} from "../actions/comment"
+import { fetchProfiles } from '../actions/profile'
+import { fetchComments, submitComments } from '../actions/comment'
 
 export default function BookDetails() {
   const params = useParams()
@@ -12,8 +11,7 @@ export default function BookDetails() {
   const dispatch = useDispatch()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
-  const [comment, setComment] = useState({comment:'', bookId:bookId
-})
+  const [comment, setComment] = useState({ comment: '', bookId: bookId })
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
@@ -42,13 +40,15 @@ export default function BookDetails() {
   const displayComments = comments?.map((comments) => (
     <ul key={comments.id}>
       <div>
-          <li>{comments.ownerId} : {comments.comment}</li>
-    </div>
+        <li>
+          {comments.ownerId} : {comments.comment}
+        </li>
+      </div>
     </ul>
   ))
 
   function handleChange(event) {
-    setComment( {...comment,[event.target.name] : event.target.value } )
+    setComment({ ...comment, [event.target.name]: event.target.value })
   }
 
   function handleSubmit(event) {
@@ -68,11 +68,9 @@ export default function BookDetails() {
       <Link to={`/${bookId}/add`}>
         <div className={styles.container_profiles}>AddNew</div>
       </Link>
-     
-      <div> 
-        <ul>
-         {displayComments}
-         </ul>
+
+      <div>
+        <ul>{displayComments}</ul>
         <form onSubmit={handleSubmit}>
           <ul>
             <input

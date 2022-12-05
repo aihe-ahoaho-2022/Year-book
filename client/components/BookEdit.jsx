@@ -1,39 +1,58 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import { submitBook, fetchBook, updateBook } from '../actions/book'
+import { useParams, useNavigate } from 'react-router-dom'
+import { submitBook, updateBook } from '../actions/book'
 import { TextInput, Button } from '@mantine/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { getBookById } from '../apis/book'
+import { useDispatch } from 'react-redux'
+import { getBookById, deleteBookById } from '../apis/book'
 
-export default function BookEdit() {
+export default function BookEdit(props) {
   const params = useParams()
   const dispatch = useDispatch()
   const bookId = Number(params.bookid)
+  const navigate = useNavigate()
   const [editBook, setEditBook] = useState({
     name: '',
     theme: '',
   })
-  console.log(editBook)
 
   useEffect(() => {
-    getBookById(bookId)
-      .then((book) => {
-        setEditBook(book)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    if (!props.add) {
+      getBookById(bookId)
+        .then((book) => {
+          setEditBook(book)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }, [])
 
   function handleSubmit(event) {
     event.preventDefault()
-    dispatch(updateBook(editBook))
+    if (!props.add) {
+      dispatch(updateBook(editBook))
+    } else if (props.add) {
+      dispatch(submitBook(editBook))
+    }
   }
 
   function handleChange(event) {
-    console.log(event.target.name)
     event.preventDefault()
     setEditBook({ ...editBook, [event.target.name]: event.target.value })
+  }
+
+  function handleDelete(event) {
+    event.preventDefault()
+    if (!props.add) {
+      console.log(bookId)
+      deleteBookById(Number(bookId))
+        .then(() => {
+          navigate('/')
+        })
+        .catch((err) => {
+          console.error(err.message)
+        })
+    }
   }
 
   return (
@@ -61,6 +80,15 @@ export default function BookEdit() {
             type='submit'
           >
             Save
+          </Button>
+          <Button
+            onSubmit={handleDelete}
+            variant='gradient'
+            gradient={{ from: 'indigo', to: 'cyan' }}
+            size='lg'
+            type='submit'
+          >
+            Delete This Book
           </Button>
         </form>
       </div>

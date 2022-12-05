@@ -4,7 +4,7 @@ import styles from './Home.module.scss'
 import Book from './Book'
 import { setBooks } from '../actions'
 import { getBooks } from '../apis/book'
-
+import { Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
 
 export default function Home() {
@@ -42,6 +42,7 @@ export default function Home() {
                 return <Book bookData={book} key={index} />
               })}
             </div>
+            <Link to={`/books/add`}>AddNew</Link>
           </IfAuthenticated>
         </div>
       </>
