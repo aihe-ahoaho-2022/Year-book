@@ -15,15 +15,10 @@ export default function BookEdit(props) {
     theme: '',
   })
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!props.add) {
-      getBookById(bookId)
-        .then((book) => {
-          setEditBook(book)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+      const bookData = await getBookById(bookId)
+      setEditBook(bookData)
     }
   }, [])
 
@@ -31,8 +26,10 @@ export default function BookEdit(props) {
     event.preventDefault()
     if (!props.add) {
       dispatch(updateBook(editBook))
+      // navigate('/')
     } else if (props.add) {
       dispatch(submitBook(editBook))
+      navigate('/')
     }
   }
 
@@ -43,16 +40,13 @@ export default function BookEdit(props) {
 
   function handleDelete(event) {
     event.preventDefault()
-    if (!props.add) {
-      console.log(bookId)
-      deleteBookById(Number(bookId))
-        .then(() => {
-          navigate('/')
-        })
-        .catch((err) => {
-          console.error(err.message)
-        })
-    }
+    deleteBookById(Number(bookId))
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
   }
 
   return (
@@ -70,7 +64,7 @@ export default function BookEdit(props) {
             <TextInput
               label='theme'
               name='theme'
-              value={editBook.theme}
+              value={editBook?.theme}
               onChange={handleChange}
             ></TextInput>
           </ul>
@@ -80,10 +74,11 @@ export default function BookEdit(props) {
             size='lg'
             type='submit'
           >
-            Save
+            {props.add ? 'Add' : 'Update'}
           </Button>
+        </form>
+        <div onSubmit={handleDelete}>
           <Button
-            onSubmit={handleDelete}
             variant='gradient'
             gradient={{ from: 'indigo', to: 'cyan' }}
             size='lg'
@@ -91,7 +86,7 @@ export default function BookEdit(props) {
           >
             Delete This Book
           </Button>
-        </form>
+        </div>
       </div>
     </>
   )
