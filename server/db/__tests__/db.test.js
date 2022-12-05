@@ -59,12 +59,6 @@ describe('getBookById', () => {
   })
 })
 
-describe('postComment', () => {
-  test.todo('adds comment to db', () => {
-    return postComment()
-  })
-})
-
 describe('deleteProfile', () => {
   it('deletes profiles from db', () => {
     const id = 2
