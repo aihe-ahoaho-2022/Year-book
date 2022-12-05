@@ -1,6 +1,6 @@
 import nock from 'nock'
 
-import { getProfileById, getProfilesByBookId, removeProfile } from '../profile'
+import { getProfileById, getProfilesByBookId } from '../profile'
 
 describe('getProfileById', () => {
   it('gets profile from api', () => {
