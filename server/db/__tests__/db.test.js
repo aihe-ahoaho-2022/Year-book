@@ -3,7 +3,6 @@ const {
   getBooks,
   getBookById,
   deleteProfile,
-  postComment,
   getCommentsByBookId,
 } = require('../db')
 
