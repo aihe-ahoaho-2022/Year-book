@@ -1,4 +1,3 @@
-// /* eslint-disable space-before-function-paren */
 import request from 'superagent'
 
 // Upload an image file

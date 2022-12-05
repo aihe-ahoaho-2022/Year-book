@@ -26,11 +26,13 @@ export default function ImageUpload() {
   return (
     <>
       <div>
-        <h1>Upload image</h1>
-        <form onSubmit={handleFileUpload} encType='multipart/form-data'>
-          <input type='file' name='image' onChange={handleImageUpload} />
-          <button type='submit'>Submit</button>
-        </form>
+        <label htmlFor='upload'>
+          <h1>Upload image</h1>
+          <form onSubmit={handleFileUpload} encType='multipart/form-data'>
+            <input type='file' name='image' onChange={handleImageUpload} />
+            <button type='submit'>Submit</button>
+          </form>
+        </label>
       </div>
     </>
   )

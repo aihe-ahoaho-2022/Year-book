@@ -1,4 +1,3 @@
-// import { combineActions } from 'redux-actions'
 
 export function setBooks(books) {
   return {
