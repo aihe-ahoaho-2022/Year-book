@@ -9,6 +9,7 @@
 .title { font-size: 2rem; color: theme.$medium  }
 
 .links {
-  display: flex; justify-content: space-around; gap: 48px;
-  margin-left: 48px;
+  display: flex; justify-content: space-around;  gap: 48px;
+  margin-left: 48px; color: theme.$medium; text-decoration: none;
 }
+
