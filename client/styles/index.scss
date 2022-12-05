@@ -1,4 +1,6 @@
 @use './theme';
+*{margin:0;
+padding: 0;}
 
 html,
 body {
@@ -10,9 +12,3 @@ p { margin: 0px; }
 
 a { text-decoration: none; color: theme.$text-black; cursor: pointer; }
 
-.studentCards {
-  display:flex;
-  position: relative;
-  justify-content: left;
-  border: 2px;
-}
