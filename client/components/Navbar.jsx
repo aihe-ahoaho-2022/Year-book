@@ -8,7 +8,11 @@ import { Popover } from '@headlessui/react'
 import { IfAuthenticated } from './Authenticated'
 import { getProfileById } from '../apis/profile'
 
+import { useAuth0 } from '@auth0/auth0-react'
+
 export default function Navbar() {
+  const { user } = useAuth0()
+  console.log(user)
   const { profileid } = useParams()
   const [profile, setProfile] = useState('')
 
@@ -34,7 +38,7 @@ export default function Navbar() {
         {/* Show dropdown of all yearbooks for user?*/}
         <IfAuthenticated>
           <DesktopLink to='/'>My Books</DesktopLink>
-          {/* <DesktopLink to={`/profiles/${profileid}`}>My Profile</DesktopLink> */}
+          {/* <DesktopLink to={'/profiles/' + profile.id}>My Profile</DesktopLink> */}
           <DesktopLink to={`/`}>My Profile</DesktopLink>
         </IfAuthenticated>
       </nav>
