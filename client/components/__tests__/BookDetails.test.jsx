@@ -16,13 +16,13 @@ describe('<BookDetails />', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
-  it('shows profiles from redux', () => {
+  it('shows profiles imgs from redux', () => {
     render(
       <Router>
         <BookDetails />
       </Router>
     )
-    const listItems = screen.getAllByRole('img')
-    expect(listItems).toHaveLength(3)
+    const imgs = screen.getAllByRole('img')
+    expect(imgs).toHaveLength(3)
   })
 })
