@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import { submitBook, fetchBook, updateBook } from '../actions/book'
+import { useParams } from 'react-router-dom'
+import { updateBook } from '../actions/book'
 import { TextInput, Button } from '@mantine/core'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getBookById } from '../apis/book'
 
 export default function BookEdit() {
