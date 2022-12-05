@@ -2,11 +2,9 @@
 import request from 'superagent'
 
 // Upload an image file
-export function uploadFile(profileId, fileName) {
-  console.log('filename is ' + fileName)
-  console.log('profilename is ' + profileId)
+export function uploadFile(profileId, formData) {
   return request
     .post('/api/v1/profiles/' + profileId + '/imageupload')
-    .send({ image: fileName })
+    .send(formData)
     .then((res) => res.body)
 }
