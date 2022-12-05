@@ -17,9 +17,7 @@ export function getBookById(id) {
 }
 // DELETE /api/v1/books/:bookid
 export function deleteBookById(id) {
-  return request.get(rootUrl + '/books/' + id + '/delete').then((res) => {
-    return res.body
-  })
+  return request.del(rootUrl + '/books/' + id + '/delete')
 }
 
 // PATCH /api/v1/books/:bookid/edit

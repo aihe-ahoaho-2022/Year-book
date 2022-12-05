@@ -12,7 +12,7 @@ export function getCommentsByBookId(id) {
 
 export function postComment(newComment) {
   return request
-    .post(rootUrl + `/comments/${newComment.bookId}/add/`)
+    .post(rootUrl + '/comments/' + newComment.bookId + '/add/')
     .send(newComment)
     .then((res) => {
       return res.body

@@ -21,7 +21,13 @@ export function updateBooks(books) {
   }
 }
 
-// thunk for addbook
+export function deleteBooks(books) {
+  return {
+    type: 'DELETE_BOOKS',
+    payload: books,
+  }
+}
+
 export function fetchBook(id) {
   return (dispatch) => {
     return getBookById(id)
