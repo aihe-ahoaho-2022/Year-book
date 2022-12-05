@@ -31,6 +31,24 @@ export default function ImageUpload() {
       })
   }
 
+  // const navigate = useNavigate()
+  // function onRedirectCallback(appState) {
+  //   navigate(appState?.returnTo || window.location.pathname)
+  // }
+
+  //   return (
+  //     <Auth0Provider
+  //       onRedirectCallback={onRedirectCallback}
+  //       redirectUri={window.location.origin}
+  //       domain=''
+  //       clientId=''
+  //       audience=''
+  //     >
+  //       {children}
+  //     </Auth0Provider>
+  //   )
+  // }
+
   return (
     <>
       <div>
