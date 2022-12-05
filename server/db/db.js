@@ -35,6 +35,29 @@ function getBookById(id, db = connection) {
     .select('id', 'name', 'image', 'theme', 'auth0_id as ownerId')
     .first()
 }
+function addBook(newBook, db = connection) {
+  return db('books').select().insert({
+    id: newBook.id,
+    name: newBook.name,
+    image: newBook.image,
+    auth0_id: newBook.addBook,
+  })
+}
+
+function putBookById(bookId, book, db = connection) {
+  return db('books')
+    .update({
+      id: book.id,
+      name: book.name,
+      image: book.image,
+      auth0_id: book.ownerId,
+    })
+    .where('id', bookId)
+}
+
+function deleteBook(id, db = connection) {
+  return db('books').where('id', id).del()
+}
 
 function getCommentsByBookId(bookId, db = connection) {
   return db('comments')
@@ -141,4 +164,7 @@ module.exports = {
   addProfile,
   deleteProfile,
   postComment,
+  addBook,
+  putBookById,
+  deleteBook,
 }
