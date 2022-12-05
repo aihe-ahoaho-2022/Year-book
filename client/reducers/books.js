@@ -4,6 +4,8 @@ const books = (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case 'ADD_BOOKS':
+      return [...state, payload]
     case 'SET_BOOKS':
       return payload
     case 'UPDATE_BOOKS':

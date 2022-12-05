@@ -44,6 +44,7 @@ router.patch('/:bookid/edit', (req, res) => {
   const book = req.body
   putBookById(bookId, book)
     .then((pro) => {
+      console.log(pro)
       res.json(pro[0])
     })
     .catch((e) => {
