@@ -14,7 +14,7 @@ const {
 const router = express.Router()
 
 const multer = require('multer')
-const { restart } = require('nodemon')
+// const { restart } = require('nodemon')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, '../public/images'))
