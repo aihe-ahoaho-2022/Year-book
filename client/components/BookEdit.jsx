@@ -35,7 +35,7 @@ export default function BookEdit(props) {
     event.preventDefault()
     if (!props.add) {
       dispatch(updateBook(editBook))
-      // navigate('/')
+      navigate('/')
     } else if (props.add) {
       dispatch(submitBook(editBook))
       navigate('/')
