@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -26,4 +27,16 @@ describe('<BookDetails />', () => {
     expect(imgs).toHaveLength(3)
   })
 
+  it('check for headings shown', () => {
+    render(
+      <Router>
+        <BookDetails />
+      </Router>
+    )
+    const headings = screen.getAllByRole('heading')
+    console.log(headings[0])
+    expect(headings).toHaveLength(4)
+
+    expect(headings[1]).toHaveTextContent('banana')
+  })
 })
