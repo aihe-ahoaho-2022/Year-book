@@ -39,7 +39,16 @@ function getBookById(id, db = connection) {
 function getCommentsByBookId(bookId, db = connection) {
   return db('comments')
     .select('id', 'book_id as bookId', 'comment', 'auth0_id as ownerId')
-    .where('id', bookId)
+    .where('book_id', bookId)
+}
+
+function postComment(newComment, db = connection) {
+  return db('comments').select().insert({
+    id: newComment.id,
+    book_id: newComment.bookId,
+    comment: newComment.comment,
+    auth0_id: newComment.auth0Id,
+  })
 }
 
 function getProfileById(profileId, db = connection) {
@@ -131,4 +140,5 @@ module.exports = {
   putProfileById,
   addProfile,
   deleteProfile,
+  postComment,
 }
