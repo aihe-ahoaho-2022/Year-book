@@ -1,4 +1,4 @@
-const initialState = {}
+const initialState = []
 
 const comments = (state = initialState, action) => {
   const { type, payload } = action
@@ -8,6 +8,8 @@ const comments = (state = initialState, action) => {
       return payload
     case 'UPDATE_COMMENTS':
       return payload
+    case 'ADD_COMMENTS':
+      return [...state, payload]
     default:
       return state
   }
