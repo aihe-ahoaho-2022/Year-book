@@ -1,34 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 // import Profile from './Profile'
 import styles from './BookDetails.module.scss'
-import { fetchProfiles, setProfiles } from '../actions/profile'
+import { fetchProfiles } from '../actions/profile'
+import { fetchComments, submitComments } from '../actions/comment'
 import { style } from '@mui/system'
 
-export default function BookDetails(data) {
+export default function BookDetails() {
   const params = useParams()
-  const navigate = useNavigate()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
-  // const [isLoading, setIsLoading] = useState(true)
-  // // const navigate = useNavigate()
   const profiles = useSelector((state) => state.profiles)
-  console.log(profiles)
-
-  // array of objects
+  const comments = useSelector((state) => state.comments)
+  const [comment, setComment] = useState({ comment: '', bookId: bookId })
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
   }, [])
 
-  // function addAnimalToRedux(animal) {
-  //   dispatch(updateAnimals(animal))
-  //   navigate(`/final/${profile.id}`)
-  // }
-  // function handleClick (event){
-
-  // }
+  useEffect(() => {
+    dispatch(fetchComments(bookId))
+  }, [])
 
   const displayProfiles = profiles?.map((profile) => (
     <div key={profile.id} className={styles.card}>
@@ -47,7 +40,27 @@ export default function BookDetails(data) {
       </Link>
     </div>
   ))
-  console.log(displayProfiles)
+
+  const displayComments = comments?.map((comments) => (
+    <ul key={comments.id}>
+      <div>
+        <li>
+          {comments.ownerId} : {comments.comment}
+        </li>
+      </div>
+    </ul>
+  ))
+
+  function handleChange(event) {
+    setComment({ ...comment, [event.target.name]: event.target.value })
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    dispatch(submitComments(comment))
+    dispatch(fetchComments(bookId))
+    setComment({ comment: '', bookId: bookId })
+  }
 
   return (
     <>
@@ -73,7 +86,20 @@ export default function BookDetails(data) {
         </Link>
       </div>
 
-      <div className='comments_containers'>{/* <input>posts</input> */}</div>
+      <div>
+        <ul>{displayComments}</ul>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            <input
+              label='comment'
+              name='comment'
+              value={comment.comment}
+              onChange={handleChange}
+            ></input>
+            <button>Save</button>
+          </ul>
+        </form>
+      </div>
     </>
   )
 }

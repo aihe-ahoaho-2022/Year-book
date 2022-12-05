@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { getProfileContent, putProfileContent } from '../apis/profileEdit'
 import { submitProfile } from '../actions/profile'
 import { useParams } from 'react-router-dom'
 
 import { TextInput, Button } from '@mantine/core'
-import { ParameterStatusMessage } from 'pg-protocol/dist/messages'
 
 export default function FruitEditor(props) {
   // Ready up React state
