@@ -20,9 +20,15 @@ export default function ProfileDetails() {
       })
   }, [])
 
+  function confirmDelete(e) {
+    const confirmation = confirm(
+      `Are you sure you want to delete ${profile.name}'s profile`
+    )
+    confirmation === true ? handleDelete(e) : null
+  }
+
   function handleDelete(e) {
     e.preventDefault()
-    confirm(`Are you sure you want to delete ${profile.name}'s profile`)
     removeProfile(Number(profileid))
       .then(() => {
         navigate(`/${profile.bookId}`)
@@ -70,7 +76,7 @@ export default function ProfileDetails() {
           <Link to={`/profiles/${profileid}/edit`}>
             <button className={styles.button}>Edit</button>
           </Link>
-          <button onClick={(e) => handleDelete(e)} className={styles.button}>
+          <button onClick={(e) => confirmDelete(e)} className={styles.button}>
             Remove
           </button>
         </div>
