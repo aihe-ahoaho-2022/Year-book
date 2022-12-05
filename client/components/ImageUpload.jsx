@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { uploadFile } from '../apis/profileImage'
+import { useNavigate } from 'react-router'
 
 export default function ImageUpload() {
+  const navigate = useNavigate()
   const [image, setImage] = useState(null)
   const { profileid } = useParams()
   const [setProfileImage] = useState({
@@ -11,6 +13,7 @@ export default function ImageUpload() {
 
   const handleImageUpload = (e) => {
     setImage(e.target.files[0])
+    navigate()
   }
 
   const handleFileUpload = () => {
@@ -22,28 +25,11 @@ export default function ImageUpload() {
             image: returnedImage.href,
           }
         })
-        const navigate = useNavigate()
-
-        useEffect(() => {
-          setTimeout(() => {
-            // 👇 Redirects to about page, note the `replace: true`
-            navigate('/', { replace: true })
-          }, 3000)
-        }, [])
       })
       .catch((err) => {
         console.log(err.message)
       })
   }
-
-  // const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     // 👇 Redirects to about page, note the `replace: true`
-  //     navigate('/', { replace: true })
-  //   }, 3000)
-  // }, [])
 
   return (
     <>
