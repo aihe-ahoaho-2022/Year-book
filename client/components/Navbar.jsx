@@ -1,23 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import AuthNav from './AuthNav'
 import { Popover } from '@headlessui/react'
-
-// export default function Navbar() {
-//   return (
-//     <nav className={styles.navbar}>
-//       <Link to='/'>
-//         <div className={styles.title}>Home</div>
-//       </Link>
-//       <div className={styles.links}>
-//         <AuthNav />
-//       </div>
-//     </nav>
-//   )
-// }
+import { IfAuthenticated } from './Authenticated'
+import { getProfileById } from '../apis/profile'
 
 export default function Navbar() {
+  const { profileid } = useParams()
+  const [profile, setProfile] = useState('')
+
+  useEffect(() => {
+    getProfileById(profileid)
+      .then((res) => {
+        setProfile(res)
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
+  }, [])
+
   return (
     <Popover className={styles.navbar}>
       <Link to='/'>
@@ -28,8 +32,11 @@ export default function Navbar() {
 
         {/* Only render extra options if signed in */}
         {/* Show dropdown of all yearbooks for user?*/}
-        <DesktopLink to='/'>My Books</DesktopLink>
-        <DesktopLink to='/'>My Profile</DesktopLink>
+        <IfAuthenticated>
+          <DesktopLink to='/'>My Books</DesktopLink>
+          {/* <DesktopLink to={`/profiles/${profileid}`}>My Profile</DesktopLink> */}
+          <DesktopLink to={`/`}>My Profile</DesktopLink>
+        </IfAuthenticated>
       </nav>
 
       <div className={styles.links}>
