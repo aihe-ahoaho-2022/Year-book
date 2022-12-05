@@ -3,7 +3,6 @@ const {
   getBooks,
   getBookById,
   deleteProfile,
-  postComment,
   getCommentsByBookId,
 } = require('../db')
 
@@ -56,12 +55,6 @@ describe('getBookById', () => {
       expect(book.id).toBe(2)
       expect(book.name).toContain('EDA')
     })
-  })
-})
-
-describe('postComment', () => {
-  test.todo('adds comment to db', () => {
-    return postComment()
   })
 })
 
