@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-// import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { IfAuthenticated } from './Authenticated'
 
 import { getProfileById, removeProfile } from '../apis/profile'
 import styles from './ProfileDetails.module.scss'
@@ -64,18 +64,16 @@ export default function ProfileDetails() {
           </ul>
         </section>
       </div>
-      <div className={styles.buttonwrap}>
-        {/* <IfAuthenticated> */}
-        <Link to={`/profiles/${profileid}/edit`}>
-          <button className={styles.button}>Edit</button>
-        </Link>
-        {/* </IfAuthenticated> */}
-        {/* <IfAuthenticated> */}
-        <button onClick={(e) => handleDelete(e)} className={styles.button}>
-          Remove
-        </button>
-        {/* </IfAuthenticated> */}
-      </div>
+      <IfAuthenticated>
+        <div className={styles.buttonwrap}>
+          <Link to={`/profiles/${profileid}/edit`}>
+            <button className={styles.button}>Edit</button>
+          </Link>
+          <button onClick={(e) => handleDelete(e)} className={styles.button}>
+            Remove
+          </button>
+        </div>
+      </IfAuthenticated>
     </>
   )
 }

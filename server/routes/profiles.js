@@ -9,7 +9,6 @@ const {
   imageUpload,
   putProfileById,
   deleteProfile,
-  
 } = require('../db/db')
 
 const router = express.Router()
@@ -101,8 +100,8 @@ router.post('/add', (req, res) => {
     })
 })
 
-// PUT /api/v1/profiles/delete/:id
-router.delete('/delete/:id', (req, res) => {
+// PUT /api/v1/profiles/:id
+router.delete('/:id', (req, res) => {
   deleteProfile(req.params.id)
     .then((result) => res.json(result))
     .catch((e) => {
@@ -110,7 +109,5 @@ router.delete('/delete/:id', (req, res) => {
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
-
-
 
 module.exports = router
