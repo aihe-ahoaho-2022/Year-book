@@ -71,6 +71,7 @@
     "@babel/preset-react": "^7.12.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "11.2.2",
+    "@types/express-jwt": "^7.4.2",
     "babel-loader": "^8.2.1",
     "css-loader": "^6.7.1",
     "eslint": "^8.9.0",

@@ -1,4 +1,5 @@
 const express = require('express')
+// const checkJwt = require('../auth0.js')
 
 const { getCommentsByBookId, postComment } = require('../db/db')
 
