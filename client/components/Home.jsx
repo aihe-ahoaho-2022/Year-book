@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { Link } from 'react-router-dom'
 import styles from './Home.module.scss'
 import Book from './Book'
 import { setBooks } from '../actions'
 import { getBooks } from '../apis/book'
 
-import { Button } from '@mantine/core'
-
 import { IfAuthenticated } from './Authenticated'
-
-// import { fetchHomeContent } from '../actions/home'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
