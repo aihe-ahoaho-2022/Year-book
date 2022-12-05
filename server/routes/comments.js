@@ -1,11 +1,12 @@
 const express = require('express')
+const checkJwt = require('../auth0.js')
 
 const { getCommentsByBookId, postComment } = require('../db/db')
 
 const router = express.Router()
 
 // GET /api/v1/comments/:bookid
-router.get('/:bookid', (req, res) => {
+router.get('/:bookid', checkJwt, (req, res) => {
   const bookId = req.params.bookid
   getCommentsByBookId(bookId)
     .then((comments) => res.json(comments))

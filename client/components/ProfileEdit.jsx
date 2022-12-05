@@ -71,52 +71,52 @@ export default function FruitEditor(props) {
               name='name'
               value={profile.name}
               onChange={handleChange}
-            ></TextInput>
+            />
             <TextInput
               label='Quote'
               name='quote'
               value={profile.quote}
               onChange={handleChange}
-            ></TextInput>
+            />
             <TextInput
               label='Blurb'
               name='blurb'
               value={profile.blurb}
               onChange={handleChange}
-            ></TextInput>
+            />
             <TextInput
               label='Linkedin'
               name='linkedinUrl'
               value={profile.linkedinUrl}
               onChange={handleChange}
-            ></TextInput>
+            />
             <TextInput
               label='Facebook'
               name='facebookUrl'
               value={profile.facebookUrl}
               onChange={handleChange}
-            ></TextInput>
+            />
 
             <TextInput
               label='Twitter'
               name='twitterUrl'
               value={profile.twitterUrl}
               onChange={handleChange}
-            ></TextInput>
+            />
 
             <TextInput
               label='Instagram'
               name='instagramUrl'
               value={profile.instagramUrl}
               onChange={handleChange}
-            ></TextInput>
+            />
 
             <TextInput
               label='Github'
               name='githubUrl'
               value={profile.githubUrl}
               onChange={handleChange}
-            ></TextInput>
+            />
           </ul>
 
           <IfAuthenticated>

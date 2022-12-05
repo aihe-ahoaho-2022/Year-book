@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-// const checkJwt = require('../auth0')
+const checkJwt = require('../auth0.js')
 
 const {
   addProfile,
@@ -28,32 +28,37 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // GET /api/v1/profiles/:profileid/edit
-router.get('/:profileid/edit', (req, res) => {
+router.get('/:profileid/edit', checkJwt, (req, res) => {
   res.render('upload')
 })
 
 // POST /api/v1/profiles/:profileid/imageupload
-router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
-  let imageUrl = null
-  if (!req.file) {
-    imageUrl = '/images/bag-cat.jpg'
-  } else {
-    imageUrl = '/server/db/storage/' + req.file.filename
-  }
+router.post(
+  '/:profileid/imageupload',
+  upload.single('image'),
+  checkJwt,
+  (req, res) => {
+    let imageUrl = null
+    if (!req.file) {
+      imageUrl = '/images/bag-cat.jpg'
+    } else {
+      imageUrl = '/server/db/storage/' + req.file.filename
+    }
 
-  const profileId = req.params.profileid
-  imageUpload(profileId, imageUrl)
-    .then(() => {
-      console.log(req.body)
-      res.send('image uploaded')
-    })
-    .catch((err) => {
-      console.error(err.message)
-      res.status(500).json({
-        message: 'Something went wrong',
+    const profileId = req.params.profileid
+    imageUpload(profileId, imageUrl)
+      .then(() => {
+        console.log(req.body)
+        res.send('image uploaded')
       })
-    })
-})
+      .catch((err) => {
+        console.error(err.message)
+        res.status(500).json({
+          message: 'Something went wrong',
+        })
+      })
+  }
+)
 
 // GET /api/v1/profiles/book/:bookid
 router.get('/book/:bookid', (req, res) => {
@@ -74,7 +79,7 @@ router.get('/:profileid', (req, res) => {
 })
 
 // PUT /api/v1/profiles/:profileid/edit
-router.patch('/:profileid/edit', (req, res) => {
+router.patch('/:profileid/edit', checkJwt, (req, res) => {
   const profileId = req.params.profileid
   const profile = req.body
   putProfileById(profileId, profile)
@@ -87,7 +92,7 @@ router.patch('/:profileid/edit', (req, res) => {
     })
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', checkJwt, (req, res) => {
   console.log('hit route')
   const profile = req.body
   console.log(profile)
@@ -101,8 +106,8 @@ router.post('/add', (req, res) => {
     })
 })
 
-// PUT /api/v1/profiles/:id
-router.delete('/:id', (req, res) => {
+// DELETE /api/v1/profiles/:id
+router.delete('/:id', checkJwt, (req, res) => {
   deleteProfile(req.params.id)
     .then((result) => res.json(result))
     .catch((e) => {
