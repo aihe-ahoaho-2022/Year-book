@@ -8,7 +8,7 @@ import { getProfileById } from '../apis/profile'
 
 export default function Navbar() {
   const { profileid } = useParams()
-  const [profile, setProfile] = useState('')
+  const [ setProfile] = useState('')
 
   useEffect(() => {
     getProfileById(profileid)
