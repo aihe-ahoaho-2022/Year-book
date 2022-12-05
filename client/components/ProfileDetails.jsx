@@ -24,7 +24,9 @@ export default function ProfileDetails() {
     const confirmation = confirm(
       `Are you sure you want to delete ${profile.name}'s profile`
     )
-    confirmation === true ? handleDelete(e) : null
+    if (confirmation) {
+      handleDelete(e)
+    }
   }
 
   function handleDelete(e) {
