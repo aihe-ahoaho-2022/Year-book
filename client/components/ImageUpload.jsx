@@ -7,62 +7,29 @@ export default function ImageUpload() {
   const navigate = useNavigate()
   const [image, setImage] = useState(null)
   const { profileid } = useParams()
-  const [setProfileImage] = useState({
-    image: '',
-  })
 
   const handleImageUpload = (e) => {
     setImage(e.target.files[0])
-    navigate()
   }
 
-  const handleFileUpload = () => {
-    uploadFile(profileid, image)
-      .then((returnedImage) => {
-        setProfileImage((currentData) => {
-          return {
-            ...currentData,
-            image: returnedImage.href,
-          }
-        })
-      })
+  const handleFileUpload = (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('image', image)
+    uploadFile(profileid, formData)
+      .then(() => navigate(`/profiles/${profileid}`))
       .catch((err) => {
         console.log(err.message)
       })
   }
 
-  // const navigate = useNavigate()
-  // function onRedirectCallback(appState) {
-  //   navigate(appState?.returnTo || window.location.pathname)
-  // }
-
-  //   return (
-  //     <Auth0Provider
-  //       onRedirectCallback={onRedirectCallback}
-  //       redirectUri={window.location.origin}
-  //       domain=''
-  //       clientId=''
-  //       audience=''
-  //     >
-  //       {children}
-  //     </Auth0Provider>
-  //   )
-  // }
-
   return (
     <>
       <div>
         <h1>Upload image</h1>
-        <form
-          method='POST'
-          onSubmit={handleImageUpload}
-          action={'/api/v1/profiles/' + profileid + '/imageupload'}
-          encType='multipart/form-data'
-        >
-          <input type='file' name='image' />
-          <button type='submit' onClick={handleFileUpload}>
-            Submit
-          </button>
+        <form onSubmit={handleFileUpload} encType='multipart/form-data'>
+          <input type='file' name='image' onChange={handleImageUpload} />
+          <button type='submit'>Submit</button>
         </form>
       </div>
     </>
