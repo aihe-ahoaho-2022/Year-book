@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styles from './Navbar.module.scss'
@@ -8,7 +10,7 @@ import { getProfileById } from '../apis/profile'
 
 export default function Navbar() {
   const { profileid } = useParams()
-  const [ setProfile] = useState('')
+  const [profile, setProfile] = useState('')
 
   useEffect(() => {
     getProfileById(profileid)
