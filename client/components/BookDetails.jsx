@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import styles from './BookDetails.module.scss'
 import { fetchProfiles } from '../actions/profile'
+import { fetchBook } from '../actions/book'
 import { fetchComments, submitComments } from '../actions/comment'
 
 export default function BookDetails() {
@@ -11,11 +12,16 @@ export default function BookDetails() {
   const dispatch = useDispatch()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
+  const bookData = useSelector((state) => state.books)
   const [comment, setComment] = useState({ comment: '', bookId: bookId })
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
   }, [])
+
+  useEffect(() => {
+    dispatch(fetchBook(bookId))
+  })
 
   useEffect(() => {
     dispatch(fetchComments(bookId))
@@ -62,7 +68,7 @@ export default function BookDetails() {
 
   return (
     <>
-      <h1 className={styles.heading}>Yearbook Title</h1>
+      <h1 className={styles.heading}>{bookData.name}</h1>
       <br />
       <div className={styles.container}>
         {displayProfiles}

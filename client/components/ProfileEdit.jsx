@@ -7,7 +7,6 @@ import { useParams, Link } from 'react-router-dom'
 
 import { IfAuthenticated } from './Authenticated'
 
-
 import { TextInput } from '@mantine/core'
 
 import styles from './ProfileDetails.module.scss'
@@ -55,10 +54,7 @@ export default function FruitEditor(props) {
       profile.bookId = bookId
       await dispatch(submitProfile(profile))
     }
-    console.log(profile)
   }
-
-  // { ...profile, bookId: bookId }
 
   return (
     <>
@@ -122,7 +118,9 @@ export default function FruitEditor(props) {
           <IfAuthenticated>
             <div className={styles.buttonwrap}>
               <Link to={`/profiles/${profileid}`}>
-                <button className={styles.button}>save</button>
+                <button className={styles.button}>
+                  {props.add ? 'Add New' : 'Update Profile'}
+                </button>
               </Link>
             </div>
           </IfAuthenticated>
