@@ -77,7 +77,7 @@ export default function BookEdit(props) {
             {props.add ? 'Add' : 'Update'}
           </Button>
         </form>
-        <div onSubmit={handleDelete}>
+        <div onClick={handleDelete}>
           <Button
             variant='gradient'
             gradient={{ from: 'indigo', to: 'cyan' }}
