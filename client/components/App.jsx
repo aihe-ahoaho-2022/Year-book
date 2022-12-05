@@ -10,6 +10,7 @@ import BookEdit from './BookEdit'
 import ProfileEdit from './ProfileEdit'
 import ProfileDetails from './ProfileDetails'
 import ImageUpload from './ImageUpload'
+import { ProtectedRoute } from '../utils/auth'
 
 import { Container, AppShell } from '@mantine/core'
 
@@ -35,13 +36,19 @@ export default function App() {
           <Route path='/' element={<Home />} />
 
           <Route path='/:bookid' element={<BookDetails />} />
-          <Route path='/:bookid/edit' element={<BookEdit />} />
+          <Route
+            path='/:bookid/edit'
+            element={<ProtectedRoute component={BookEdit} />}
+          />
           <Route path='/:bookid/add' element={<ProfileEdit add={true} />} />
           <Route path='/profiles/:profileid' element={<ProfileDetails />} />
-          <Route path='/profiles/:profileid/edit' element={<ProfileEdit />} />
+          <Route
+            path='/profiles/:profileid/edit'
+            element={<ProtectedRoute component={ProfileEdit} />}
+          />
           <Route
             path='/profiles/:profileid/imageupload'
-            element={<ImageUpload />}
+            element={<ProtectedRoute component={ImageUpload} />}
           />
           <Route path='/*' element={<NotFound />} />
         </Routes>
