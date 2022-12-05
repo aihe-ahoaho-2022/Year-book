@@ -1,4 +1,4 @@
-import { editBook, postBook, getBookById, deleteBookById } from '../apis/book'
+import { editBook, postBook, getBookById } from '../apis/book'
 
 export function setBooks(books) {
   return {
@@ -23,7 +23,6 @@ export function updateBooks(books) {
 
 // thunk for addbook
 export function fetchBook(id) {
-  // console.log('fetching')
   return (dispatch) => {
     return getBookById(id)
       .then((bookResult) => {
