@@ -59,6 +59,7 @@ export default function BookEdit(props) {
     <>
       <div>
         <form onSubmit={handleSubmit}>
+          <p>{props.add ? 'Add New Book' : 'Update Book'}</p>
           <ul>
             <TextInput
               label='name'

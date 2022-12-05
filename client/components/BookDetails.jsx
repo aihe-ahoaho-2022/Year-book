@@ -22,7 +22,7 @@ export default function BookDetails() {
   }, [])
 
   const displayProfiles = profiles?.map((profile) => (
-    <ul key={profile.id}>
+    <div key={profile.id} className={styles.card}>
       <Link to={`/profiles/${profile.id}`}>
         <div className={styles.profiles}>
           <img
@@ -30,11 +30,13 @@ export default function BookDetails() {
             src={profile.image}
             alt={`${profile.name}`}
           ></img>
-          <h1>Name:{profile.name}</h1>
-          <span className={styles.quoteHover}>Quote:{profile.quote}</span>
+          <h3>Name:{profile.name}</h3>
+          <div className={styles.text}>
+            <span>Quote:{profile.quote}</span>
+          </div>
         </div>
       </Link>
-    </ul>
+    </div>
   ))
 
   const displayComments = comments?.map((comments) => (
@@ -64,10 +66,23 @@ export default function BookDetails() {
         <h1 className={styles.heading}>Yearbook Title</h1>
       </div>
 
-      <div className={styles.container_profiles}>{displayProfiles}</div>
-      <Link to={`/${bookId}/add`}>
-        <div className={styles.container_profiles}>AddNew</div>
-      </Link>
+      <div className={styles.container}>
+        {displayProfiles}
+        <Link to={`/${bookId}/add`}>
+          <div className={styles.card}>
+            <div className={styles.profiles}>
+              <img
+                className={styles.image}
+                src='https://blush.design/api/download?shareUri=XQMeVJiJO&w=800&h=800&fm=png'
+                alt='Add New'
+              ></img>
+              <div className={styles.text}>
+                <h3>Add New</h3>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
 
       <div>
         <ul>{displayComments}</ul>
