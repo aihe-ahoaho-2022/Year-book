@@ -22,6 +22,15 @@ export default function BookEdit(props) {
     }
   }, [])
 
+  function confirmDelete(event) {
+    const confirmation = confirm(
+      `Are you sure you want to delete ${editBook.name}`
+    )
+    if (confirmation) {
+      handleDelete(event)
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault()
     if (!props.add) {
@@ -77,7 +86,7 @@ export default function BookEdit(props) {
             {props.add ? 'Add' : 'Update'}
           </Button>
         </form>
-        <div onClick={handleDelete}>
+        <div onClick={confirmDelete}>
           <Button
             variant='gradient'
             gradient={{ from: 'indigo', to: 'cyan' }}
