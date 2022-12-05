@@ -22,6 +22,7 @@ export default function ProfileDetails() {
 
   function handleDelete(e) {
     e.preventDefault()
+    confirm(`Are you sure you want to delete ${profile.name}'s profile`)
     removeProfile(Number(profileid))
       .then(() => {
         navigate(`/${profile.bookId}`)
