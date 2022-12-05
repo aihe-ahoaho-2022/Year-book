@@ -1,6 +1,12 @@
 const express = require('express')
 
-const { getBooks, getBookById } = require('../db/db')
+const {
+  getBooks,
+  addBook,
+  putBookById,
+  deleteBook,
+  getBookById,
+} = require('../db/db')
 
 const router = express.Router()
 
@@ -19,6 +25,42 @@ router.get('/:bookid', (req, res) => {
       res.json(book)
     })
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
+})
+
+// POST /api/v1/books/add
+router.post('/add', (req, res) => {
+  const newBook = req.body
+  addBook(newBook)
+    .then((newBookData) => res.json(newBookData))
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+// PATCH /api/v1/books/:bookid/edit
+router.patch('/:bookid/edit', (req, res) => {
+  const bookId = req.params.bookid
+  const book = req.body
+  putBookById(bookId, book)
+    .then((pro) => {
+      console.log(pro)
+      res.json(pro[0])
+    })
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+// DELETE /api/v1/books/:bookid/delete/
+router.delete('/:bookid/delete', (req, res) => {
+  deleteBook(req.params.bookid)
+    .then((result) => res.json(result))
+    .catch((e) => {
+      console.error(e.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
 })
 
 module.exports = router
