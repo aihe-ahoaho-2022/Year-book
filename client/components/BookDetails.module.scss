@@ -9,22 +9,12 @@
   flex-direction: row;
   width: 100%;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: space-evenly; 
   // background-color: #ecd3b2;
   border-radius: 10px;
   @media only screen and (max-width: 1024px) { max-width: 75vw; flex-direction: column;  } 
 }
-.card{
-  width: 100%;
-  height:auto;
-  overflow: hidden;
-  border: 2px solid;
-  margin:10px;
- 
-  cursor: pointer;
-  position: relative;
-}
-// .card:hover{opacity: 0.2;}
+
 
 .image{
   // width: calc(var(--card-width)); height: calc(var(--card-height));
@@ -79,9 +69,12 @@
     align-items: center;
 }}
 
+
 .card{
-  width: 20rem;
-  background-color: #ecd3b2;
+  cursor: pointer;
+  width: 15rem;
+  height: auto;
+  background-color: theme.$medium;
   display: flex;
   padding-top: 1.5rem;
   flex-direction: column;
@@ -89,7 +82,7 @@
   justify-content: center;
   margin:2rem 0;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.5);
-  @media only screen and (min-width: 700px) {  margin:2rem;
+  @media only screen and (min-width: 700px) {  margin:0rem;
 }}
 .card img{ 
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */    
@@ -104,7 +97,7 @@
   align-items: center;
   transition-duration: 200ms;
   object-fit: cover;
-  @media only screen and (max-width: 1024px) { width: 100%; height: auto } 
+  @media only screen and (max-width: 1024px) { width: 80%; height: auto } 
 }
 
 .card:hover img {
@@ -128,23 +121,24 @@ opacity: 0.3;
 }
 
 .comments{
-  
+  margin-top: 10rem;
+  color:white;
     padding: 4rem 8rem;
     display: inline-block;
-    border: 3px solid #333333;
-    font-size: 2.5rem;
+    border: 3px solid #ffffff;
+    font-size: 1rem;
+    text-align: left;
     border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-    text-transform: uppercase;
     letter-spacing: 0.3ch;
-    background: #ffffff;
+    background-color: theme.$bright;
     position: relative;
     
     &::before {
         content: '';
-        border: 2px solid #353535;
+        border: 2px solid white;
         display: block;
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: 80%;
         position: absolute;
         top: 50%;
         left: 50%;

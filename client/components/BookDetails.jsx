@@ -63,7 +63,7 @@ export default function BookDetails() {
   return (
     <>
       <h1 className={styles.heading}>Yearbook Title</h1>
-
+      <br />
       <div className={styles.container}>
         {displayProfiles}
         <Link to={`/${bookId}/add`}>
@@ -79,21 +79,23 @@ export default function BookDetails() {
             </div>
           </div>
         </Link>
-      </div>
 
-      <div className={styles.comments}>
-        <ul>{displayComments}</ul>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            <input
-              label='comment'
-              name='comment'
-              value={comment.comment}
-              onChange={handleChange}
-            ></input>
-            <button>Save</button>
-          </ul>
-        </form>
+        <div className={styles.comments}>
+          <ul>{displayComments}</ul>
+          <form onSubmit={handleSubmit}>
+            <ul>
+              <input
+                label='comment'
+                name='comment'
+                value={comment.comment}
+                onChange={handleChange}
+              ></input>
+              <br />
+              <br />
+              <button>Post</button>
+            </ul>
+          </form>
+        </div>
       </div>
     </>
   )
