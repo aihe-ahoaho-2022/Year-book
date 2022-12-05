@@ -1,4 +1,4 @@
-import { editBook, postBook, getBookById, deleteBookById } from '../apis/book'
+import { editBook, postBook, getBookById } from '../apis/book'
 
 export function setBooks(books) {
   return {

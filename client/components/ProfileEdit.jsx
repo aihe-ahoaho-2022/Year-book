@@ -3,9 +3,14 @@ import { useDispatch } from 'react-redux'
 
 import { getProfileContent, putProfileContent } from '../apis/profileEdit'
 import { submitProfile } from '../actions/profile'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
-import { TextInput, Button } from '@mantine/core'
+import { IfAuthenticated } from './Authenticated'
+
+
+import { TextInput } from '@mantine/core'
+
+import styles from './ProfileDetails.module.scss'
 
 export default function FruitEditor(props) {
   // Ready up React state
@@ -113,14 +118,14 @@ export default function FruitEditor(props) {
               onChange={handleChange}
             ></TextInput>
           </ul>
-          <Button
-            variant='gradient'
-            gradient={{ from: 'indigo', to: 'cyan' }}
-            size='lg'
-            type='submit'
-          >
-            Save
-          </Button>
+
+          <IfAuthenticated>
+            <div className={styles.buttonwrap}>
+              <Link to={`/profiles/${profileid}`}>
+                <button className={styles.button}>save</button>
+              </Link>
+            </div>
+          </IfAuthenticated>
         </form>
       </div>
     </>
