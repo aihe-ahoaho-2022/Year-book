@@ -4,8 +4,10 @@ import { updateBook } from '../actions/book'
 import { TextInput, Button } from '@mantine/core'
 import { useDispatch } from 'react-redux'
 import { getBookById } from '../apis/book'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function BookEdit() {
+  const { getAccessTokenSilently } = useAuth0()
   const params = useParams()
   const dispatch = useDispatch()
   const bookId = Number(params.bookid)
@@ -27,7 +29,11 @@ export default function BookEdit() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    dispatch(updateBook(editBook))
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(updateBook(editBook, token))
+      })
+      .catch((e) => console.log(e))
   }
 
   function handleChange(event) {
