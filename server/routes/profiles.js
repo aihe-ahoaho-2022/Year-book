@@ -9,15 +9,15 @@ const {
   imageUpload,
   putProfileById,
   deleteProfile,
-  
 } = require('../db/db')
 
 const router = express.Router()
 
 const multer = require('multer')
+// const { restart } = require('nodemon')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../public/images'))
+    cb(null, path.join(__dirname, '../db/storage'))
   },
   filename: (req, file, cb) => {
     console.log(file)
@@ -38,7 +38,7 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   if (!req.file) {
     imageUrl = '/images/bag-cat.jpg'
   } else {
-    imageUrl = '/images/' + req.file.filename
+    imageUrl = '/server/db/storage/' + req.file.filename
   }
 
   const profileId = req.params.profileid
@@ -101,8 +101,8 @@ router.post('/add', (req, res) => {
     })
 })
 
-// PUT /api/v1/profiles/delete/:id
-router.delete('/delete/:id', (req, res) => {
+// PUT /api/v1/profiles/:id
+router.delete('/:id', (req, res) => {
   deleteProfile(req.params.id)
     .then((result) => res.json(result))
     .catch((e) => {
@@ -110,7 +110,5 @@ router.delete('/delete/:id', (req, res) => {
       res.status(500).json({ message: 'Something went wrong' })
     })
 })
-
-
 
 module.exports = router

@@ -34,20 +34,7 @@ describe('<ProfileDetails />', () => {
   })
 })
 
-describe('Button displays content', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-  it('checks button is displaying "edit"', () => {
-    render(
-      <Router>
-        <ProfileDetails />
-      </Router>
-    )
-    const button = screen.getAllByRole('button')
-    expect(button[0]).toHaveTextContent(/edit/i)
-  })
-})
+
 
 //////******
 
