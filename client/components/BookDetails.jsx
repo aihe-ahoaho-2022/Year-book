@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-// import Profile from './Profile'
 import styles from './BookDetails.module.scss'
 import { fetchProfiles } from '../actions/profile'
 import { fetchComments, submitComments } from '../actions/comment'
-import { style } from '@mui/system'
 
 export default function BookDetails() {
   const params = useParams()
