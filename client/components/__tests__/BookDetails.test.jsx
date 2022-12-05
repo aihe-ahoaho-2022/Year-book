@@ -27,7 +27,7 @@ describe('<BookDetails />', () => {
     expect(imgs).toHaveLength(3)
   })
 
-  it('check for headings shown', () => {
+  it('check for headings and mock name showing', () => {
     render(
       <Router>
         <BookDetails />
