@@ -80,6 +80,9 @@ export default function ProfileDetails() {
       </div>
       <IfAuthenticated>
         <div className={styles.buttonwrap}>
+          <Link to={`/profiles/${profileid}/imageupload`}>
+            <button className={styles.button}>Change Image</button>
+          </Link>
           <Link to={`/profiles/${profileid}/edit`}>
             <button className={styles.button}>Edit</button>
           </Link>
