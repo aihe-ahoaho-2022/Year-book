@@ -11,7 +11,7 @@ import { TextInput } from '@mantine/core'
 
 import styles from './ProfileDetails.module.scss'
 
-export default function FruitEditor(props) {
+export default function FruitEditor() {
   // Ready up React state
   const params = useParams()
   const navigate = useNavigate()
@@ -32,7 +32,7 @@ export default function FruitEditor(props) {
 
   useEffect(() => {
     const updateProfile = async () => {
-      if (!props.add) {
+      if (profileid) {
         const profileData = await getProfileContent(profileid)
         setProfile(profileData)
       }
@@ -46,13 +46,11 @@ export default function FruitEditor(props) {
   }
 
   const handleSubmit = async (e) => {
-    console.log(props.add, 'handle submit')
     e.preventDefault()
-    if (!props.add) {
-      console.log(profile)
+    if (profileid) {
       await dispatch(updateProfile(profile))
       navigate(`/profiles/${profile.id}`)
-    } else if (props.add) {
+    } else {
       profile.bookId = bookId
       await dispatch(submitProfile(profile))
       navigate(`/${bookId}`)
@@ -63,7 +61,7 @@ export default function FruitEditor(props) {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <p>{props.add ? 'Add New Profile' : 'Update Profile'}</p>
+          <p>{!profileid ? 'Add New Profile' : 'Update Profile'}</p>
           <TextInput
             label='Name'
             name='name'
@@ -119,7 +117,7 @@ export default function FruitEditor(props) {
           <IfAuthenticated>
             <div className={styles.buttonwrap}>
               <button className={styles.button}>
-                {props.add ? 'Add New' : 'Update Profile'}
+                {!profileid ? 'Add New' : 'Update Profile'}
               </button>
             </div>
           </IfAuthenticated>
