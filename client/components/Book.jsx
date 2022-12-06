@@ -29,7 +29,11 @@ export default function Book(props) {
         >
           edit
         </Button>
+       
       </div>
+      
+        
+      
       <div
         role='button'
         onClick={() => {
