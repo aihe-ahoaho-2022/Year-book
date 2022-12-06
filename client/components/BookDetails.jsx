@@ -6,8 +6,10 @@ import { IfAuthenticated } from './Authenticated'
 import { fetchProfiles } from '../actions/profile'
 import { fetchBook } from '../actions/book'
 import { fetchComments, submitComments } from '../actions/comment'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function BookDetails() {
+  const { getAccessTokenSilently } = useAuth0()
   const params = useParams()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
@@ -62,8 +64,14 @@ export default function BookDetails() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    dispatch(submitComments(comment))
-    dispatch(fetchComments(bookId))
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(submitComments(comment, token)).then
+      })
+      .then(() => {
+        dispatch(fetchComments(bookId))
+      })
+      .catch((e) => console.log(e))
     setComment({ comment: '', bookId: bookId })
   }
 

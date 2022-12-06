@@ -32,9 +32,9 @@ export function fetchComments(id) {
   }
 }
 
-export function submitComments(newComment) {
+export function submitComments(newComment, token) {
   return (dispatch) => {
-    return postComment(newComment)
+    return postComment(newComment, token)
       .then((commentData) => {
         dispatch(addComments(commentData))
       })
