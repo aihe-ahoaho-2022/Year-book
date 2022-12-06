@@ -28,6 +28,7 @@ export function fetchProfiles(id) {
   return (dispatch) => {
     return getProfilesByBookId(id)
       .then((profiles) => {
+        console.log('Succesful result from api');
         dispatch(setProfiles(profiles))
       })
       .catch((err) => console.error(err.message))

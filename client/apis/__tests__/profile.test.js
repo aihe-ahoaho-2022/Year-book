@@ -7,7 +7,7 @@ describe('getProfileById', () => {
     const scope = nock('http://localhost')
       .get('/api/v1/profiles/4')
       .reply(200, {
-        results: [{ id: 5, name: 'Mr Bloggs' }],
+        results: [{ id: 4, name: 'Mr Bloggs' }],
       })
     return getProfileById(4).then((profile) => {
       expect(profile.results).toHaveLength(1)
@@ -34,4 +34,3 @@ describe('getProfilesByBookId', () => {
     })
   })
 })
-

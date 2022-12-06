@@ -21,7 +21,13 @@ export function updateBooks(books) {
   }
 }
 
-// thunk for addbook
+export function deleteBooks(books) {
+  return {
+    type: 'DELETE_BOOKS',
+    payload: books,
+  }
+}
+
 export function fetchBook(id) {
   return (dispatch) => {
     return getBookById(id)
@@ -31,9 +37,9 @@ export function fetchBook(id) {
       .catch((err) => console.error(err.message))
   }
 }
-export function submitBook(newBook) {
+export function submitBook(newBook, token) {
   return (dispatch) => {
-    return postBook(newBook)
+    return postBook(newBook, token)
       .then((newBookData) => {
         dispatch(addBook(newBookData))
       })
@@ -41,9 +47,9 @@ export function submitBook(newBook) {
   }
 }
 
-export function updateBook(newBook) {
+export function updateBook(newBook, token) {
   return (dispatch) => {
-    return editBook(newBook)
+    return editBook(newBook, token)
       .then((newBookData) => {
         dispatch(updateBooks(newBookData))
       })

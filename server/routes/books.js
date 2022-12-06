@@ -1,4 +1,5 @@
 const express = require('express')
+const checkJwt = require('../auth0.js')
 
 const {
   getBooks,
@@ -28,7 +29,7 @@ router.get('/:bookid', (req, res) => {
 })
 
 // POST /api/v1/books/add
-router.post('/add', (req, res) => {
+router.post('/add', checkJwt, (req, res) => {
   const newBook = req.body
   addBook(newBook)
     .then((newBookData) => res.json(newBookData))
@@ -39,7 +40,7 @@ router.post('/add', (req, res) => {
 })
 
 // PATCH /api/v1/books/:bookid/edit
-router.patch('/:bookid/edit', (req, res) => {
+router.patch('/:bookid/edit', checkJwt, (req, res) => {
   const bookId = req.params.bookid
   const book = req.body
   putBookById(bookId, book)
@@ -54,7 +55,7 @@ router.patch('/:bookid/edit', (req, res) => {
 })
 
 // DELETE /api/v1/books/:bookid/delete/
-router.delete('/:bookid/delete', (req, res) => {
+router.delete('/:bookid/delete', checkJwt, (req, res) => {
   deleteBook(req.params.bookid)
     .then((result) => res.json(result))
     .catch((e) => {
