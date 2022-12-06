@@ -1,4 +1,4 @@
-import { editBook, postBook, getBookById } from '../apis/book'
+import { editBook, postBook, getBookById, deleteBookById } from '../apis/book'
 
 export function setBooks(books) {
   return {
@@ -21,10 +21,10 @@ export function updateBooks(books) {
   }
 }
 
-export function deleteBooks(books) {
+export function deleteBooks(id) {
   return {
     type: 'DELETE_BOOKS',
-    payload: books,
+    payload: id,
   }
 }
 
@@ -56,3 +56,13 @@ export function updateBook(newBook, token) {
       .catch((err) => console.error(err.message))
   }
 }
+
+// export function destroyBook(id, token) {
+//   return (dispatch) => {
+//     return deleteBookById(id, token)
+//       .then(() => {
+//         dispatch(deleteBooks(id))
+//       })
+//       .catch((err) => console.error(err.message))
+//   }
+// }
