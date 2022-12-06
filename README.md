@@ -37,10 +37,11 @@ npm run test:coverage
 #### Styling
 
 This project uses a sass loader and scss modules for styling
+&&
+check out the Matine doc for our styling
+(Matine) ? :) : :( 
 
-check out the MUI doc for our styling 
-
-[MUI!](https://mui.com/)
+[Matine!](https://matine.com/)
 <br>
 
 

@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5vw;
 }
 
 .containerRow {
@@ -42,6 +43,9 @@
   max-height: 50vh; 
   border-radius: 15px;
   width:800px;
+  margin-bottom: 5vw;
+  margin-right: 5vw;
+  margin-left: 5vw;
   // transition-duration: 200ms;
 }
 

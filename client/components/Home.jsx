@@ -4,7 +4,7 @@ import styles from './Home.module.scss'
 import Book from './Book'
 import { setBooks } from '../actions'
 import { getBooks } from '../apis/book'
-
+import { Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
 
 export default function Home() {
@@ -36,12 +36,14 @@ export default function Home() {
             src='https://thumbs.dreamstime.com/b/diverse-modern-community-people-crowd-elderly-young-man-woman-standing-together-vector-illustration-cartoon-characters-waving-221115543.jpg'
             alt='groupimage'
           />
+          <p id='books'>&nbsp;</p>
           <IfAuthenticated>
             <div className={styles.containerRow}>
               {books.map((book, index) => {
                 return <Book bookData={book} key={index} />
               })}
             </div>
+            <Link to={`/books/add`}>AddNew</Link>
           </IfAuthenticated>
         </div>
       </>

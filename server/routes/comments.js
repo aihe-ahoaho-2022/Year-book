@@ -1,4 +1,5 @@
 const express = require('express')
+const checkJwt = require('../auth0.js')
 
 const { getCommentsByBookId, postComment } = require('../db/db')
 
@@ -12,7 +13,7 @@ router.get('/:bookid', (req, res) => {
     .catch(() => res.status(500).json({ message: 'Something went wrong' }))
 })
 
-router.post('/:bookid/add', (req, res) => {
+router.post('/:bookid/add', checkJwt, (req, res) => {
   const bookComment = { ...req.body, bookId: req.params.bookid }
   postComment(bookComment)
     .then((newComment) => res.json(newComment))
