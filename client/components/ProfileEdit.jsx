@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProfileContent, putProfileContent } from '../apis/profileEdit'
 import { submitProfile, updateProfile } from '../actions/profile'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-
+import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated } from './Authenticated'
 
 import { TextInput } from '@mantine/core'
@@ -18,7 +18,7 @@ export default function FruitEditor() {
   const dispatch = useDispatch()
   const bookId = Number(params.bookid)
   const { profileid } = useParams()
-
+  const { user } = useAuth0()
   const [profile, setProfile] = useState({
     name: '',
     quote: '',
@@ -28,6 +28,7 @@ export default function FruitEditor() {
     twitterUrl: '',
     instagramUrl: '',
     githubUrl: '',
+    ownerId: '',
   })
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function FruitEditor() {
       navigate(`/profiles/${profile.id}`)
     } else {
       profile.bookId = bookId
+      profile.ownerId = user.name
       await dispatch(submitProfile(profile))
       navigate(`/${bookId}`)
     }
