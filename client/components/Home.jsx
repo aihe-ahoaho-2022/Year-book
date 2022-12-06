@@ -36,6 +36,7 @@ export default function Home() {
             src='https://thumbs.dreamstime.com/b/diverse-modern-community-people-crowd-elderly-young-man-woman-standing-together-vector-illustration-cartoon-characters-waving-221115543.jpg'
             alt='groupimage'
           />
+          <p id='books'>&nbsp;</p>
           <IfAuthenticated>
             <div className={styles.containerRow}>
               {books.map((book, index) => {
