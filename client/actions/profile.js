@@ -1,5 +1,5 @@
 import { getProfilesByBookId } from '../apis/profile'
-import { postProfile } from '../apis/profileEdit'
+import { postProfile, putProfileContent } from '../apis/profileEdit'
 
 export function setProfiles(profiles) {
   return {
@@ -28,7 +28,7 @@ export function fetchProfiles(id) {
   return (dispatch) => {
     return getProfilesByBookId(id)
       .then((profiles) => {
-        console.log('Succesful result from api');
+        console.log('Succesful result from api')
         dispatch(setProfiles(profiles))
       })
       .catch((err) => console.error(err.message))
@@ -41,6 +41,17 @@ export function submitProfile(newProfile) {
     return postProfile(newProfile)
       .then((newProfilesData) => {
         dispatch(addProfile(newProfilesData))
+      })
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function updateProfile(newProfile) {
+  return (dispatch) => {
+    return putProfileContent(newProfile)
+      .then((newProfilesData) => {
+        dispatch(updateProfiles(newProfilesData))
+        console.log(newProfilesData)
       })
       .catch((err) => console.error(err.message))
   }

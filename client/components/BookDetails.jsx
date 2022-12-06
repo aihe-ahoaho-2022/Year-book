@@ -58,10 +58,7 @@ export default function BookDetails() {
     event.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(submitComments(comment, token)).then
-      })
-      .then(() => {
-        dispatch(fetchComments(bookId))
+        dispatch(submitComments(comment, token))
       })
       .catch((e) => console.log(e))
     setComment({ comment: '', bookId: bookId })
