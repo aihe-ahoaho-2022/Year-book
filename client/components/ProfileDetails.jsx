@@ -52,7 +52,7 @@ export default function ProfileDetails() {
         <img
           className={styles.image}
           src={profile.image}
-          // src={`../db/images/${profile.image}`}
+          // src={`../public/images/${profile.image}`}
           alt='User profile'
         />
         <section className={styles.textbox}>
