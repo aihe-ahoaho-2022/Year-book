@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { uploadBookFile } from '../apis/book'
 import { useNavigate } from 'react-router'
 
-export default function ImageUpload() {
+export default function BookImageUpload() {
   const navigate = useNavigate()
   const [bookImage, setBookImage] = useState(null)
   const { bookid } = useParams()
@@ -17,7 +17,7 @@ export default function ImageUpload() {
     const formData = new FormData()
     formData.append('bookImage', bookImage)
     uploadBookFile(bookid, formData)
-      .then(() => navigate(`/book/${bookid}`))
+      .then(() => navigate(`/`))
       .catch((err) => {
         console.log(err.message)
       })
