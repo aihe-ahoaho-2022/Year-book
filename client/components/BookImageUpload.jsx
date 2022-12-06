@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { uploadFile } from '../apis/profileImage'
+import { uploadBookFile } from '../apis/book'
 import { useNavigate } from 'react-router'
 
 export default function ImageUpload() {
   const navigate = useNavigate()
   const [bookImage, setBookImage] = useState(null)
-  const { profileid } = useParams()
+  const { bookid } = useParams()
 
   const handleBookImageUpload = (e) => {
     setBookImage(e.target.files[0])
@@ -16,8 +16,8 @@ export default function ImageUpload() {
     e.preventDefault()
     const formData = new FormData()
     formData.append('bookImage', bookImage)
-    uploadFile(profileid, formData)
-      .then(() => navigate(`/book/${profileid}`))
+    uploadBookFile(bookid, formData)
+      .then(() => navigate(`/book/${bookid}`))
       .catch((err) => {
         console.log(err.message)
       })

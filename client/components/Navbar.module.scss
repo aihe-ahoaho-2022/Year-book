@@ -1,4 +1,14 @@
 @use '../styles/theme';
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700');
+
+.logo {
+  // width: 250px;
+  // height: 100%;
+  // float: inline-start;
+  // align-self:flex-start;
+  font-family: Cinzel Decorative;
+  font-size: 28px;
+}
 
 .navbar {
   display: flex; 
