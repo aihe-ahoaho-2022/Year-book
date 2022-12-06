@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
-import { getProfileById, removeProfile } from '../apis/profile'
+import { getProfileById } from '../apis/profile'
 import { destroyProfile } from '../actions/profile'
 import styles from './ProfileDetails.module.scss'
 
