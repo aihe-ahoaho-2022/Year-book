@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
-
 import { getProfileById, removeProfile } from '../apis/profile'
 import styles from './ProfileDetails.module.scss'
 
