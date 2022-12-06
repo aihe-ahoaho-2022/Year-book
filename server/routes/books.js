@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const checkJwt = require('../auth0.js')
 
 const {
@@ -7,9 +8,23 @@ const {
   putBookById,
   deleteBook,
   getBookById,
+  imageUpload,
 } = require('../db/db')
 
 const router = express.Router()
+
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../public/images'))
+  },
+  filename: (req, file, cb) => {
+    console.log(file)
+    cb(null, Date.now() + '-' + file.originalname)
+  },
+})
+
+const upload = multer({ storage: storage })
 
 // GET /api/v1/books
 router.get('/', (req, res) => {
@@ -61,6 +76,29 @@ router.delete('/:bookid/delete', checkJwt, (req, res) => {
     .catch((e) => {
       console.error(e.message)
       res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+// POST /api/v1/books/:bookid/imageupload
+router.post('/:bookid/imageupload', upload.single('image'), (req, res) => {
+  let imageUrl = null
+  if (!req.file) {
+    imageUrl = '/images/bag-cat.jpg'
+  } else {
+    imageUrl = '/images/' + req.file.filename
+  }
+
+  const profileId = req.params.profileid
+  imageUpload(profileId, imageUrl)
+    .then(() => {
+      console.log(req.body)
+      res.send('image uploaded')
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).json({
+        message: 'Something went wrong',
+      })
     })
 })
 
