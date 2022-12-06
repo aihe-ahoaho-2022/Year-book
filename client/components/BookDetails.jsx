@@ -19,7 +19,6 @@ export default function BookDetails() {
   const [comment, setComment] = useState({
     comment: '',
     bookId: bookId,
-    ownerId: user?.nickname,
   })
 
   useEffect(() => {
@@ -63,10 +62,10 @@ export default function BookDetails() {
     getAccessTokenSilently()
       .then((token) => {
         console.log(comment);
-        dispatch(submitComments(comment, token))
+        dispatch(submitComments({...comment, ownerId: user.nickname}, token))
       })
       .catch((e) => console.log(e))
-    setComment({ comment: '', bookId: bookId, ownerId: user.nickname })
+    setComment({ comment: '', bookId: bookId })
   }
 
   return (
