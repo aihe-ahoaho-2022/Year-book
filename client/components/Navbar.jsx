@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <div className={styles.navbar}>
       <Link to='/'>
-        <span className={styles.title}>YeahBook</span>
+        <span className={styles.logo}>YeahBook</span>
       </Link>
       <nav className={styles.links}>
         <DesktopLink to='/'>Home</DesktopLink>
