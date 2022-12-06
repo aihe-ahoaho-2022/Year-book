@@ -10,6 +10,7 @@ import BookEdit from './BookEdit'
 import ProfileEdit from './ProfileEdit'
 import ProfileDetails from './ProfileDetails'
 import ImageUpload from './ImageUpload'
+import BookImageUpload from './BookImageUpload'
 import Footer from './Footer'
 import { ProtectedRoute } from '../utils/auth'
 
@@ -56,6 +57,10 @@ export default function App() {
             <Route
               path='/profiles/:profileid/imageupload'
               element={<ProtectedRoute component={ImageUpload} />}
+            />
+            <Route
+              path='/:bookid/imageupload'
+              element={<ProtectedRoute component={BookImageUpload} />}
             />
             <Route path='/*' element={<NotFound />} />
           </Routes>
