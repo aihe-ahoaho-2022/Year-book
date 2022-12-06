@@ -27,7 +27,8 @@ function AuthNav() {
 
       <IfAuthenticated>
         <div className='user-name'>Hello {user?.nickname}</div>
-        <Button
+        <img src='../../icons8-user-64.png' alt='userLogo' />
+        <button
           variant='gradient'
           gradient={{ from: 'indigo', to: 'cyan' }}
           size='sm'
@@ -35,7 +36,7 @@ function AuthNav() {
           className=''
         >
           Log off
-        </Button>
+        </button>
       </IfAuthenticated>
     </div>
   )
