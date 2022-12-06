@@ -35,12 +35,14 @@ export default function FruitEditor(props) {
     githubUrl: '',
   })
 
-  useEffect(async () => {
-    if (!props.add) {
-      const profileData = await getProfileContent(profileid)
-      console.log(profileData)
-      setProfile(profileData)
+  useEffect(() => {
+    const updateProfile = async () => {
+      if (!props.add) {
+        const profileData = await getProfileContent(profileid)
+        setProfile(profileData)
+      }
     }
+    updateProfile()
   }, [])
 
   const handleChange = (e) => {
