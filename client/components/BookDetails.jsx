@@ -39,11 +39,7 @@ export default function BookDetails() {
           ></img>
           <h3 className={styles.name}>Name:{profile.name}</h3>
           <div className={styles.text}>
-            <p>
-              Quote:
-              <br />
-              {profile.quote}
-            </p>
+            <span>Quote:{profile.quote}</span>
           </div>
         </div>
       </Link>
@@ -86,16 +82,12 @@ export default function BookDetails() {
                 src='https://blush.design/api/download?shareUri=XQMeVJiJO&w=800&h=800&fm=png'
                 alt='Add New'
               ></img>
+
               <h3>Add New</h3>
             </div>
           </div>
         </Link>
       </div>
-      <br />
-      <br />
-      <hr />
-      <br />
-      <h2>Post your comments below:</h2>
       <div className={styles.container}>
         <div className={styles.comments}>
           {displayComments}

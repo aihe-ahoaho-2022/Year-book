@@ -21,6 +21,7 @@ export function updateComments(comments) {
   }
 }
 
+//thunks for Comments
 export function fetchComments(id) {
   return (dispatch) => {
     return getCommentsByBookId(id)
