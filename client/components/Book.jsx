@@ -29,17 +29,7 @@ export default function Book(props) {
         >
           edit
         </Button>
-        <Button
-          variant='gradient'
-          gradient={{ from: 'blue', to: 'green' }}
-          size='lg'
-          className={styles.button}
-          onClick={() => {
-            handleEditClick()
-          }}
-        >
-          delete
-        </Button>
+       
       </div>
       
         
