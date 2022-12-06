@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styles from './Home.module.scss'
 import Book from './Book'
 import { setBooks } from '../actions'
