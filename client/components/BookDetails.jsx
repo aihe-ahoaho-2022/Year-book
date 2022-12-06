@@ -46,8 +46,8 @@ export default function BookDetails() {
     </div>
   ))
 
-  const displayComments = comments?.map((comments) => (
-    <ul key={comments.id}>
+  const displayComments = comments?.map((index) => (
+    <ul key={index}>
       <div>
         <li>
           {comments.ownerId} : {comments.comment}
