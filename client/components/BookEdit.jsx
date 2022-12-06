@@ -16,14 +16,16 @@ export default function BookEdit(props) {
     name: '',
     theme: '',
   })
-  console.log(editBook)
 
-  useEffect(async () => {
-    if (!props.add) {
-      const bookData = await getBookById(bookId)
-      setEditBook(bookData)
+  useEffect(() => {
+    const loadBookData = async () => {
+      if (!props.add) {
+        const bookData = await getBookById(bookId)
+        setEditBook(bookData)
+      }
     }
-  }, [])
+    loadBookData()
+  }, [bookId])
 
   function confirmDelete(event) {
     const confirmation = confirm(
