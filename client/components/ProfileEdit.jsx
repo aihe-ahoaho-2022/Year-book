@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { getProfileContent, putProfileContent } from '../apis/profileEdit'
+import { getProfileContent } from '../apis/profileEdit'
 import { submitProfile, updateProfile } from '../actions/profile'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated } from './Authenticated'
 
