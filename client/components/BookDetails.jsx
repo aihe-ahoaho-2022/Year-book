@@ -9,14 +9,18 @@ import { fetchComments, submitComments } from '../actions/comment'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function BookDetails() {
-  const { getAccessTokenSilently } = useAuth0()
+  const { getAccessTokenSilently, user } = useAuth0()
   const params = useParams()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
   const bookData = useSelector((state) => state.books)
-  const [comment, setComment] = useState({ comment: '', bookId: bookId })
+  const [comment, setComment] = useState({
+    comment: '',
+    bookId: bookId,
+    ownerId: '',
+  })
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
@@ -61,7 +65,7 @@ export default function BookDetails() {
         dispatch(submitComments(comment, token))
       })
       .catch((e) => console.log(e))
-    setComment({ comment: '', bookId: bookId })
+    setComment({ comment: '', bookId: bookId, ownerId: user.nickname })
   }
 
   return (

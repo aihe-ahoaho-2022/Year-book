@@ -70,7 +70,7 @@ function postComment(newComment, db = connection) {
     id: newComment.id,
     book_id: newComment.bookId,
     comment: newComment.comment,
-    auth0_id: newComment.auth0Id,
+    auth0_id: newComment.ownerId,
   })
 }
 
