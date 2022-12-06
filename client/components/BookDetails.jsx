@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import styles from './BookDetails.module.scss'
+import { IfAuthenticated } from './Authenticated'
 import { fetchProfiles } from '../actions/profile'
 import { fetchBook } from '../actions/book'
 import { fetchComments, submitComments } from '../actions/comment'
@@ -85,7 +86,8 @@ export default function BookDetails() {
             </div>
           </div>
         </Link>
-
+      </div>
+      <div className={styles.container}>
         <div className={styles.comments}>
           <ul>{displayComments}</ul>
           <form onSubmit={handleSubmit}>
@@ -98,7 +100,9 @@ export default function BookDetails() {
               ></input>
               <br />
               <br />
-              <button>Post</button>
+              <IfAuthenticated>
+                <button>Post</button>
+              </IfAuthenticated>
             </ul>
           </form>
         </div>
