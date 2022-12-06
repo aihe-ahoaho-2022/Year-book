@@ -79,7 +79,8 @@ router.patch('/:profileid/edit', (req, res) => {
   const profile = req.body
   putProfileById(profileId, profile)
     .then((pro) => {
-      res.json(pro[0])
+      console.log(pro)
+      res.json({ ...profile, id: Number(profileId) })
     })
     .catch((e) => {
       console.error(e.message)
