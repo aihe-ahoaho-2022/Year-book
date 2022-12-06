@@ -1,11 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@use './theme';
 
 html,
 body {
-  font-family: 'Roboto', sans-serif; color: #666666;
-  background-color: #f7f8fa; margin: 0px;
+  font-family: theme.$font-body; color: theme.$text-black;
+  background-color: theme.$white; margin: 0px;
 }
 
 p { margin: 0px; }
 
-a { text-decoration: none; color: #444444; cursor: pointer; }
+a { text-decoration: none; color: theme.$text-black; cursor: pointer; }
+
+.studentCards {
+  display:flex;
+  position: relative;
+  justify-content: left;
+  border: 2px;
+}

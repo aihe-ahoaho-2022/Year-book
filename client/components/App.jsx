@@ -3,22 +3,49 @@ import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './Navbar'
 import Home from './Home'
-import Play from './Play'
-import Winner from './Winner'
-import Results from './Results'
-import Create from './Create'
+
+import NotFound from './NotFound'
+import BookDetails from './BookDetails'
+import BookEdit from './BookEdit'
+import ProfileEdit from './ProfileEdit'
+import ProfileDetails from './ProfileDetails'
+import ImageUpload from './ImageUpload'
+
+import { Container, AppShell } from '@mantine/core'
 
 export default function App() {
   return (
-    <div className='app'>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/play' element={<Play />} />
-        <Route path='/play/winner' element={<Winner />} />
-        <Route path='/results' element={<Results />} />
-        <Route path='/create' element={<Create />} />
-      </Routes>
-    </div>
+    <AppShell
+      padding='md'
+      // navbar={<Navbar width={{ base: 300 }} height={500} p="xs">{/* Navbar content */}</Navbar>}
+      // header={<Header height={60} p="xs"><Navbar/></Header>}
+      header={<Navbar />}
+      styles={(theme) => ({
+        main: {
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[8]
+              : theme.colors.gray[0],
+        },
+      })}
+    >
+      {/* <Navbar /> */}
+      <Container>
+        <Routes>
+          <Route path='/' element={<Home />} />
+
+          <Route path='/:bookid' element={<BookDetails />} />
+          <Route path='/:bookid/edit' element={<BookEdit />} />
+          <Route path='/:bookid/add' element={<ProfileEdit add={true} />} />
+          <Route path='/profiles/:profileid' element={<ProfileDetails />} />
+          <Route path='/profiles/:profileid/edit' element={<ProfileEdit />} />
+          <Route
+            path='/profiles/:profileid/imageupload'
+            element={<ImageUpload />}
+          />
+          <Route path='/*' element={<NotFound />} />
+        </Routes>
+      </Container>
+    </AppShell>
   )
 }

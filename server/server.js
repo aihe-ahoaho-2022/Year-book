@@ -1,24 +1,20 @@
 const express = require('express')
 const path = require('path')
 
-const homeRoutes = require('./routes/home')
-const playRoutes = require('./routes/play')
-const winnerRoutes = require('./routes/winner')
-const resultsRoutes = require('./routes/results')
-const createRoutes = require('./routes/create')
-const usersRoutes = require('./routes/user')
+const commentRoutes = require('./routes/comments')
+const profilesRoutes = require('./routes/profiles')
+// const profileRoutes = require('./routes/profile')
 
+const bookRoutes = require('./routes/books')
 const server = express()
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
 
-server.use('/api/v1/home', homeRoutes)
-server.use('/api/v1/play', playRoutes)
-server.use('/api/v1/winner', winnerRoutes)
-server.use('/api/v1/results', resultsRoutes)
-server.use('/api/v1/create', createRoutes)
-server.use('/api/v1/users', usersRoutes)
+server.use('/api/v1/books', bookRoutes)
+server.use('/api/v1/profiles', profilesRoutes)
+server.use('/api/v1/comments', commentRoutes)
+// server.use('/api/v1/profile', profileRoutes)
 
 server.get('*', (req, res) => {
   res.sendFile(path.resolve('server/public/index.html'))

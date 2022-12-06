@@ -1,0 +1,95 @@
+@use '../styles/theme';
+
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.container { 
+  margin: auto;
+  display: flex;
+  max-width: 750px;
+  margin-top: 80px;
+  margin-bottom: -20px;
+  @media only screen and (max-width: 1024px) { max-width: 80vw; flex-direction: column;  } 
+}
+
+.textbox {
+  padding-left: 40px;
+  color: theme.$black;
+  margin-bottom: 60px;
+  @media only screen and (max-width: 1024px) { padding-left: 0 } 
+
+}
+
+.heading {
+  font-size: 3.6rem;
+  line-height: 1.1em;
+  margin-top: 20px;
+  margin-bottom: 45px;
+  color: theme.$medium;
+}
+
+.image { 
+  height: 54vh;
+  width: 22vw;
+  margin-bottom: 40px;
+  border-radius: 8px; 
+  transition-duration: 200ms;
+  object-fit: cover;
+  @media only screen and (max-width: 1024px) { width: 100%; height: auto } 
+}
+
+.imagewrap {
+  padding: 0;
+}
+
+.list {
+  padding-left: 0;
+  list-style-type: none;
+  font-size: 1.1em;
+
+}
+
+.hr {
+  margin-bottom: 30px;
+  border: none;
+  height: 1.1px;
+  background-color: theme.$black;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.6em;
+  line-height: 1.4em;
+}
+
+.blurb {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+  line-height: 1.4em;
+}
+
+.buttonwrap { 
+  margin: 20px auto;
+  max-width: 750px;
+  @media only screen and (max-width: 1024px) { width: 90%; height: auto; text-align: center; margin: 30px auto; } 
+}
+
+.button {
+  // display: block;
+  width: 110px;
+  height: 35px;
+  font-size: 0.95em;
+  border: 0;
+  border-radius: 4px;
+  background-color: theme.$bright;
+  color: white;
+  margin-bottom: 25px;
+  margin-right: 15px;
+}
+
+.button:hover {
+  transform: translateY(2px); transition-duration: 100ms;
+  background-color: theme.$medium;
+}

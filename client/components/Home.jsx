@@ -1,32 +1,50 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import styles from './Home.module.scss'
+import Book from './Book'
+import { setBooks } from '../actions'
+import { getBooks } from '../apis/book'
 
-import { fetchHomeContent } from '../actions/home'
+import { IfAuthenticated } from './Authenticated'
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
-  const homeContent = useSelector((state) => state.home)
+  const books = useSelector((state) => state.books)
 
-  useEffect(() => dispatch(fetchHomeContent()), [])
+  useEffect(() => {
+    getBooks()
+      .then((books) => {
+        dispatch(setBooks(books))
+      })
+      .then(() => {
+        setIsLoading(false)
+      })
+      .catch((e) => console.log(e))
+  }, [])
 
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.heading}> Welcome to Lettuce Meat!</h1>
-      <div className={styles.text}>
-        <p>Yummy {homeContent.name}!</p>
-      </div>
-      <div>
-        <img
-          className={styles.image}
-          src={homeContent.imageUrl}
-          alt={homeContent.description}
-        />
-      </div>
-      <Link to='/play'>
-        <button className={styles.button}>Meat your match!</button>
-      </Link>
-    </div>
-  )
+  if (isLoading) {
+    return <div>Loading...</div>
+  } else {
+    return (
+      <>
+        <div className={styles.container}>
+          <p className={styles.headingSmall}>Welcome to</p>
+          <h1 className={styles.heading}> YeahBook</h1>
+          <img
+            className={styles.image}
+            src='https://thumbs.dreamstime.com/b/diverse-modern-community-people-crowd-elderly-young-man-woman-standing-together-vector-illustration-cartoon-characters-waving-221115543.jpg'
+            alt='groupimage'
+          />
+          <IfAuthenticated>
+            <div className={styles.containerRow}>
+              {books.map((book, index) => {
+                return <Book bookData={book} key={index} />
+              })}
+            </div>
+          </IfAuthenticated>
+        </div>
+      </>
+    )
+  }
 }
