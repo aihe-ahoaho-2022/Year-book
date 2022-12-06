@@ -1,4 +1,4 @@
-import { getProfilesByBookId } from '../apis/profile'
+import { getProfilesByBookId, removeProfile } from '../apis/profile'
 import { postProfile, putProfileContent } from '../apis/profileEdit'
 
 export function setProfiles(profiles) {
@@ -12,6 +12,13 @@ export function updateProfiles(profiles) {
   return {
     type: 'UPDATE_PROFILES',
     payload: profiles,
+  }
+}
+
+export function deleteProfile(profileid) {
+  return {
+    type: 'DEL_PROFILE',
+    payload: profileid,
   }
 }
 
@@ -52,6 +59,18 @@ export function updateProfile(newProfile) {
       .then((newProfilesData) => {
         dispatch(updateProfiles(newProfilesData))
         console.log(newProfilesData)
+      })
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function destroyProfile(id, token) {
+  // console.log('fetching')
+  return (dispatch) => {
+    return removeProfile(id, token)
+      .then(() => {
+        console.log('Succesful result from api')
+        dispatch(deleteProfile(id))
       })
       .catch((err) => console.error(err.message))
   }
