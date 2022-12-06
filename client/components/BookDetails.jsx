@@ -20,13 +20,7 @@ export default function BookDetails() {
 
   useEffect(() => {
     dispatch(fetchProfiles(bookId))
-  }, [])
-
-  useEffect(() => {
     dispatch(fetchBook(bookId))
-  })
-
-  useEffect(() => {
     dispatch(fetchComments(bookId))
   }, [])
 
@@ -50,11 +44,9 @@ export default function BookDetails() {
 
   const displayComments = comments?.map((comments, index) => (
     <ul key={index}>
-      <div>
-        <li>
-          {comments.ownerId} : {comments.comment}
-        </li>
-      </div>
+      <li>
+        {comments.ownerId} : {comments.comment}
+      </li>
     </ul>
   ))
 
@@ -97,21 +89,19 @@ export default function BookDetails() {
       </div>
       <div className={styles.container}>
         <div className={styles.comments}>
-          <ul>{displayComments}</ul>
+          {displayComments}
           <form onSubmit={handleSubmit}>
-            <ul>
-              <input
-                label='comment'
-                name='comment'
-                value={comment.comment}
-                onChange={handleChange}
-              ></input>
-              <br />
-              <br />
-              <IfAuthenticated>
-                <button>Post</button>
-              </IfAuthenticated>
-            </ul>
+            <input
+              label='comment'
+              name='comment'
+              value={comment.comment}
+              onChange={handleChange}
+            ></input>
+            <br />
+            <br />
+            <IfAuthenticated>
+              <button>Post</button>
+            </IfAuthenticated>
           </form>
         </div>
       </div>
