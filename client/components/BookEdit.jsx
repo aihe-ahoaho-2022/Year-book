@@ -4,8 +4,10 @@ import { submitBook, updateBook } from '../actions/book'
 import { TextInput, Button } from '@mantine/core'
 import { useDispatch } from 'react-redux'
 import { getBookById, deleteBookById } from '../apis/book'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function BookEdit(props) {
+  const { getAccessTokenSilently } = useAuth0()
   const params = useParams()
   const dispatch = useDispatch()
   const bookId = Number(params.bookid)
@@ -33,13 +35,17 @@ export default function BookEdit(props) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    if (!props.add) {
-      dispatch(updateBook(editBook))
-      navigate('/')
-    } else if (props.add) {
-      dispatch(submitBook(editBook))
-      navigate('/')
-    }
+    getAccessTokenSilently()
+      .then((token) => {
+        if (!props.add) {
+          dispatch(updateBook(editBook, token))
+          navigate('/')
+        } else if (props.add) {
+          dispatch(submitBook(editBook, token))
+          navigate('/')
+        }
+      })
+      .catch((e) => console.log(e))
   }
 
   function handleChange(event) {
@@ -49,7 +55,10 @@ export default function BookEdit(props) {
 
   function handleDelete(event) {
     event.preventDefault()
-    deleteBookById(Number(bookId))
+    getAccessTokenSilently()
+      .then((token) => {
+        deleteBookById(Number(bookId), token)
+      })
       .then(() => {
         navigate('/')
       })

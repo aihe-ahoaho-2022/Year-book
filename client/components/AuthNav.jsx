@@ -30,7 +30,7 @@ function AuthNav() {
         <Button
           variant='gradient'
           gradient={{ from: 'indigo', to: 'cyan' }}
-          size='lg'
+          size='sm'
           onClick={handleLogOff}
           className=''
         >
