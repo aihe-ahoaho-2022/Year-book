@@ -39,7 +39,8 @@ function addBook(newBook, db = connection) {
   return db('books').select().insert({
     id: newBook.id,
     name: newBook.name,
-    image: newBook.image,
+    image:
+      'https://media.istockphoto.com/id/1224449402/vector/vintage-school-yearbook-cover-vector-layered.jpg?s=612x612&w=0&k=20&c=NSjbIwYxTWDkrVpCLMLWTHyF283ZO4VbYSk_yJoHGVE=',
     auth0_id: newBook.addBook,
   })
 }
@@ -70,7 +71,7 @@ function postComment(newComment, db = connection) {
     id: newComment.id,
     book_id: newComment.bookId,
     comment: newComment.comment,
-    auth0_id: newComment.auth0Id,
+    auth0_id: newComment.ownerId,
   })
 }
 
@@ -112,7 +113,7 @@ function putProfileById(profileId, profile, db = connection) {
     .where('id', profileId)
 }
 
-// IMAGE UPLOAD
+// PROFILE IMAGE UPLOAD
 function imageUpload(profileId, imageName, db = connection) {
   return db('profiles').update('image', imageName).where('id', profileId)
 }
@@ -137,7 +138,8 @@ function addProfile(profile, db = connection) {
       id: profile.id,
       book_id: profile.bookId,
       name: profile.name,
-      image: profile.image,
+      image:
+        'https://www.pianz.org.nz/wp-content/uploads/2016/03/pekin-duck.jpg',
       auth0_id: profile.ownerId,
       quote: profile.quote,
       blurb: profile.blurb,
@@ -151,6 +153,11 @@ function addProfile(profile, db = connection) {
 
 function deleteProfile(id, db = connection) {
   return db('profiles').where({ id }).del()
+}
+
+// BOOK IMAGE UPLOAD
+function bookImageUpload(bookId, imageName, db = connection) {
+  return db('books').update('image', imageName).where('id', bookId)
 }
 
 module.exports = {
@@ -167,4 +174,5 @@ module.exports = {
   addBook,
   putBookById,
   deleteBook,
+  bookImageUpload,
 }

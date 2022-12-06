@@ -14,10 +14,9 @@ const {
 const router = express.Router()
 
 const multer = require('multer')
-// const { restart } = require('nodemon')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../db/storage'))
+    cb(null, path.join(__dirname, '../public/images'))
   },
   filename: (req, file, cb) => {
     console.log(file)
@@ -38,7 +37,7 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   if (!req.file) {
     imageUrl = '/images/bag-cat.jpg'
   } else {
-    imageUrl = '/server/db/storage/' + req.file.filename
+    imageUrl = '/images/' + req.file.filename
   }
 
   const profileId = req.params.profileid
@@ -79,7 +78,8 @@ router.patch('/:profileid/edit', (req, res) => {
   const profile = req.body
   putProfileById(profileId, profile)
     .then((pro) => {
-      res.json(pro[0])
+      console.log(pro)
+      res.json({ ...profile, id: Number(profileId) })
     })
     .catch((e) => {
       console.error(e.message)

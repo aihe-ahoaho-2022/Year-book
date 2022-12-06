@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
-
-import { getProfileById, removeProfile } from '../apis/profile'
+import { useDispatch } from 'react-redux'
+import { getProfileById } from '../apis/profile'
+import { destroyProfile } from '../actions/profile'
 import styles from './ProfileDetails.module.scss'
 
 export default function ProfileDetails() {
@@ -11,7 +12,7 @@ export default function ProfileDetails() {
   const { profileid } = useParams()
   const [profile, setProfile] = useState('')
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   useEffect(() => {
     getProfileById(profileid)
       .then((res) => {
@@ -35,7 +36,7 @@ export default function ProfileDetails() {
     e.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        removeProfile(Number(profileid), token)
+        dispatch(destroyProfile(Number(profileid), token))
       })
       .then(() => {
         navigate(`/${profile.bookId}`)
@@ -51,7 +52,7 @@ export default function ProfileDetails() {
         <img
           className={styles.image}
           src={profile.image}
-          // src={`../db/images/${profile.image}`}
+          // src={`../public/images/${profile.image}`}
           alt='User profile'
         />
         <section className={styles.textbox}>
@@ -80,6 +81,9 @@ export default function ProfileDetails() {
       </div>
       <IfAuthenticated>
         <div className={styles.buttonwrap}>
+          <Link to={`/profiles/${profileid}/imageupload`}>
+            <button className={styles.button}>Change Image</button>
+          </Link>
           <Link to={`/profiles/${profileid}/edit`}>
             <button className={styles.button}>Edit</button>
           </Link>

@@ -21,7 +21,6 @@ export function updateComments(comments) {
   }
 }
 
-//thunks for Comments
 export function fetchComments(id) {
   return (dispatch) => {
     return getCommentsByBookId(id)
@@ -35,8 +34,8 @@ export function fetchComments(id) {
 export function submitComments(newComment, token) {
   return (dispatch) => {
     return postComment(newComment, token)
-      .then((commentData) => {
-        dispatch(addComments(commentData))
+      .then((newindex) => {
+        dispatch(addComments({ ...newComment, id: newindex[0] }))
       })
       .catch((err) => console.error(err.message))
   }

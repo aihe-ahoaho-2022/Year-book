@@ -1,5 +1,5 @@
-import { getProfilesByBookId } from '../apis/profile'
-import { postProfile } from '../apis/profileEdit'
+import { getProfilesByBookId, removeProfile } from '../apis/profile'
+import { postProfile, putProfileContent } from '../apis/profileEdit'
 
 export function setProfiles(profiles) {
   return {
@@ -12,6 +12,13 @@ export function updateProfiles(profiles) {
   return {
     type: 'UPDATE_PROFILES',
     payload: profiles,
+  }
+}
+
+export function deleteProfile(profileid) {
+  return {
+    type: 'DEL_PROFILE',
+    payload: profileid,
   }
 }
 
@@ -28,7 +35,7 @@ export function fetchProfiles(id) {
   return (dispatch) => {
     return getProfilesByBookId(id)
       .then((profiles) => {
-        console.log('Succesful result from api');
+        console.log('Succesful result from api')
         dispatch(setProfiles(profiles))
       })
       .catch((err) => console.error(err.message))
@@ -41,6 +48,29 @@ export function submitProfile(newProfile) {
     return postProfile(newProfile)
       .then((newProfilesData) => {
         dispatch(addProfile(newProfilesData))
+      })
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function updateProfile(newProfile) {
+  return (dispatch) => {
+    return putProfileContent(newProfile)
+      .then((newProfilesData) => {
+        dispatch(updateProfiles(newProfilesData))
+        console.log(newProfilesData)
+      })
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function destroyProfile(id, token) {
+  // console.log('fetching')
+  return (dispatch) => {
+    return removeProfile(id, token)
+      .then(() => {
+        console.log('Succesful result from api')
+        dispatch(deleteProfile(id))
       })
       .catch((err) => console.error(err.message))
   }
