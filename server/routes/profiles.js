@@ -17,7 +17,7 @@ const multer = require('multer')
 // const { restart } = require('nodemon')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../db/storage'))
+    cb(null, path.join(__dirname, '../public/images'))
   },
   filename: (req, file, cb) => {
     console.log(file)
@@ -38,7 +38,7 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   if (!req.file) {
     imageUrl = '/images/bag-cat.jpg'
   } else {
-    imageUrl = '/server/db/storage/' + req.file.filename
+    imageUrl = 'images/' + req.file.filename
   }
 
   const profileId = req.params.profileid
