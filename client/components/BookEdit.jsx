@@ -95,7 +95,12 @@ export default function BookEdit(props) {
             {props.add ? 'Add' : 'Update'}
           </button>
         </form>
-        <div onClick={confirmDelete}>
+        <div
+          role='button'
+          onKeyPress={confirmDelete}
+          onClick={confirmDelete}
+          tabIndex={0}
+        >
           <button
             variant='gradient'
             gradient={{ from: 'indigo', to: 'cyan' }}
