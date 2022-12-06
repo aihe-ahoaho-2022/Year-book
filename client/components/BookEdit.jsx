@@ -16,6 +16,7 @@ export default function BookEdit(props) {
     name: '',
     theme: '',
   })
+  console.log(editBook)
 
   useEffect(async () => {
     if (!props.add) {

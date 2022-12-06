@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import BookEdit from '../BookEdit'
 import { getBookById, deleteBookById } from '../../apis/book'
 import { Provider } from 'react-redux'
+import store from "../../store"
 
 const MockData = [
   {
@@ -29,7 +30,7 @@ describe('<BookEdit />', () => {
   })
   it('check button shown', () => {
     render(
-      <Provider store={fakeStore}>
+      <Provider store={store}>
         <Router>
           <BookEdit />
         </Router>
@@ -44,17 +45,17 @@ describe('<BookEdit />', () => {
 
   it('loads book from api on load', () => {
     getBookById.mockReturnValue(
-      Promise.resolve([
+      Promise.resolve(
         {
           id: 1,
           name: 'banana',
         },
-      ])
+      )
     )
     render(
-      <Provider store={fakeStore}>
+      <Provider store={store}>
         <Router>
-          <BookEdit />
+          <BookEdit add={false} />
         </Router>
       </Provider>
     )
