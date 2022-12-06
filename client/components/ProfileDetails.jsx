@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import { getProfileById, removeProfile } from '../apis/profile'
 import styles from './ProfileDetails.module.scss'
 
 export default function ProfileDetails() {
+  const { getAccessTokenSilently } = useAuth0()
   const { profileid } = useParams()
   const [profile, setProfile] = useState('')
   const navigate = useNavigate()
@@ -31,7 +33,10 @@ export default function ProfileDetails() {
 
   function handleDelete(e) {
     e.preventDefault()
-    removeProfile(Number(profileid))
+    getAccessTokenSilently()
+      .then((token) => {
+        removeProfile(Number(profileid), token)
+      })
       .then(() => {
         navigate(`/${profile.bookId}`)
       })

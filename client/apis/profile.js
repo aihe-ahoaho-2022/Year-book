@@ -28,6 +28,9 @@ export function postProfile(profileData) {
     })
 }
 
-export function removeProfile(id) {
-  return request.del(`${rootUrl}/profiles/${id}`)
+export function removeProfile(id, token) {
+  return request
+    .del(`${rootUrl}/profiles/${id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .catch((e) => console.log(e))
 }
