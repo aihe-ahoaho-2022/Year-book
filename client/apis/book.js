@@ -16,14 +16,20 @@ export function getBookById(id) {
   })
 }
 // DELETE /api/v1/books/:bookid
-export function deleteBookById(id) {
-  return request.del(rootUrl + '/books/' + id + '/delete')
+export function deleteBookById(id, token) {
+  return request
+    .del(rootUrl + '/books/' + id + '/delete')
+    .set('Authorization', `Bearer ${token}`)
+    .then((res) => {
+      return res.body
+    })
 }
 
 // PATCH /api/v1/books/:bookid/edit
-export function editBook(book) {
+export function editBook(book, token) {
   return request
     .patch(rootUrl + '/books/' + book.id + '/edit')
+    .set('Authorization', `Bearer ${token}`)
     .send(book)
     .then((res) => {
       return res.body
@@ -31,11 +37,20 @@ export function editBook(book) {
 }
 
 // POST /api/v1/books/add
-export function postBook(bookData) {
+export function postBook(bookData, token) {
   return request
     .post(rootUrl + '/books/add/')
+    .set('Authorization', `Bearer ${token}`)
     .send(bookData)
     .then((res) => {
       return res.body
     })
+}
+
+// POST Upload a book image file
+export function uploadBookFile(book, formData) {
+  return request
+    .post(rootUrl + '/books/' + book.id + '/imageupload')
+    .send(formData)
+    .then((res) => res.body)
 }

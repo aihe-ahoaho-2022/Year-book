@@ -32,11 +32,11 @@ export function fetchComments(id) {
   }
 }
 
-export function submitComments(newComment) {
+export function submitComments(newComment, token) {
   return (dispatch) => {
-    return postComment(newComment)
-      .then((commentData) => {
-        dispatch(addComments(commentData))
+    return postComment(newComment, token)
+      .then((newindex) => {
+        dispatch(addComments({ ...newComment, id: newindex[0] }))
       })
       .catch((err) => console.error(err.message))
   }

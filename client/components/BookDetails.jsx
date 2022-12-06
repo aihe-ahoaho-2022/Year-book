@@ -6,25 +6,25 @@ import { IfAuthenticated } from './Authenticated'
 import { fetchProfiles } from '../actions/profile'
 import { fetchBook } from '../actions/book'
 import { fetchComments, submitComments } from '../actions/comment'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function BookDetails() {
+  const { getAccessTokenSilently, user } = useAuth0()
   const params = useParams()
   const bookId = Number(params.bookid)
   const dispatch = useDispatch()
   const profiles = useSelector((state) => state.profiles)
   const comments = useSelector((state) => state.comments)
   const bookData = useSelector((state) => state.books)
-  const [comment, setComment] = useState({ comment: '', bookId: bookId })
-
-  useEffect(() => {
-    dispatch(fetchProfiles(bookId))
-  }, [])
-
-  useEffect(() => {
-    dispatch(fetchBook(bookId))
+  const [comment, setComment] = useState({
+    comment: '',
+    bookId: bookId,
+    ownerId: '',
   })
 
   useEffect(() => {
+    dispatch(fetchProfiles(bookId))
+    dispatch(fetchBook(bookId))
     dispatch(fetchComments(bookId))
   }, [])
 
@@ -46,13 +46,11 @@ export default function BookDetails() {
     </div>
   ))
 
-  const displayComments = comments?.map((index) => (
+  const displayComments = comments?.map((comments, index) => (
     <ul key={index}>
-      <div>
-        <li>
-          {comments.ownerId} : {comments.comment}
-        </li>
-      </div>
+      <li>
+        {comments.ownerId} : {comments.comment}
+      </li>
     </ul>
   ))
 
@@ -62,9 +60,12 @@ export default function BookDetails() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    dispatch(submitComments(comment))
-    dispatch(fetchComments(bookId))
-    setComment({ comment: '', bookId: bookId })
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(submitComments(comment, token))
+      })
+      .catch((e) => console.log(e))
+    setComment({ comment: '', bookId: bookId, ownerId: user.nickname })
   }
 
   return (
@@ -89,21 +90,19 @@ export default function BookDetails() {
       </div>
       <div className={styles.container}>
         <div className={styles.comments}>
-          <ul>{displayComments}</ul>
+          {displayComments}
           <form onSubmit={handleSubmit}>
-            <ul>
-              <input
-                label='comment'
-                name='comment'
-                value={comment.comment}
-                onChange={handleChange}
-              ></input>
-              <br />
-              <br />
-              <IfAuthenticated>
-                <button>Post</button>
-              </IfAuthenticated>
-            </ul>
+            <input
+              label='comment'
+              name='comment'
+              value={comment.comment}
+              onChange={handleChange}
+            ></input>
+            <br />
+            <br />
+            <IfAuthenticated>
+              <button>Post</button>
+            </IfAuthenticated>
           </form>
         </div>
       </div>

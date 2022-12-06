@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-// Upload an image file
+// Upload a profile image file
 export function uploadFile(profileId, formData) {
   return request
     .post('/api/v1/profiles/' + profileId + '/imageupload')

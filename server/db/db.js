@@ -70,7 +70,7 @@ function postComment(newComment, db = connection) {
     id: newComment.id,
     book_id: newComment.bookId,
     comment: newComment.comment,
-    auth0_id: newComment.auth0Id,
+    auth0_id: newComment.ownerId,
   })
 }
 
@@ -112,7 +112,7 @@ function putProfileById(profileId, profile, db = connection) {
     .where('id', profileId)
 }
 
-// IMAGE UPLOAD
+// PROFILE IMAGE UPLOAD
 function imageUpload(profileId, imageName, db = connection) {
   return db('profiles').update('image', imageName).where('id', profileId)
 }
@@ -153,6 +153,11 @@ function deleteProfile(id, db = connection) {
   return db('profiles').where({ id }).del()
 }
 
+// BOOK IMAGE UPLOAD
+function bookImageUpload(bookId, imageName, db = connection) {
+  return db('books').update('image', imageName).where('id', bookId)
+}
+
 module.exports = {
   getProfilesByBookId,
   getBooks,
@@ -167,4 +172,5 @@ module.exports = {
   addBook,
   putBookById,
   deleteBook,
+  bookImageUpload,
 }

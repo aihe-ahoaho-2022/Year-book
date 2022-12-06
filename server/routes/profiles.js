@@ -14,10 +14,9 @@ const {
 const router = express.Router()
 
 const multer = require('multer')
-// const { restart } = require('nodemon')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../db/storage'))
+    cb(null, path.join(__dirname, '../public/images'))
   },
   filename: (req, file, cb) => {
     console.log(file)
@@ -28,37 +27,32 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // GET /api/v1/profiles/:profileid/edit
-router.get('/:profileid/edit', checkJwt, (req, res) => {
+router.get('/:profileid/edit', (req, res) => {
   res.render('upload')
 })
 
 // POST /api/v1/profiles/:profileid/imageupload
-router.post(
-  '/:profileid/imageupload',
-  upload.single('image'),
-  checkJwt,
-  (req, res) => {
-    let imageUrl = null
-    if (!req.file) {
-      imageUrl = '/images/bag-cat.jpg'
-    } else {
-      imageUrl = '/server/db/storage/' + req.file.filename
-    }
-
-    const profileId = req.params.profileid
-    imageUpload(profileId, imageUrl)
-      .then(() => {
-        console.log(req.body)
-        res.send('image uploaded')
-      })
-      .catch((err) => {
-        console.error(err.message)
-        res.status(500).json({
-          message: 'Something went wrong',
-        })
-      })
+router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
+  let imageUrl = null
+  if (!req.file) {
+    imageUrl = '/images/bag-cat.jpg'
+  } else {
+    imageUrl = '/images/' + req.file.filename
   }
-)
+
+  const profileId = req.params.profileid
+  imageUpload(profileId, imageUrl)
+    .then(() => {
+      console.log(req.body)
+      res.send('image uploaded')
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).json({
+        message: 'Something went wrong',
+      })
+    })
+})
 
 // GET /api/v1/profiles/book/:bookid
 router.get('/book/:bookid', (req, res) => {
@@ -79,12 +73,13 @@ router.get('/:profileid', (req, res) => {
 })
 
 // PUT /api/v1/profiles/:profileid/edit
-router.patch('/:profileid/edit', checkJwt, (req, res) => {
+router.patch('/:profileid/edit', (req, res) => {
   const profileId = req.params.profileid
   const profile = req.body
   putProfileById(profileId, profile)
     .then((pro) => {
-      res.json(pro[0])
+      console.log(pro)
+      res.json({ ...profile, id: Number(profileId) })
     })
     .catch((e) => {
       console.error(e.message)
@@ -92,7 +87,7 @@ router.patch('/:profileid/edit', checkJwt, (req, res) => {
     })
 })
 
-router.post('/add', checkJwt, (req, res) => {
+router.post('/add', (req, res) => {
   console.log('hit route')
   const profile = req.body
   console.log(profile)

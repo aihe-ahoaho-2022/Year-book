@@ -41,7 +41,10 @@ export default function App() {
             element={<ProtectedRoute component={BookEdit} />}
           />
           <Route path='/books/add' element={<BookEdit add={true} />} />
-          <Route path='/:bookid/add' element={<ProfileEdit add={true} />} />
+          <Route
+            path='/:bookid/add'
+            element={<ProtectedRoute component={ProfileEdit} />}
+          />
 
           <Route path='/profiles/:profileid' element={<ProfileDetails />} />
           <Route

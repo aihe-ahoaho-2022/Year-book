@@ -1,15 +1,48 @@
 @use '../styles/theme';
 
 .navbar {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 8px; padding: 26px 40px 30px 50px; background-color: theme.$black; color: theme.$white;
-  font-size: 1.1rem; font-weight: bolder; white-space: nowrap;  
+  display: flex; 
+  justify-content: space-between; 
+  align-items: stretch;
+  gap: 8px; 
+  // padding: 26px 40px 30px 50px; 
+  padding: 20px 10px 10px 20px; 
+  background-color: theme.$black; 
+  color: theme.$white;
+  font-size: 1.1rem; 
+  font-weight: bolder; 
+  white-space: nowrap;  
 }
 
-.title { font-size: 2rem; color: theme.$medium  }
+.title { font-size: 2rem; color: theme.$medium;
+float: left;}
 
 .links {
-  display: flex; justify-content: space-around;  gap: 48px;
-  margin-left: 48px; color: theme.$medium; text-decoration: none;
+  display: flex; 
+  justify-content: space-around;  
+  gap: 48px;
+  margin-right: 0px; 
+  color: theme.$medium; text-decoration: none;
+  float: inline-end;
+  text-align: right;
 }
 
+a:link{
+  display: flex; 
+  justify-content: space-around;  
+  gap: 48px;
+  margin-right: 0px; 
+  color: #F1355B; 
+  text-decoration: none;
+  float: inline-end;
+}
+
+a:visited{
+  display: flex; 
+  justify-content: space-around;  
+  gap: 48px;
+  margin-left: 0px; 
+  color: #F1355B; 
+  text-decoration: none;
+  float: inline-end;
+}

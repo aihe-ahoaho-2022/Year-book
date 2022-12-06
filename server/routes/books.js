@@ -1,4 +1,6 @@
 const express = require('express')
+const path = require('path')
+const checkJwt = require('../auth0.js')
 
 const {
   getBooks,
@@ -6,9 +8,23 @@ const {
   putBookById,
   deleteBook,
   getBookById,
+  imageUpload,
 } = require('../db/db')
 
 const router = express.Router()
+
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../public/images'))
+  },
+  filename: (req, file, cb) => {
+    console.log(file)
+    cb(null, Date.now() + '-' + file.originalname)
+  },
+})
+
+const upload = multer({ storage: storage })
 
 // GET /api/v1/books
 router.get('/', (req, res) => {
@@ -28,7 +44,7 @@ router.get('/:bookid', (req, res) => {
 })
 
 // POST /api/v1/books/add
-router.post('/add', (req, res) => {
+router.post('/add', checkJwt, (req, res) => {
   const newBook = req.body
   addBook(newBook)
     .then((newBookData) => res.json(newBookData))
@@ -39,7 +55,7 @@ router.post('/add', (req, res) => {
 })
 
 // PATCH /api/v1/books/:bookid/edit
-router.patch('/:bookid/edit', (req, res) => {
+router.patch('/:bookid/edit', checkJwt, (req, res) => {
   const bookId = req.params.bookid
   const book = req.body
   putBookById(bookId, book)
@@ -54,12 +70,35 @@ router.patch('/:bookid/edit', (req, res) => {
 })
 
 // DELETE /api/v1/books/:bookid/delete/
-router.delete('/:bookid/delete', (req, res) => {
+router.delete('/:bookid/delete', checkJwt, (req, res) => {
   deleteBook(req.params.bookid)
     .then((result) => res.json(result))
     .catch((e) => {
       console.error(e.message)
       res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
+// POST /api/v1/books/:bookid/imageupload
+router.post('/:bookid/imageupload', upload.single('image'), (req, res) => {
+  let imageUrl = null
+  if (!req.file) {
+    imageUrl = '/images/bag-cat.jpg'
+  } else {
+    imageUrl = '/images/' + req.file.filename
+  }
+
+  const profileId = req.params.profileid
+  imageUpload(profileId, imageUrl)
+    .then(() => {
+      console.log(req.body)
+      res.send('image uploaded')
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).json({
+        message: 'Something went wrong',
+      })
     })
 })
 

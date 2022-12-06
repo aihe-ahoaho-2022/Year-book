@@ -135,7 +135,6 @@ opacity: 0.3;
     position: relative;
     
     &::before {
-        content: '';
         border: 2px solid white;
         display: block;
         width: 80%;
@@ -180,7 +179,6 @@ text-align: center;
   word-wrap: break-word; 
 }
 .card .text::before{
-content:'';
 position: absolute;
 left:50%;
 inset: 0;
