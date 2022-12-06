@@ -38,7 +38,8 @@ npm run test:coverage
 
 This project uses a sass loader and scss modules for styling
 
-check out the MUI doc for our styling 
+check out the Matine doc for our styling
+(Matine) ? :) : :( 
 
 [MUI!](https://mui.com/)
 <br>
