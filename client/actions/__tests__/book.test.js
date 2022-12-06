@@ -88,26 +88,26 @@ describe('updateBook', () => {
   })
 })
 
-describe('deleteBook', () => {
-  it('dispatches the DELETE_BOOKS action.', () => {
-    deleteBookById.mockReturnValue(Promise.resolve(homeContentMockData))
-    return deleteBooks()(fakeDispatch).then(() => {
-      expect(fakeDispatch).toHaveBeenCalledWith({
-        type: 'DELETE_BOOKS',
-        payload: homeContentMockData,
-      })
-    })
-  })
-  it('should console.error() if api request fails.', () => {
-    expect.assertions(2)
-    jest.spyOn(console, 'error')
-    console.error.mockImplementation(() => {})
-    deleteBookById.mockImplementation(() =>
-      Promise.reject(new Error('Something went wrong'))
-    )
-    return deleteBooks()(fakeDispatch).finally(() => {
-      expect(fakeDispatch).toHaveBeenCalledTimes(0)
-      expect(console.error).toHaveBeenCalledWith('Something went wrong')
-    })
-  })
-})
+// describe('deleteBook', () => {
+//   it('dispatches the DELETE_BOOKS action.', () => {
+//     deleteBookById.mockReturnValue(Promise.resolve(homeContentMockData))
+//     return deleteBooks()(fakeDispatch).then(() => {
+//       expect(fakeDispatch).toHaveBeenCalledWith({
+//         type: 'DELETE_BOOKS',
+//         payload: homeContentMockData,
+//       })
+//     })
+//   })
+//   it('should console.error() if api request fails.', () => {
+//     expect.assertions(2)
+//     jest.spyOn(console, 'error')
+//     console.error.mockImplementation(() => {})
+//     deleteBookById.mockImplementation(() =>
+//       Promise.reject(new Error('Something went wrong'))
+//     )
+//     return deleteBooks()(fakeDispatch).finally(() => {
+//       expect(fakeDispatch).toHaveBeenCalledTimes(0)
+//       expect(console.error).toHaveBeenCalledWith('Something went wrong')
+//     })
+//   })
+// })
