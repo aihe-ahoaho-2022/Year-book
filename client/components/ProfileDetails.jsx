@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
-
+import { useDispatch } from 'react-redux'
 import { getProfileById, removeProfile } from '../apis/profile'
+import { destroyProfile } from '../actions/profile'
 import styles from './ProfileDetails.module.scss'
 
 export default function ProfileDetails() {
@@ -11,7 +12,7 @@ export default function ProfileDetails() {
   const { profileid } = useParams()
   const [profile, setProfile] = useState('')
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   useEffect(() => {
     getProfileById(profileid)
       .then((res) => {
@@ -35,7 +36,7 @@ export default function ProfileDetails() {
     e.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        removeProfile(Number(profileid), token)
+        dispatch(destroyProfile(Number(profileid), token))
       })
       .then(() => {
         navigate(`/${profile.bookId}`)
