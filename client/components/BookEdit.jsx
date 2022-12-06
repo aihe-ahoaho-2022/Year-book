@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { submitBook, updateBook } from '../actions/book'
 import { TextInput } from '@mantine/core'
 import { useDispatch } from 'react-redux'
@@ -86,14 +86,7 @@ export default function BookEdit(props) {
               onChange={handleChange}
             ></TextInput>
           </ul>
-          <button
-            variant='gradient'
-            gradient={{ from: 'indigo', to: 'cyan' }}
-            size='lg'
-            type='submit'
-          >
-            {props.add ? 'Add' : 'Update'}
-          </button>
+          <button type='submit'>{props.add ? 'Add' : 'Update'}</button>
         </form>
         <div onClick={confirmDelete}>
           <button
@@ -105,6 +98,11 @@ export default function BookEdit(props) {
             Delete This Book
           </button>
         </div>
+        {props.add ? null : (
+          <Link to={`/${bookId}/imageupload`}>
+            <button type='submit'>Change Book Cover</button>
+          </Link>
+        )}
       </div>
     </>
   )
