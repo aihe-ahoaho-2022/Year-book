@@ -46,3 +46,11 @@ export function postBook(bookData, token) {
       return res.body
     })
 }
+
+// POST Upload a book image file
+export function uploadBookFile(book, formData) {
+  return request
+    .post(rootUrl + '/books/' + book.id + '/imageupload')
+    .send(formData)
+    .then((res) => res.body)
+}
