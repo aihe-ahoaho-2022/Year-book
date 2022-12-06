@@ -12,3 +12,32 @@ p { margin: 0px; }
 
 a { text-decoration: none; color: theme.$text-black; cursor: pointer; }
 
+button {
+  width: 110px;
+  height: 35px;
+  font-size: 0.95em;
+  border: 0;
+  border-radius: 4px;
+  background-color: theme.$bright;
+  color: white;
+  margin-bottom: 25px;
+  margin-right: 15px;
+}
+
+button:hover {
+  transform: translateY(2px); transition-duration: 100ms;
+  background-color: theme.$medium;
+}
+
+button{
+  // display: block;
+  width: 110px;
+  height: 35px;
+  font-size: 0.95em;
+  border: 0;
+  border-radius: 4px;
+  background-color: theme.$bright;
+  color: white;
+  margin-bottom: 25px;
+  margin-right: 15px;
+}
