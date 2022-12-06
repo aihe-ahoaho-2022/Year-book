@@ -71,7 +71,7 @@ export default function BookEdit(props) {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <p>{props.add ? 'Add New Book' : 'Update Book'}</p>
+          <h2>{props.add ? 'Add New Book' : 'Update Book'}</h2>
           <ul>
             <TextInput
               label='name'
@@ -88,21 +88,16 @@ export default function BookEdit(props) {
           </ul>
           <button type='submit'>{props.add ? 'Add' : 'Update'}</button>
         </form>
-        <div
-          role='button'
-          onKeyPress={confirmDelete}
-          onClick={confirmDelete}
-          tabIndex={0}
-        >
-          <button
-            variant='gradient'
-            gradient={{ from: 'indigo', to: 'cyan' }}
-            size='lg'
-            type='submit'
+        {props.add ? null : (
+          <div
+            role='button'
+            onKeyPress={confirmDelete}
+            onClick={confirmDelete}
+            tabIndex={0}
           >
-            Delete This Book
-          </button>
-        </div>
+            <button type='submit'>Delete This Book</button>
+          </div>
+        )}
         {props.add ? null : (
           <Link to={`/${bookId}/imageupload`}>
             <button type='submit'>Change Book Cover</button>
