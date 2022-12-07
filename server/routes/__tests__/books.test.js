@@ -43,19 +43,3 @@ describe('get /api/v1/books/1', () => {
       })
   })
 })
-
-describe('POST /api/v1/comments/', () => {
-  beforeEach(() => {
-    jest.resetAllMocks()
-  })
-  it('should return status 200 and an updated table when successful', () => {
-    // expect.assertions(1)
-    postComment.mockImplementation(() => Promise.resolve(postData))
-    return request(server)
-      .post('/api/v1/comments/1/add')
-      .send(postData)
-      .then((res) => {
-        expect(res.status).toBe(200)
-      })
-  })
-})
