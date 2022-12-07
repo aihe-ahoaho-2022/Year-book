@@ -10,7 +10,6 @@
   width: 100%;
   align-content:space-between;
   justify-content:center; 
-  // background-color: #ecd3b2;
   border-radius: 10px;
   @media only screen and (max-width: 1024px) { max-width: 75vw; flex-direction: column;  } 
 }
@@ -20,6 +19,7 @@
   // width: calc(var(--card-width)); height: calc(var(--card-height));
   position: relative;
   background: white;
+  width: 100%;
   border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
   color: white;
   box-shadow: 0.3rem 0.3rem rgba(0,0,0,.15);
@@ -61,7 +61,8 @@
   align-items: center;
   align-content: center;
   flex-direction: column;
-  @media only screen and (min-width: 700px) {  flex-direction: row; 
+  @media only screen and (min-width: 700px) { 
+     flex-direction: row; 
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -79,6 +80,7 @@
   align-items: center;
   justify-content: center;
   margin:1rem 0;
+  display: block;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.5);
   @media only screen and (min-width: 700px) {  margin:0rem;
 }}
@@ -87,7 +89,7 @@
     0 24px 46px var(--box-shadow-color);}
 .card img{ 
   width:100%;
-  height: 15rem;
+  height: 13rem;
   align-items: center;
   transition-duration: 200ms;
   object-fit: cover;
@@ -104,7 +106,7 @@ opacity: 0.3;
     filter: none;
 }
 .card h3{
-  margin:1.5rem 0;
+  margin:0.9rem 0;
   color:theme.$text-purple;
   font-size: 1rem;
 }
@@ -127,8 +129,8 @@ opacity: 0.3;
     color:white;
     text-align: left;
     border-radius:1rem;
-    letter-spacing: 0.3ch;
-    background-color: theme.$bright;
+    letter-spacing: 0.1ch;
+    background-color: theme.$medium;
     position: relative;
 }
 
@@ -177,7 +179,6 @@ transition-delay:0.6s;
 
 .card .text p{
   font-weight: 600;
-text-transform: uppercase;
 transform: translate(30% 0%);
 transition-delay: 0.3s;
 opacity: 0;
@@ -200,14 +201,14 @@ p{
   color:theme.$text-purple
 }
 
-// button{
-//   box-shadow:inset 0px -3px 7px 0px theme.$text-bright;
-// 	background:theme.$devcolor;
-// 	background-color:theme.$devcolor;
-// 	border-radius:37px;
-// 	display:inline-block;
-// 	color:#ffffff;
-// 	font-size:15px;
-// 	padding:7px 28px;
-// 	text-decoration:none;
-// 	text-shadow:0px 1px 0px #263666;}
+.button{
+  box-shadow:inset 0px -3px 7px 0px theme.$text-bright;
+	background:theme.$devcolor;
+
+	border-radius:37px;
+	display:inline-block;
+	color:#ffffff;
+	font-size:15px;
+	padding:7px 28px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;}
