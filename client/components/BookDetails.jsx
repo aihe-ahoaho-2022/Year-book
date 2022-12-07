@@ -36,14 +36,9 @@ export default function BookDetails() {
             src={profile.image}
             alt={`${profile.name}`}
           ></img>
-          <h3 className={styles.name}>Name:{profile.name}</h3>
+          <h3 className={styles.name}>{profile.name}</h3>
           <div className={styles.text}>
-            <p>
-              Quote:
-              <br />
-              {profile.quote}
-              Click to edit!
-            </p>
+            <p>{profile.quote}</p>
           </div>
         </div>
       </Link>
