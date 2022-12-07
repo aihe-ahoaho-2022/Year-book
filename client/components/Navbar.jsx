@@ -13,7 +13,7 @@ export default function Navbar() {
       <Link to='/'>
         <span className={styles.logo}>YeahBook</span>
       </Link>
-      <nav className={styles.links}>
+      <div className={styles.links}>
         <DesktopLink to='/'>Home</DesktopLink>
 
         {/* Only render extra options if signed in */}
@@ -21,9 +21,7 @@ export default function Navbar() {
         <IfAuthenticated>
           <a href='/#books'>My Books</a>
         </IfAuthenticated>
-      </nav>
 
-      <div className={styles.links}>
         {/* Render add sighting button & sign out if signed in */}
         <AuthNav />
       </div>
