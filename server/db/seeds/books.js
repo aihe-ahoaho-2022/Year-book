@@ -16,17 +16,15 @@ exports.seed = async function (knex) {
     },
     {
       id: 3,
-      name: 'Dog Agility Class 22',
-      image:
-        'https://media.istockphoto.com/id/1224449402/vector/vintage-school-yearbook-cover-vector-layered.jpg?s=612x612&w=0&k=20&c=NSjbIwYxTWDkrVpCLMLWTHyF283ZO4VbYSk_yJoHGVE=',
+      name: 'Adventure Academy 2020',
+      image: '/images/adventure-book.png',
       theme: 'green',
       auth0_id: 'authtestid3',
     },
     {
       id: 4,
-      name: 'Dogwarts Academy',
-      image:
-        'https://media.istockphoto.com/id/1224449402/vector/vintage-school-yearbook-cover-vector-layered.jpg?s=612x612&w=0&k=20&c=NSjbIwYxTWDkrVpCLMLWTHyF283ZO4VbYSk_yJoHGVE=',
+      name: 'Dogwarts University 2021',
+      image: '/images/dog-warts-book.png',
       theme: 'purple',
       auth0_id: 'authtestid4',
     },
