@@ -42,7 +42,6 @@ export default function BookDetails() {
               Quote:
               <br />
               {profile.quote}
-              <hr />
               Click to edit!
             </p>
           </div>
