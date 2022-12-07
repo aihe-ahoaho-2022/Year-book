@@ -17,7 +17,7 @@ export default function BookImageUpload() {
     const formData = new FormData()
     formData.append('bookImage', bookImage)
     uploadBookFile(bookid, formData)
-      .then(() => navigate(`/`))
+      .then(() => navigate(`/${bookid}/edit`))
       .catch((err) => {
         console.log(err.message)
       })
