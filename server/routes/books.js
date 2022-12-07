@@ -16,7 +16,7 @@ const router = express.Router()
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../public/images'))
+    cb(null, path.join(__dirname, '../../storage/images'))
   },
   filename: (req, file, cb) => {
     console.log(file)
@@ -50,7 +50,7 @@ router.post('/:bookid/imageupload', upload.single('bookImage'), (req, res) => {
   if (!req.file) {
     imageUrl = '/images/bag-cat.jpg'
   } else {
-    imageUrl = '/images/' + req.file.filename
+    imageUrl = '/user_uploads/' + req.file.filename
   }
 
   const bookId = req.params.bookid

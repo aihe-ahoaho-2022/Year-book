@@ -1,10 +1,23 @@
+/* eslint-disable jest/no-commented-out-tests */
+
 const request = require('supertest')
 const server = require('../../server')
 
 const { getProfileById } = require('../../db/db.js')
 
+
+
 jest.spyOn(console, 'error')
 jest.mock('../../db/db.js')
+const fakeSingle = (req,res,next)=>{
+  req.file = { path:"nothing" }
+  next()
+}
+jest.mock('../multer', ()=>({
+
+  upload:{single:jest.fn().mockReturnValue(fakeSingle)}
+
+}))
 
 afterEach(() => {
   console.error.mockReset()
@@ -27,13 +40,31 @@ const getProfileByIdData = {
 
 describe('get /api/v1/profiles/1', () => {
   it('should return status 200 and a joint table when successful', () => {
-    expect.assertions(2)
-    getProfileById.mockReturnValue(Promise.resolve(getProfileByIdData))
+    expect.assertions(3)
+    getProfileById.mockReturnValue(Promise.resolve([getProfileByIdData]))
     return request(server)
       .get('/api/v1/profiles/1')
       .then((res) => {
         expect(res.status).toBe(200)
-        expect(getProfileByIdData.id).toBe(1)
+        expect(res.body.id).toBe(1)
+        expect(res.body.blurb).toContain("Gerard")
+        
       })
   })
 })
+// describe('post /:profileid/imageupload', () => {
+//   it('should return status 200 and a joint table when successful', () => {
+//     expect.assertions(2)
+//     getProfileById.mockReturnValue(Promise.resolve([getProfileByIdData]))
+//     return request(server)
+//       .get('/api/v1/profiles/1/imageupload')
+//       .send({})
+//       .then((res) => {
+//         expect(res.status).toBe(200)
+//         expect(res.body).toBe('image uploaded')
+//       })
+//   })
+// })
+
+
+

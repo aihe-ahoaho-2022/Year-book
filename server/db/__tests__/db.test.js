@@ -18,7 +18,7 @@ describe('getProfilesByBookId', () => {
   test('get profile from db by id', () => {
     const id = 3
     return getProfilesByBookId(id, testDb).then((profile) => {
-      expect(profile).toHaveLength(1)
+      expect(profile).toHaveLength(2)
       expect(profile[0].name).toContain('Ysabel')
     })
   })
@@ -67,7 +67,7 @@ describe('deleteProfile', () => {
         return getProfilesByBookId(bookId, testDb)
       })
       .then((profiles) => {
-        expect(profiles).toHaveLength(0)
+        expect(profiles).toHaveLength(2)
       })
   })
 })
