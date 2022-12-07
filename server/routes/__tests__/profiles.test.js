@@ -1,7 +1,7 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getProfileById } = require('../../db/db.js')
+const { getProfileById, getProfilesByBookId } = require('../../db/db.js')
 
 jest.spyOn(console, 'error')
 jest.mock('../../db/db.js')
@@ -34,6 +34,16 @@ describe('get /api/v1/profiles/1', () => {
       .then((res) => {
         expect(res.status).toBe(200)
         expect(getProfileByIdData.id).toBe(1)
+      })
+  })
+  it('should return status 200 and profiles by bookID when successful', () => {
+    expect.assertions(2)
+    getProfilesByBookId.mockReturnValue(Promise.resolve(getProfileByIdData))
+    return request(server)
+      .get('/api/v1/profiles/book/1')
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(getProfileByIdData.name).toBe('Gerard')
       })
   })
 })
