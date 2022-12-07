@@ -78,7 +78,7 @@ export default function BookDetails() {
             <div className={styles.card}>
               <img
                 className={styles.image}
-                src='https://blush.design/api/download?shareUri=XQMeVJiJO&w=800&h=800&fm=png'
+                src='../../images/Portrait-Placeholder.jpg'
                 alt='Add New'
               ></img>
               <h3>Add New</h3>
@@ -95,6 +95,7 @@ export default function BookDetails() {
         <div className={styles.comments}>
           {displayComments}
           <form onSubmit={handleSubmit}>
+            <img src='../../images/pattern.svg'></img>
             <input
               required
               label='comment'
@@ -102,10 +103,11 @@ export default function BookDetails() {
               value={comment.comment}
               onChange={handleChange}
             ></input>
+
             <br />
             <br />
             <IfAuthenticated>
-              <button>Post</button>
+              <button className='button'>Post</button>
             </IfAuthenticated>
           </form>
         </div>
