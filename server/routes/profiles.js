@@ -1,5 +1,4 @@
 const express = require('express')
-const path = require('path')
 const checkJwt = require('../auth0.js')
 
 const {
@@ -13,18 +12,7 @@ const {
 
 const router = express.Router()
 
-const multer = require('multer')
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../public/images'))
-  },
-  filename: (req, file, cb) => {
-    console.log(file)
-    cb(null, Date.now() + '-' + file.originalname)
-  },
-})
-
-const upload = multer({ storage: storage })
+const{upload} = require('./multer')
 
 // GET /api/v1/profiles/:profileid/edit
 router.get('/:profileid/edit', (req, res) => {
@@ -37,14 +25,14 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   if (!req.file) {
     imageUrl = '/images/bag-cat.jpg'
   } else {
-    imageUrl = '/images/' + req.file.filename
+    imageUrl = '/user_uploads/' + req.file.filename
   }
 
   const profileId = req.params.profileid
   imageUpload(profileId, imageUrl)
     .then(() => {
-      console.log(req.body)
-      res.send('image uploaded')
+      console.log(imageUrl);
+      res.json({imageUrl})
     })
     .catch((err) => {
       console.error(err.message)
