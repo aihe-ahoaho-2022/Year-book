@@ -74,8 +74,7 @@ exports.seed = async function (knex) {
       id: 6,
       book_id: 1,
       name: 'Ben',
-      image:
-        'https://www.pianz.org.nz/wp-content/uploads/2016/03/pekin-duck.jpg',
+      image: '/images/frank.jpg',
       auth0_id: 'authtestid6',
       quote: 'Sam!',
       blurb: '',
@@ -213,7 +212,7 @@ exports.seed = async function (knex) {
       github_url: 'https://github.com/',
     },
     {
-      id: 15,
+      id: 16,
       book_id: 4,
       name: 'Anna',
       image: '/images/anna.jpg',
