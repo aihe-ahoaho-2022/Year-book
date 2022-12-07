@@ -95,7 +95,7 @@ export default function BookDetails() {
         <div className={styles.comments}>
           {displayComments}
           <form onSubmit={handleSubmit}>
-            <img src='../../images/pattern.svg'></img>
+            <img src='../../images/pattern.svg' alt='pattern.svg'></img>
             <input
               required
               label='comment'

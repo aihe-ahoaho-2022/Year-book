@@ -75,6 +75,7 @@ export default function FruitEditor() {
             name='quote'
             value={profile.quote}
             onChange={handleChange}
+            maxlength='100'
           />
           <TextInput
             label='Blurb'

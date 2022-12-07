@@ -160,10 +160,15 @@ justify-content: center;
 
 .card .text
 {position: absolute;
-  inset:30px;
+  inset:10px;
 text-align: left;
-  padding: 0 18px;
+  padding:0px 0px 0px 0px;
   word-wrap: break-word; 
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height:80%;
 }
 .card .text::before{
 position: absolute;
