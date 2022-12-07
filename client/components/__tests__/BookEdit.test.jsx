@@ -39,8 +39,9 @@ describe('<BookEdit />', () => {
     const button1 = screen.getByRole('button', { name: 'Update' })
     expect(button1).toHaveTextContent('Update')
 
-    const button2 = screen.getByRole('button', { name: 'Delete This Book' })
-    expect(button2).toHaveTextContent('Delete')
+    const button2 = screen.getAllByRole('button', { name: 'Delete This Book' })
+    expect(button2[1]).toHaveTextContent('Delete')
+
 
     const bookName = screen.getByRole('textbox', {name: "name"})
     expect(bookName.value).toBe('The Book about Bananas')
