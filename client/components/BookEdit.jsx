@@ -17,12 +17,15 @@ export default function BookEdit(props) {
     theme: '',
   })
 
-  useEffect(async () => {
-    if (!props.add) {
-      const bookData = await getBookById(bookId)
-      setEditBook(bookData)
+  useEffect(() => {
+    const loadBookData = async () => {
+      if (!props.add) {
+        const bookData = await getBookById(bookId)
+        setEditBook(bookData)
+      }
     }
-  }, [])
+    loadBookData()
+  }, [bookId])
 
   function confirmDelete(event) {
     const confirmation = confirm(
