@@ -24,7 +24,7 @@ describe('<BookDetails />', () => {
       </Router>
     )
     const imgs = screen.getAllByRole('img')
-    expect(imgs).toHaveLength(3)
+    expect(imgs).toHaveLength(4)
   })
 
   it('check for headings and mock name showing', () => {
