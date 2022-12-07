@@ -1,8 +1,8 @@
 /* eslint-disable jest/no-commented-out-tests */
-import { getProfilesByBookId, /*removeProfile*/ } from '../../apis/profile'
-import { putProfileContent } from '../../apis/profileEdit'
+import { getProfilesByBookId, removeProfile } from '../../apis/profile'
+import { putProfileContent, postProfile } from '../../apis/profileEdit'
 
-import { fetchProfiles, updateProfile, /*destroyProfile*/ } from '../profile'
+import { fetchProfiles, updateProfile, destroyProfile, submitProfile} from '../profile'
 
 const profileContentMockData = 'nothing'
 
@@ -41,14 +41,25 @@ describe('UpdateProfiles', () => {
     })
   })
 })
-// describe('deleteProfiles', () => {
-//   it('dispatches the DEL_PROFILE action.', () => {
-//     removeProfile.mockReturnValue(Promise.resolve(profileContentMockData))
-//     return destroyProfile()(fakeDispatch).then(() => {
-//       expect(fakeDispatch).toHaveBeenCalledWith({
-//         type: 'DEL_PROFILE',
-//         payload: profileContentMockData,
-//       })
-//     })
-//   })
-// })
+describe('deleteProfiles', () => {
+  it('dispatches the DEL_PROFILE action.', () => {
+    removeProfile.mockReturnValue(Promise.resolve(1))
+    return destroyProfile()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: 'DEL_PROFILE',
+        payload: undefined,
+      })
+    })
+  })
+})
+describe('submitProfile', () => {
+  it('dispatches the ADD_PROFILES action.', () => {
+    postProfile .mockReturnValue(Promise.resolve(profileContentMockData))
+    return submitProfile()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: 'ADD_PROFILES',
+        payload: profileContentMockData,
+      })
+    })
+  })
+})
