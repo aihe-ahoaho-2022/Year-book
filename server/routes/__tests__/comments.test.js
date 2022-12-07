@@ -1,7 +1,7 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getCommentsByBookId, postComment } = require('../../db/db.js')
+const { getCommentsByBookId } = require('../../db/db.js')
 jest.spyOn(console, 'error')
 
 jest.mock('../../db/db.js')
@@ -15,12 +15,6 @@ const getCommentsByBookIdData = {
   book_id: 1,
   comment: 'Nice!',
   auth0_id: 'authtestid1',
-}
-const postData = {
-  id: 1,
-  bookId: 1,
-  comment: 'Nice!',
-  ownerId: 'authtestid1',
 }
 
 describe('get /api/v1/home/1', () => {
