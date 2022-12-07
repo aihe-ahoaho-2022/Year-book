@@ -8,9 +8,7 @@ export function getProfileById(id) {
     return res.body
   })
 }
-
 // GET /api/v1/profiles/books/:bookid
-
 export function getProfilesByBookId(id) {
   return request.get(rootUrl + '/profiles/book/' + id).then((res) => {
     return res.body
