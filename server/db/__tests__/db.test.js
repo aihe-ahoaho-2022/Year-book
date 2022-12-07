@@ -4,6 +4,7 @@ const {
   getBookById,
   deleteProfile,
   getCommentsByBookId,
+  getProfileById,
 } = require('../db')
 
 const knex = require('knex')
@@ -43,7 +44,6 @@ describe('getCommentsByBookId', () => {
     const bookId = 1
     return getCommentsByBookId(bookId, testDb).then((commments) => {
       expect([commments[0], commments[1], commments[2]]).toHaveLength(3)
-      // counting three to future-proof test
     })
   })
 })
@@ -69,5 +69,14 @@ describe('deleteProfile', () => {
       .then((profiles) => {
         expect(profiles).toHaveLength(2)
       })
+  })
+})
+describe('getProfileById', () => {
+  it('get profile data by profileID', () => {
+    const profileId = 2
+    return getProfileById(profileId, testDb).then((profile) => {
+      expect(profile).toHaveLength(1)
+      expect(profile[0].name).toContain('Rohan')
+    })
   })
 })
