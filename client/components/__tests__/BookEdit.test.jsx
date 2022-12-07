@@ -34,7 +34,6 @@ describe('<BookEdit />', () => {
       expect(getBookById).toHaveBeenCalled()
     })
 
-    // expect(getBookById).toHaveBeenCalledWith()
 
     const button1 = screen.getByRole('button', { name: 'Update' })
     expect(button1).toHaveTextContent('Update')

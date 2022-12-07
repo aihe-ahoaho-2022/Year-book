@@ -25,7 +25,7 @@ router.post('/:profileid/imageupload', upload.single('image'), (req, res) => {
   if (!req.file) {
     imageUrl = '/images/bag-cat.jpg'
   } else {
-    imageUrl = '/images/' + req.file.filename
+    imageUrl = '/user_uploads/' + req.file.filename
   }
 
   const profileId = req.params.profileid

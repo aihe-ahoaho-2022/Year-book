@@ -88,9 +88,11 @@ export default function ProfileDetails() {
           <Link to={`/profiles/${profileid}/edit`}>
             <button className={styles.button}>Edit</button>
           </Link>
-          <button onClick={(e) => confirmDelete(e)} className={styles.button}>
-            Remove
-          </button>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button onClick={(e) => confirmDelete(e)} className={styles.button}>
+              Remove
+            </button>
+          </div>
         </div>
       </IfAuthenticated>
     </>

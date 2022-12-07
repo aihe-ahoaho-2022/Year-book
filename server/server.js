@@ -9,6 +9,10 @@ const server = express()
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
+server.use(
+  '/user_uploads',
+  express.static(path.join(__dirname, '../storage/images'))
+)
 
 server.use('/api/v1/books', bookRoutes)
 server.use('/api/v1/profiles', profilesRoutes)
