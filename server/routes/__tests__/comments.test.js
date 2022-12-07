@@ -2,14 +2,9 @@ const request = require('supertest')
 const server = require('../../server')
 
 const { getCommentsByBookId, postComment } = require('../../db/db.js')
+jest.spyOn(console, 'error')
 
-jest.spyOn(console, 'error').mockImplementation(() => {})
 jest.mock('../../db/db.js')
-
-jest.useFakeTimers('legacy')
-// beforeEach(() => {
-//   jest.resetAllMocks()
-// })
 
 afterEach(() => {
   console.error.mockReset()

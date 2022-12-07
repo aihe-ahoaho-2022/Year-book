@@ -32,12 +32,30 @@ describe('get /api/v1/books/1', () => {
 
   it('should return status 500 and an error message when database fails.', async () => {
     expect.assertions(2)
-    await getBookById.mockImplementation(() => Promise.reject('Something went wrong'))
+    await getBookById.mockImplementation(() =>
+      Promise.reject('Something went wrong')
+    )
     return request(server)
       .get('/api/v1/books/1')
       .then((res) => {
         expect(res.status).toBe(500)
         expect(res.text).toContain('Something went wrong')
       })
+  })
 })
+
+describe('POST /api/v1/comments/', () => {
+  beforeEach(() => {
+    jest.resetAllMocks()
+  })
+  it('should return status 200 and an updated table when successful', () => {
+    // expect.assertions(1)
+    postComment.mockImplementation(() => Promise.resolve(postData))
+    return request(server)
+      .post('/api/v1/comments/1/add')
+      .send(postData)
+      .then((res) => {
+        expect(res.status).toBe(200)
+      })
+  })
 })
