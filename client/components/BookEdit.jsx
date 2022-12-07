@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { submitBook, updateBook } from '../actions/book'
+import { destroyBook, submitBook, updateBook } from '../actions/book'
 import { TextInput } from '@mantine/core'
 import { useDispatch } from 'react-redux'
 import { getBookById, deleteBookById } from '../apis/book'
@@ -57,7 +57,7 @@ export default function BookEdit(props) {
     event.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        deleteBookById(Number(bookId), token)
+        dispatch(destroyBook(Number(bookId), token))
       })
       .then(() => {
         navigate('/')
