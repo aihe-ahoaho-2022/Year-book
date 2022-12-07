@@ -3,7 +3,11 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getProfileById } = require('../../db/db.js')
+const {
+  getProfileById,
+  getProfilesByBookId,
+  addProfile,
+} = require('../../db/db.js')
 
 
 
@@ -49,6 +53,39 @@ describe('get /api/v1/profiles/1', () => {
         expect(res.body.id).toBe(1)
         expect(res.body.blurb).toContain("Gerard")
         
+      })
+  })
+  it('should return status 200 and profiles by bookID when successful', () => {
+    expect.assertions(2)
+    getProfilesByBookId.mockReturnValue(Promise.resolve(getProfileByIdData))
+    return request(server)
+      .get('/api/v1/profiles/book/1')
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(getProfileByIdData.name).toBe('Gerard')
+      })
+  })
+})
+
+describe('POST /api/v1/profiles', () => {
+  it('should return status 200 and an updated table when successful', () => {
+    expect.assertions(1)
+    addProfile.mockImplementation(() => Promise.resolve(getProfileByIdData))
+    return request(server)
+      .post('/api/v1/profiles/add')
+      .send(getProfileByIdData)
+      .then((res) => {
+        expect(res.status).toBe(200)
+      })
+  })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    addProfile.mockImplementation(() => Promise.reject('Post Failed'))
+    return request(server)
+      .post('/api/v1/profiles/add')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
       })
   })
 })
