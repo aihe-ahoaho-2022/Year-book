@@ -38,7 +38,13 @@ export default function BookDetails() {
           ></img>
           <h3 className={styles.name}>Name:{profile.name}</h3>
           <div className={styles.text}>
-            <span>Quote:{profile.quote}</span>
+            <p>
+              Quote:
+              <br />
+              {profile.quote}
+              <hr />
+              Click to edit!
+            </p>
           </div>
         </div>
       </Link>
@@ -61,8 +67,7 @@ export default function BookDetails() {
     event.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        console.log(comment);
-        dispatch(submitComments({...comment, ownerId: user.nickname}, token))
+        dispatch(submitComments({ ...comment, ownerId: user.nickname }, token))
       })
       .catch((e) => console.log(e))
     setComment({ comment: '', bookId: bookId })
@@ -82,16 +87,20 @@ export default function BookDetails() {
                 src='https://blush.design/api/download?shareUri=XQMeVJiJO&w=800&h=800&fm=png'
                 alt='Add New'
               ></img>
-
               <h3>Add New</h3>
             </div>
           </div>
         </Link>
       </div>
+      <br />
+      <br />
+      <hr />
+      <br />
+      <h2>Post your comments below:</h2>
       <div className={styles.container}>
         <div className={styles.comments}>
           {displayComments}
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit}>
             <input
               required
               label='comment'
