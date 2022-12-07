@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { destroyBook, submitBook, updateBook } from '../actions/book'
 import { TextInput } from '@mantine/core'
 import { useDispatch } from 'react-redux'
-import { getBookById, deleteBookById } from '../apis/book'
+import { getBookById } from '../apis/book'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function BookEdit(props) {
@@ -56,6 +56,10 @@ export default function BookEdit(props) {
     setEditBook({ ...editBook, [event.target.name]: event.target.value })
   }
 
+  function handleChangeCover() {
+    navigate(`/${bookId}/imageupload`)
+  }
+
   function handleDelete(event) {
     event.preventDefault()
     getAccessTokenSilently()
@@ -82,30 +86,23 @@ export default function BookEdit(props) {
               value={editBook.name}
               onChange={handleChange}
             ></TextInput>
-            <TextInput
-              label='theme'
-              name='theme'
-              value={editBook?.theme}
-              onChange={handleChange}
-            ></TextInput>
           </ul>
           <button type='submit'>{props.add ? 'Add' : 'Update'}</button>
         </form>
         {props.add ? null : (
-          <div
-            role='button'
+          <button
             onKeyPress={confirmDelete}
             onClick={confirmDelete}
             tabIndex={0}
           >
-            <button type='submit'>Delete This Book</button>
-          </div>
+            Delete This Book
+          </button>
         )}
-        {props.add ? null : (
-          <Link to={`/${bookId}/imageupload`}>
-            <button type='submit'>Change Book Cover</button>
-          </Link>
-        )}
+        <div>
+          <button onClick={handleChangeCover} type='submit'>
+            Change Book Cover
+          </button>
+        </div>
       </div>
     </>
   )
