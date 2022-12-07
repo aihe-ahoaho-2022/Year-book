@@ -58,11 +58,9 @@ export function updateBook(newBook, token) {
 }
 
 export function destroyBook(bookid, token) {
-  console.log('fetching')
   return (dispatch) => {
     return deleteBookById(bookid, token)
       .then(() => {
-        console.log('Succesful result from api')
         dispatch(deleteBooks(bookid))
       })
       .catch((err) => console.error(err.message))
