@@ -9,6 +9,7 @@ export function getProfileContent(profileid) {
   })
 }
 
+
 // PATCH /api/v1/profiles/:profileid/edit
 export function putProfileContent(profile) {
   return request
