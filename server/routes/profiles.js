@@ -88,9 +88,7 @@ router.patch('/:profileid/edit', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-  console.log('hit route')
   const profile = req.body
-  console.log(profile)
   addProfile(profile)
     .then((profileResult) => {
       res.json(profileResult)
@@ -101,7 +99,6 @@ router.post('/add', (req, res) => {
     })
 })
 
-// DELETE /api/v1/profiles/:id
 router.delete('/:id', checkJwt, (req, res) => {
   deleteProfile(req.params.id)
     .then((result) => res.json(result))
