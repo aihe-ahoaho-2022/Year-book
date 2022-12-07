@@ -34,7 +34,7 @@ describe('<BookDetails />', () => {
       </Router>
     )
     const headings = screen.getAllByRole('heading')
-    expect(headings).toHaveLength(4)
+    expect(headings).toHaveLength(5)
 
     expect(headings[1]).toHaveTextContent('banana')
   })

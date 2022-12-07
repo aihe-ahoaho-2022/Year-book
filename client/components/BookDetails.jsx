@@ -19,7 +19,6 @@ export default function BookDetails() {
   const [comment, setComment] = useState({
     comment: '',
     bookId: bookId,
-    ownerId: '',
   })
 
   useEffect(() => {
@@ -39,7 +38,12 @@ export default function BookDetails() {
           ></img>
           <h3 className={styles.name}>Name:{profile.name}</h3>
           <div className={styles.text}>
-            <span>Quote:{profile.quote}</span>
+            <p>
+              Quote:
+              <br />
+              {profile.quote}
+              Click to edit!
+            </p>
           </div>
         </div>
       </Link>
@@ -62,10 +66,10 @@ export default function BookDetails() {
     event.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(submitComments(comment, token))
+        dispatch(submitComments({ ...comment, ownerId: user.nickname }, token))
       })
       .catch((e) => console.log(e))
-    setComment({ comment: '', bookId: bookId, ownerId: user.nickname })
+    setComment({ comment: '', bookId: bookId })
   }
 
   return (
@@ -82,17 +86,22 @@ export default function BookDetails() {
                 src='https://blush.design/api/download?shareUri=XQMeVJiJO&w=800&h=800&fm=png'
                 alt='Add New'
               ></img>
-
               <h3>Add New</h3>
             </div>
           </div>
         </Link>
       </div>
+      <br />
+      <br />
+      <hr />
+      <br />
+      <h2>Post your comments below:</h2>
       <div className={styles.container}>
         <div className={styles.comments}>
           {displayComments}
           <form onSubmit={handleSubmit}>
             <input
+              required
               label='comment'
               name='comment'
               value={comment.comment}
