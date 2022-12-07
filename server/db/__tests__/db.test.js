@@ -2,9 +2,12 @@ const {
   getProfilesByBookId,
   getBooks,
   getBookById,
-  deleteProfile,
+  deleteBook,
   getCommentsByBookId,
+  deleteProfile,
   getProfileById,
+  addProfile,
+  postComment,
 } = require('../db')
 
 const knex = require('knex')
@@ -57,6 +60,19 @@ describe('getBookById', () => {
     })
   })
 })
+describe('deleteBook', () => {
+  it('deletes book from db', () => {
+    const id = 2
+    return deleteBook(id, testDb)
+      .then(() => {
+        return getBooks(testDb)
+      })
+      .then((books) => {
+        console.log(books)
+        expect(books).toHaveLength(3)
+      })
+  })
+})
 
 describe('deleteProfile', () => {
   it('deletes profiles from db', () => {
@@ -77,6 +93,42 @@ describe('getProfileById', () => {
     return getProfileById(profileId, testDb).then((profile) => {
       expect(profile).toHaveLength(1)
       expect(profile[0].name).toContain('Rohan')
+    })
+  })
+})
+
+describe('add profile to the database', () => {
+  it('add profile back to database', () => {
+    const mockProfile = {
+      id: 20,
+      bookId: 1,
+      name: 'Banana',
+      image: '',
+      ownerId: '',
+      quote: ``,
+      blurb: '',
+      linkedinUrl: '',
+      twitterUrl: '',
+      instagramUrl: '',
+      facebookUrl: '',
+      githubUrl: 'https://github.com/jatin-puri-coder',
+    }
+    return addProfile(mockProfile, testDb).then((profile) => {
+      expect(profile).toHaveLength(1)
+      expect(profile[0]).toBe(20)
+    })
+  })
+})
+
+describe('add comments to the database', () => {
+  it('add profile back to database', () => {
+    const mockComments = {
+      bookId: 1,
+      comment: 'Great',
+      ownerId: 'authtestid1',
+    }
+    return postComment(mockComments, testDb).then((id) => {
+      expect(id[0]).toBe(9)
     })
   })
 })
