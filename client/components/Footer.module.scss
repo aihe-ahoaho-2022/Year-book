@@ -11,11 +11,13 @@
 }
 
 .footer {
+  height: 10%;
   display: flex; 
   // justify-content: space-between; 
   text-align: center;
+ justify-content: center;
   gap: 1em; 
-  padding: 20px; 
+  padding: 10px; 
   background-color: theme.$black; 
   margin: 0;
   // color: theme.$white;
@@ -60,3 +62,8 @@ a:visited{
   text-decoration: none;
   float: inline-end;
 }
+
+.footer_pattern{
+ width: 20%;
+height: 1rem;
+opacity: 0.6;}
