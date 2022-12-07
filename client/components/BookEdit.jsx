@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { submitBook, updateBook } from '../actions/book'
-import { TextInput, Button } from '@mantine/core'
+import { TextInput } from '@mantine/core'
 import { useDispatch } from 'react-redux'
 import { getBookById, deleteBookById } from '../apis/book'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -71,7 +71,7 @@ export default function BookEdit(props) {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <p>{props.add ? 'Add New Book' : 'Update Book'}</p>
+          <h2>{props.add ? 'Add New Book' : 'Update Book'}</h2>
           <ul>
             <TextInput
               label='name'
@@ -86,25 +86,23 @@ export default function BookEdit(props) {
               onChange={handleChange}
             ></TextInput>
           </ul>
-          <Button
-            variant='gradient'
-            gradient={{ from: 'indigo', to: 'cyan' }}
-            size='lg'
-            type='submit'
-          >
-            {props.add ? 'Add' : 'Update'}
-          </Button>
+          <button type='submit'>{props.add ? 'Add' : 'Update'}</button>
         </form>
-        <div onClick={confirmDelete}>
-          <Button
-            variant='gradient'
-            gradient={{ from: 'indigo', to: 'cyan' }}
-            size='lg'
-            type='submit'
+        {props.add ? null : (
+          <div
+            role='button'
+            onKeyPress={confirmDelete}
+            onClick={confirmDelete}
+            tabIndex={0}
           >
-            Delete This Book
-          </Button>
-        </div>
+            <button type='submit'>Delete This Book</button>
+          </div>
+        )}
+        {props.add ? null : (
+          <Link to={`/${bookId}/imageupload`}>
+            <button type='submit'>Change Book Cover</button>
+          </Link>
+        )}
       </div>
     </>
   )
