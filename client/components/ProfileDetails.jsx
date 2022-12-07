@@ -61,22 +61,23 @@ export default function ProfileDetails() {
           <hr className={styles.hr} />
           <h2 className={styles.blurb}>{profile.blurb}</h2>
           <ul className={styles.list}>
-            <a href={profile.linkedin_url}>
+            <a href={profile.linkedinUrl} target='_blank' rel='noreferrer'>
               <li className={styles.li}>LinkedIn</li>
             </a>
-            <a href={profile.twitter_url}>
+            <a href={profile.twitterUrl} target='_blank' rel='noreferrer'>
               <li className={styles.li}>Twitter</li>
             </a>
-            <a href={profile.instagram_url}>
+            <a href={profile.instagramUrl} target='_blank' rel='noreferrer'>
               <li className={styles.li}>Instagram</li>
             </a>
-            <a href={profile.facebook_url}>
+            <a href={profile.facebookUrl} target='_blank' rel='noreferrer'>
               <li className={styles.li}>Facebook</li>
             </a>
-            <a href={profile.github_url}>
+            <a href={profile.githubUrl} target='_blank' rel='noreferrer'>
               <li className={styles.li}>GitHub</li>
             </a>
           </ul>
+          {console.log(profile)}
         </section>
       </div>
       <IfAuthenticated>
