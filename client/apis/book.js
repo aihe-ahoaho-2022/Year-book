@@ -20,9 +20,6 @@ export function deleteBookById(id, token) {
   return request
     .del(rootUrl + '/books/' + id + '/delete')
     .set('Authorization', `Bearer ${token}`)
-    .then((res) => {
-      return res.body
-    })
 }
 
 // PATCH /api/v1/books/:bookid/edit

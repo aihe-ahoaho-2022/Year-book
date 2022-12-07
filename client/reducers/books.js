@@ -10,6 +10,10 @@ const books = (state = initialState, action) => {
       return payload
     case 'UPDATE_BOOKS':
       return payload
+    case 'DELETE_BOOKS':
+      return state.filter((profile) => {
+        return profile.id != payload
+      })
     default:
       return state
   }
