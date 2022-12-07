@@ -1,6 +1,6 @@
 
-import { fetchComments} from '../comment'
-import { getCommentsByBookId } from '../../apis/comments'
+import { fetchComments, submitComments} from '../comment'
+import { getCommentsByBookId, postComment } from '../../apis/comments'
 
 
 jest.mock('../../apis/comments')
@@ -37,3 +37,16 @@ describe('fetchComments', () => {
     })
   })
 })
+
+describe('addComments', () => {
+  it('dispatches the ADD_COMMENTS action.', () => {
+    postComment.mockReturnValue(Promise.resolve(resultsContentMockData))
+    return submitComments()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: 'ADD_COMMENTS',
+        payload:  {"id": "n"}
+      })
+    })
+  })
+})
+
