@@ -19,7 +19,6 @@ export default function BookDetails() {
   const [comment, setComment] = useState({
     comment: '',
     bookId: bookId,
-    ownerId: '',
   })
 
   useEffect(() => {
@@ -43,6 +42,7 @@ export default function BookDetails() {
               Quote:
               <br />
               {profile.quote}
+              Click to edit!
             </p>
           </div>
         </div>
@@ -66,10 +66,10 @@ export default function BookDetails() {
     event.preventDefault()
     getAccessTokenSilently()
       .then((token) => {
-        dispatch(submitComments(comment, token))
+        dispatch(submitComments({ ...comment, ownerId: user.nickname }, token))
       })
       .catch((e) => console.log(e))
-    setComment({ comment: '', bookId: bookId, ownerId: user.nickname })
+    setComment({ comment: '', bookId: bookId })
   }
 
   return (
@@ -101,6 +101,7 @@ export default function BookDetails() {
           {displayComments}
           <form onSubmit={handleSubmit}>
             <input
+              required
               label='comment'
               name='comment'
               value={comment.comment}
