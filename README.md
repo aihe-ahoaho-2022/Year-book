@@ -1,5 +1,5 @@
 # Year-book!
-https://yeahbook.devacademy.nz/ 
+https://yeahbook.devacademy.online/ 
 ## What is Year-book?
 A facebook-like app that lets the user view and chat to old friends from bootcamp
 
